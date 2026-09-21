@@ -21,6 +21,7 @@ LEZIONE.registra('regressione', function () {
   let punti = DATI_INIZIALI.map(([x, y], i) => ({ x, y, id: i }));
   let prossimoId = punti.length;
   let grado = 1, mostraErrori = true, conVerifica = false;
+  let casaNuova = null;      // la casa che «arriva dopo», mai usata per tirare la curva
 
   /* ═════════════ A) grafico principale ═════════════ */
 
@@ -62,6 +63,7 @@ LEZIONE.registra('regressione', function () {
   const curva = gRitagliato.append('path').attr('fill', 'none')
     .attr('stroke', C.modello).attr('stroke-width', 3).attr('stroke-linecap', 'round');
   const gPunti = t.g.append('g');
+  const gNuova = t.g.append('g');
   const legenda = t.g.append('g').attr('transform', `translate(10,10)`);
   legenda.append('rect').attr('class', 'sfondo-legenda')
     .attr('x', -6).attr('y', -12).attr('width', 200).attr('height', 24)
@@ -150,6 +152,9 @@ LEZIONE.registra('regressione', function () {
         .attr('fill', C.inchiostro2).text(d.t);
     });
 
+    /* la casa nuova: quella che fa vedere se ha imparato la regola o i dettagli */
+    disegnaCasaNuova(f);
+
     /* punteggi */
     const eStudio = L.rmse(studio, f);
     const eVerifica = verifica.length ? L.rmse(verifica, f) : NaN;
@@ -164,6 +169,57 @@ LEZIONE.registra('regressione', function () {
       .html(verdetto(grado, eStudio, eVerifica, studio.length));
 
     aggiornaCollina();
+  }
+
+  /** Genera una casa mai vista, con il prezzo «vero» preso dalla regola
+   *  che ha generato i dati (una curva dolce) più un po' di caso. */
+  function nuovaCasa() {
+    /* Metà delle volte la casa nuova capita ai bordi dell'intervallo: è lì che
+       una curva troppo flessibile fa i disastri, ed è la cosa da far vedere. */
+    const bordo = Math.random() < 0.5;
+    const x = bordo
+      ? (Math.random() < 0.5 ? 42 + Math.random() * 16 : 128 + Math.random() * 20)
+      : 60 + Math.random() * 70;
+    const vero = 12 + 1.95 * x - 0.0028 * x * x + (Math.random() - 0.5) * 12;
+    casaNuova = { x, y: vero };
+    aggiorna();
+  }
+
+  function disegnaCasaNuova(f) {
+    gNuova.selectAll('*').remove();
+    if (!casaNuova) return;
+    const previsto = f(casaNuova.x);
+    const scarto = Math.abs(previsto - casaNuova.y);
+
+    gNuova.append('line')
+      .attr('x1', x(casaNuova.x)).attr('x2', x(casaNuova.x))
+      .attr('y1', y(casaNuova.y)).attr('y2', y(Math.max(DOMINIO_Y[0], Math.min(DOMINIO_Y[1], previsto))))
+      .attr('stroke', C.rosso).attr('stroke-width', 3).attr('stroke-dasharray', '4 3');
+    gNuova.append('path')
+      .attr('transform', `translate(${x(casaNuova.x)},${y(casaNuova.y)})`)
+      .attr('d', d3.symbol(d3.symbolStar, 210)())
+      .attr('fill', '#ffd9a8').attr('stroke', C.dati).attr('stroke-width', 1.8);
+    gNuova.append('text')
+      .attr('x', x(casaNuova.x)).attr('y', y(casaNuova.y) - 16).attr('text-anchor', 'middle')
+      .attr('font-size', 12).attr('fill', C.dati)
+      .attr('stroke', C.superficie).attr('stroke-width', 3).attr('paint-order', 'stroke')
+      .text('casa nuova, mai vista');
+
+    d3.select('#reg-nuova-esito').attr('class', 'verdetto ' + (scarto < 12 ? 'buono' : 'attenzione'))
+      .html(`È arrivata una casa di <strong>${Math.round(casaNuova.x)} m²</strong> che vale ` +
+            `<strong>${Math.round(casaNuova.y)} mila €</strong>. La curva dice ` +
+            `<strong>${Math.round(previsto)}</strong>: ` +
+            (scarto < 12
+              ? `sbaglia solo ${Math.round(scarto)} mila €. ` +
+                (grado > 4
+                  ? 'Questa volta ci ha preso. Riprovate: è sulle case molto piccole o molto ' +
+                    'grandi che una curva troppo furba fa i disastri.'
+                  : 'Ha imparato la regola, non i dettagli.')
+              : `sbaglia di <strong>${Math.round(scarto)} mila €</strong>. ` +
+                (grado > 4
+                  ? 'Ecco il punto: sui dati che ha studiato era perfetta, sul primo caso nuovo no. ' +
+                    'Una curva troppo furba impara i dettagli invece della regola.'
+                  : 'Capita: nessun modello è esatto. Provate con un\'altra casa.')));
   }
 
   function classeVerdetto(g, es, ev) {
@@ -371,7 +427,10 @@ LEZIONE.registra('regressione', function () {
   });
   d3.select('#reg-errori').on('change', function () { mostraErrori = this.checked; aggiorna(); });
   d3.select('#reg-verifica').on('change', function () { conVerifica = this.checked; aggiorna(); });
+  d3.select('#reg-nuova').on('click', nuovaCasa);
   d3.select('#reg-reset').on('click', () => {
+    casaNuova = null;
+    d3.select('#reg-nuova-esito').attr('class', 'verdetto').html('');
     punti = DATI_INIZIALI.map(([x, y], i) => ({ x, y, id: i }));
     prossimoId = punti.length;
     aggiorna();

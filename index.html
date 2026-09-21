@@ -50,6 +50,51 @@
     <p class="lavagna-piccolo">Tutto qui. Il resto — reti, neuroni, miliardi — è solo <em>quante</em> manopole.</p>
   </div>
 
+  <div class="pannello" data-nota="Eseguite l'algoritmo un passo alla volta, leggendo la regola illuminata. Poi a destra: nessuna regola, solo esempi, e funziona su una cifra mai vista.">
+    <h2>Due modi di far fare qualcosa a un computer</h2>
+    <p class="istruzioni">
+      Le due strade, una accanto all'altra, con un esempio vero per ciascuna.
+      A sinistra un lavoro che si sa spiegare a parole; a destra uno che non si sa spiegare a nessuno.
+    </p>
+    <div class="doppia-colonna">
+      <div class="colonna-regola">
+        <h3>1. La strada vecchia: scrivere la regola</h3>
+        <p class="istruzioni">Mettere sei carte in ordine. La regola sta in tre righe:</p>
+        <ol class="ricetta" id="ordina-ricetta">
+          <li data-fase="1"><span class="n">1</span> Guardo <strong>due carte vicine</strong></li>
+          <li data-fase="2"><span class="n">2</span> Se la seconda è <strong>più piccola</strong>, le scambio</li>
+          <li data-fase="3"><span class="n">3</span> <strong>Vado avanti</strong> e ricomincio, finché non c'è più niente da scambiare</li>
+        </ol>
+        <div id="ordina-carte" class="tela"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="ordina-vai">▶ Esegui la regola</button>
+          <button class="bottone" id="ordina-passo">Un passo</button>
+          <button class="bottone" id="ordina-mischia">Altre carte</button>
+        </div>
+        <div id="ordina-verdetto" class="verdetto"></div>
+      </div>
+      <div class="colonna-regola">
+        <h3>2. La strada nuova: mostrare gli esempi</h3>
+        <p class="istruzioni">
+          Riconoscere una cifra scritta a mano. Qui la regola non la sa scrivere nessuno,
+          quindi si fa il contrario: si mostrano <strong>esempi con la risposta scritta accanto</strong>.
+        </p>
+        <div id="esempi-cifre" class="tela"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="esempi-nuova">Mostra una cifra mai vista</button>
+        </div>
+        <div id="esempi-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="nota">
+      A sinistra il computer <strong>non impara niente</strong>: esegue. La regola l'abbiamo pensata noi,
+      vale per qualsiasi mazzo di carte e sappiamo dimostrare che funziona sempre.
+      A destra nessuno ha scritto la regola: la macchina l'ha <strong>ricavata da ottomila esempi</strong>,
+      funziona quasi sempre, e non sappiamo dire esattamente che cosa abbia capito.
+      Tutta la lezione di oggi sta sulla strada di destra.
+    </p>
+  </div>
+
   <div class="pannello" data-nota="Chiedete una regola per riconoscere un sette PRIMA di mostrare le cifre. Poi «Altri quattro», due volte, in silenzio. Chiudete con gli uno e i nove.">
     <h2>Perché non basta scrivere le regole</h2>
     <p class="istruzioni">
@@ -77,7 +122,8 @@
     <h2>Adesso la macchina siete voi</h2>
     <p class="istruzioni">
       Questa scatola trasforma i <strong>metri quadri</strong> di una casa nel suo <strong>prezzo</strong>.
-      Dentro non c'è nessuna regola scritta: ci sono <strong>due manopole</strong>, e adesso sono messe a caso.
+      Dentro c'è una formula con <strong>due numeri da decidere</strong> — le due manopole, che vedete
+      scritte nella formula sotto la scatola. Adesso sono messe a caso.
       Giratele voi — trascinatele, o usate i tasti «−» e «+» — finché la macchina non azzecca
       i cinque prezzi veri qui sotto. È esattamente quello che fa un computer quando «impara».
     </p>
@@ -88,6 +134,7 @@
       <div class="colonna-controlli">
         <div id="macchina-termometro" class="tela"></div>
         <div id="macchina-esempi" class="tela"></div>
+        <div id="macchina-mappa" class="tela"></div>
         <div class="controlli">
           <button class="bottone bottone-primario" id="macchina-auto">Lascia fare a lei</button>
           <button class="bottone" id="macchina-reset">Rimetti a caso</button>
@@ -198,7 +245,9 @@
         </div>
         <div id="reg-punteggi" class="punteggi"></div>
         <div id="reg-verdetto" class="verdetto"></div>
+        <div id="reg-nuova-esito" class="verdetto"></div>
         <div class="controlli">
+          <button class="bottone bottone-primario" id="reg-nuova">Fai arrivare una casa nuova</button>
           <button class="bottone" id="reg-reset">Ricomincia</button>
         </div>
       </div>
@@ -279,11 +328,11 @@
   </div>
 
   <div class="pannello" data-nota="Partite da «indovinare il figlio» e raccontate Galton: la parola regressione nasce qui. Poi «indovinare il padre»: stessi punti, retta diversa. Infine la nuvola.">
-    <h2>La stessa nuvola di punti, tre rette diverse</h2>
+    <h2>La stessa nuvola, due rette diverse</h2>
     <p class="istruzioni">
-      Le altezze di 200 padri e dei loro figli. Scegliete che cosa volete fare con questi dati:
-      <strong>la nuvola è sempre la stessa, ma la retta che ne esce cambia</strong>, perché cambia
-      la domanda — cioè che cosa decidiamo di chiamare «errore».
+      Le altezze di 200 padri e dei loro figli. <strong>I punti sono sempre gli stessi</strong>;
+      cambia solo che cosa vogliamo farci. Provate le due voci del menù e guardate i trattini
+      arancioni: sono gli errori, e sono di due tipi diversi.
     </p>
     <div class="doppia-colonna">
       <div>
@@ -293,20 +342,20 @@
         <div class="controllo">
           <label for="sup-scopo">Che cosa voglio fare</label>
           <select id="sup-scopo" class="scelta">
-            <option value="figlio">Indovinare l'altezza del figlio, sapendo quella del padre</option>
-            <option value="padre">Indovinare l'altezza del padre, sapendo quella del figlio</option>
-            <option value="nuvola">Solo descrivere com'è fatta la nuvola</option>
+            <option value="figlio">Voglio indovinare l'altezza del figlio</option>
+            <option value="nuvola">Voglio solo descrivere la nuvola</option>
           </select>
         </div>
         <div id="sup-rette-verdetto" class="verdetto"></div>
         <div id="sup-costi" class="tela" data-avanzato></div>
         <p class="nota" data-avanzato>
-          Le prime due rette sono <strong>supervisionate</strong>: una delle due misure fa da
-          «risposta giusta», e l'errore si misura solo su quella (i segmenti sono paralleli a
-          quell'asse). La terza è <strong>non supervisionata</strong>: nessuna delle due misure è
-          la risposta, l'errore è la distanza perpendicolare, e infatti la retta resta la stessa
-          anche se scambiate i due assi. È la <em>retta di minima distanza</em> di Pearson (1901),
-          il nonno di quella che oggi si chiama analisi delle componenti principali.
+          La prima retta è <strong>supervisionata</strong>: l'altezza del figlio fa da «risposta
+          giusta» e l'errore si misura solo su quella, in verticale. (Se invece voleste indovinare
+          il padre dal figlio verrebbe una terza retta, diversa da entrambe: non esiste «la» retta
+          dei dati, esiste la retta di una domanda.) La seconda è <strong>non supervisionata</strong>:
+          nessuna delle due misure è la risposta, l'errore è la distanza perpendicolare, e infatti
+          la retta resta la stessa anche scambiando i due assi. È la <em>retta di minima
+          distanza</em> di Pearson (1901), il nonno dell'analisi delle componenti principali.
         </p>
       </div>
     </div>
@@ -525,6 +574,28 @@
     che sia uno 0, un 1, un 2…
   </p>
 
+  <div class="pannello" data-nota="Premete «Srotola» e state zitti tre secondi. Da dire: la rete non vede mai un&#39;immagine, vede questa fila di 784 numeri. Le righe sono in fila, una dopo l&#39;altra.">
+    <h2>Prima ancora: un'immagine è una fila di numeri</h2>
+    <p class="istruzioni">
+      Un computer non «vede». Di questa cifra ha solo un quadretto per pixel, e dentro ogni
+      quadretto <strong>un numero</strong>: 0 se è bianco, 1 se è nero pieno, in mezzo i grigi.
+      Poi le righe vengono messe <strong>una in fila all'altra</strong>, e quello che entra nella rete
+      è quella fila lì. Premete il pulsante e guardate.
+    </p>
+    <div id="srotola-schema" class="tela"></div>
+    <div class="controlli">
+      <button class="bottone bottone-primario" id="srotola-vai">▶ Srotola l'immagine</button>
+      <button class="bottone" id="srotola-altra">Un'altra cifra</button>
+      <span class="stato" id="srotola-stato"></span>
+    </div>
+    <p class="nota">
+      Ventotto righe da ventotto numeri: <strong>784 numeri in fila</strong>. Tutto quello che
+      vedremo da qui in avanti — i neuroni, i fili, l'allenamento — lavora su questa fila, e non
+      sa niente del fatto che una volta era un disegno. Se vi sembra poco: è esattamente così
+      anche per le fotografie del telefono, solo con qualche milione di numeri invece di 784.
+    </p>
+  </div>
+
   <div class="pannello" data-nota="Un neurone solo, su una decisione che conoscono tutti. Fate notare il peso negativo. Poi i due pulsanti: persona pigra, persona attiva.">
     <h2>Prima di tutto: che cos'è un neurone</h2>
     <p class="istruzioni">
@@ -581,8 +652,8 @@
     </div>
   </div>
 
-  <div class="pannello" data-nota="«Un esempio, al rallentatore» due o tre volte, in silenzio: la ricetta si illumina da sola. Poi «Allena» e guardate i fili ingrossarsi.">
-    <h2>Come impara: si dà la colpa all'indietro</h2>
+  <div class="pannello" data-nota="Un esempio al rallentatore, due o tre volte, in silenzio. Da dire: l&#39;errore non viene diviso a caso, si calcola quanto ciascun filo ha contribuito.">
+    <h2>Come impara: l'errore torna indietro</h2>
     <p class="istruzioni">
       Questi sono i sei esempi che le facciamo studiare: tre barre verticali e tre orizzontali,
       con la risposta giusta scritta accanto. Guardate un passo alla volta che cosa succede.
@@ -595,7 +666,7 @@
         <ol class="ricetta" id="impara-ricetta">
           <li data-fase="1"><span class="n">1</span> Il segnale <strong>va avanti</strong> e la rete risponde</li>
           <li data-fase="2"><span class="n">2</span> Si confronta con <strong>la risposta giusta</strong></li>
-          <li data-fase="3"><span class="n">3</span> La colpa <strong>torna indietro</strong>, filo per filo</li>
+          <li data-fase="3"><span class="n">3</span> L'errore <strong>torna indietro</strong>, filo per filo</li>
           <li data-fase="4"><span class="n">4</span> Ogni filo si <strong>corregge un pochino</strong></li>
         </ol>
         <div id="impara-esempi" class="tela"></div>
@@ -608,15 +679,18 @@
       </div>
     </div>
     <p class="nota">
-      Nessuno dice al singolo filo quanto deve cambiare: <strong>la colpa si calcola</strong>.
-      Ogni filo riceve una parte dell'errore proporzionale a quanto ci ha messo del suo,
+      Nessuno dice al singolo filo quanto deve cambiare: <strong>si calcola quanto ha contribuito</strong>.
+      Ogni filo riceve la parte di errore che gli spetta, proporzionale a quanto ci ha messo del suo,
       e si sposta di un pochino nella direzione che lo riduce. Questo è tutto ciò che si intende
       con «la rete impara», e vale identico per la rete da 50.890 manopole qui sotto e per quelle
       da mille miliardi.
     </p>
     <p class="fonte">
       Il metodo si chiama <strong>retropropagazione dell'errore</strong>: Rumelhart, Hinton &amp; Williams,
-      <em>Nature</em> 323, 533–536 (1986).
+      <em>Nature</em> 323, 533–536 (1986). Il problema che risolve — stabilire quanto ciascun pezzo
+      di un sistema complicato abbia contribuito al risultato — ha un nome più antico:
+      <em>credit assignment</em>, l'assegnazione del merito, posto da Minsky,
+      <em>Proceedings of the IRE</em> 49, 8–30 (1961).
     </p>
   </div>
 
@@ -635,19 +709,22 @@
           <button class="bottone" id="rete-esempio">Esempio vero</button>
         </div>
         <p class="istruzioni">Disegnate col mouse (o col dito) una cifra da 0 a 9, grande e al centro.</p>
-        <h3>2. Quello che vede la rete</h3>
+        <h3>2. I 784 numeri</h3>
         <div id="rete-ingresso" class="tela tela-minuscola"></div>
-        <p class="istruzioni">L'immagine viene rimpicciolita a 28×28 e centrata: 784 numeri fra 0 e 1.</p>
+        <p class="istruzioni">Rimpicciolita a 28×28 e centrata, poi srotolata come nel primo pannello: 784 numeri fra 0 e 1.</p>
       </div>
       <div>
-        <h3>3. La risposta</h3>
+        <h3>3. Dentro la rete</h3>
+        <div id="rete-schema" class="tela"></div>
+        <div data-avanzato>
+          <div id="rete-nascosti" class="tela"></div>
+          <p class="istruzioni">Ognuno dei 64 neuroni cerca un pezzetto di forma. Passateci sopra il mouse per vedere <em>che cosa cerca</em>: blu dove vuole trovare inchiostro, rosso dove <em>non</em> ne vuole.</p>
+        </div>
+      </div>
+      <div>
+        <h3>4. La risposta</h3>
         <div id="rete-uscita" class="tela"></div>
         <div id="rete-verdetto" class="verdetto verdetto-grande"></div>
-      </div>
-      <div data-avanzato>
-        <h3>4. I 64 neuroni nascosti</h3>
-        <div id="rete-nascosti" class="tela"></div>
-        <p class="istruzioni">Ognuno cerca un pezzetto di forma. Passateci sopra il mouse per vedere <em>che cosa cerca</em>: le zone blu sono quelle dove vuole trovare inchiostro, le rosse dove <em>non</em> ne vuole.</p>
       </div>
     </div>
   </div>
@@ -685,7 +762,9 @@
         <p class="istruzioni">
           All'inizio è rumore puro: le manopole sono numeri a caso. Dopo qualche migliaio di cifre
           compaiono archi, tratti e curve — nessuno gliel'ha insegnati.
+          <strong>Cliccate una maschera</strong> per vedere che cosa vuol dire, esattamente.
         </p>
+        <div id="lab-lente" class="tela"></div>
         <h3>La sua risposta sulla vostra cifra, adesso</h3>
         <div id="lab-previsione" class="tela tela-minuscola"></div>
       </div>
@@ -1049,9 +1128,11 @@
 <script src="js/comune.js"></script>
 <script src="js/tappa0-intro.js"></script>
 <script src="js/tappa0b-macchina.js"></script>
+<script src="js/tappa0c-regole.js"></script>
 <script src="js/tappa1-regressione.js"></script>
 <script src="js/tappa2-supervisione.js"></script>
 <script src="js/tappa3-approssimatore.js"></script>
+<script src="js/tappa4-immagine.js"></script>
 <script src="js/tappa4a-anatomia.js"></script>
 <script src="js/tappa4-rete.js"></script>
 <script src="js/tappa4b-laboratorio.js"></script>

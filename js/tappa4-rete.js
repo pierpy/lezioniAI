@@ -203,6 +203,35 @@ LEZIONE.registra('rete', function () {
   tIn.g.append('rect').attr('width', 248).attr('height', 248)
     .attr('fill', 'none').attr('stroke', C.bordo).attr('stroke-width', 1.5).attr('rx', 4);
 
+  /* ── schema: 784 → 64 → 10, con i fili contati ───────────────────────── */
+  const tSchema = L.tela('#rete-schema', 400, 170, { t: 10, d: 10, b: 10, s: 10 });
+  const BLOCCHI = [
+    { x: 0, n: '784', sotto: 'numeri' },
+    { x: 145, n: '64', sotto: 'neuroni' },
+    { x: 290, n: '10', sotto: 'risposte' }
+  ];
+  tSchema.g.selectAll('rect').data(BLOCCHI).join('rect')
+    .attr('x', d => d.x).attr('y', 34).attr('width', 90).attr('height', 62).attr('rx', 10)
+    .attr('fill', C.superficie).attr('stroke', C.dati).attr('stroke-width', 2);
+  tSchema.g.selectAll('text.numero').data(BLOCCHI).join('text').attr('class', 'numero')
+    .attr('x', d => d.x + 45).attr('y', 70).attr('text-anchor', 'middle')
+    .attr('font-size', 24).attr('font-weight', 700).attr('fill', C.dati).text(d => d.n);
+  tSchema.g.selectAll('text.sotto').data(BLOCCHI).join('text').attr('class', 'sotto')
+    .attr('x', d => d.x + 45).attr('y', 90).attr('text-anchor', 'middle')
+    .attr('font-size', 12).attr('fill', C.inchiostro3).text(d => d.sotto);
+  [[90, 145, '50.176 fili'], [235, 290, '640 fili']].forEach(([a, b, testo]) => {
+    tSchema.g.append('path')
+      .attr('d', `M${a + 4},65 L${b - 6},65 M${b - 14},59 L${b - 6},65 L${b - 14},71`)
+      .attr('fill', 'none').attr('stroke', C.inchiostro3).attr('stroke-width', 2);
+    tSchema.g.append('text').attr('x', (a + b) / 2).attr('y', 50).attr('text-anchor', 'middle')
+      .attr('font-size', 11).attr('fill', C.inchiostro3).text(testo);
+  });
+  tSchema.g.append('text').attr('x', 190).attr('y', 18).attr('text-anchor', 'middle')
+    .attr('font-size', 12).attr('fill', C.inchiostro2)
+    .text('50.890 manopole in tutto');
+  const testoAccesi = tSchema.g.append('text').attr('x', 190).attr('y', 124)
+    .attr('text-anchor', 'middle').attr('font-size', 13).attr('fill', C.inchiostro2);
+
   /* ── pannello dei neuroni nascosti + "lente" ─────────────────────────── */
   const tNa = L.tela('#rete-nascosti', 400, 246, { t: 10, d: 8, b: 8, s: 10 });
   const LATO_GRIGLIA = Math.sqrt(NASC) | 0;          // 8×8 per 64 neuroni
@@ -259,6 +288,10 @@ LEZIONE.registra('rete', function () {
       .on('mousemove', (ev, j) => sugg.mostra(
         `neurone n. ${j + 1}<br>attivazione ${att ? L.num(att[j], 2) : '—'}`, ev))
       .on('mouseleave', sugg.nascondi);
+
+    testoAccesi.text(att
+      ? `su questa cifra sono accesi ${att.filter(v => v > 0).length} neuroni su ${NASC}`
+      : '');
 
     R.disegnaBarre('#rete-uscita', esito ? esito.probabilita : null);
 

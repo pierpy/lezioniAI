@@ -133,6 +133,15 @@ LEZIONE.registra('rete', function () {
   /* ═════════ le maschere, disegnate su tela (veloce anche a 20 disegni/s) ═════════ */
 
   const telaMaschere = document.getElementById('lab-maschere');
+  telaMaschere.style.cursor = 'pointer';
+  telaMaschere.addEventListener('click', ev => {
+    const r = telaMaschere.getBoundingClientRect();
+    const col = Math.floor((ev.clientX - r.left) / (r.width / 6));
+    const rig = Math.floor((ev.clientY - r.top) / (r.height / 4));
+    neuroneScelto = Math.max(0, Math.min(H - 1, rig * 6 + col));
+    disegnaMaschere();
+    disegnaLente();
+  });
   const ctxMaschere = telaMaschere.getContext('2d');
   const mosaico = document.createElement('canvas');
   mosaico.width = 6 * 28; mosaico.height = 4 * 28;
@@ -163,6 +172,12 @@ LEZIONE.registra('rete', function () {
     ctxMaschere.clearRect(0, 0, telaMaschere.width, telaMaschere.height);
     ctxMaschere.drawImage(mosaico, 0, 0, telaMaschere.width, telaMaschere.height);
     /* righe di separazione fra i 24 riquadri */
+    if (neuroneScelto >= 0) {            // riquadro sul neurone scelto
+      const c = neuroneScelto % 6, r = Math.floor(neuroneScelto / 6);
+      ctxMaschere.strokeStyle = '#eb6834';
+      ctxMaschere.lineWidth = 4;
+      ctxMaschere.strokeRect(c * 56 + 2, r * 56 + 2, 52, 52);
+    }
     ctxMaschere.strokeStyle = 'rgba(255,255,255,.9)';
     ctxMaschere.lineWidth = 2;
     for (let c = 1; c < 6; c++) {
@@ -173,6 +188,85 @@ LEZIONE.registra('rete', function () {
       ctxMaschere.beginPath();
       ctxMaschere.moveTo(0, r * 56); ctxMaschere.lineTo(336, r * 56); ctxMaschere.stroke();
     }
+  }
+
+  /* ═════════ la lente: che cos'è, esattamente, una maschera ═════════ */
+
+  const tLente = L.tela('#lab-lente', 520, 252, { t: 26, d: 8, b: 8, s: 8 });
+  let neuroneScelto = -1;
+
+  const scalaIngresso = d3.scaleSequential(d3.interpolateRgbBasis(C.bluRampa)).domain([0, 1]);
+  const scalaPeso = d3.scaleDiverging(t => d3.interpolateRgbBasis(['#c0392b', '#f0efec', '#2a78d6'])(t));
+
+  function quadretti(gruppo, valori, colore, lato) {
+    gruppo.selectAll('rect').data(d3.range(784)).join('rect')
+      .attr('x', i => (i % 28) * lato).attr('y', i => Math.floor(i / 28) * lato)
+      .attr('width', lato).attr('height', lato)
+      .attr('shape-rendering', 'crispEdges')
+      .attr('fill', i => colore(valori[i]));
+  }
+
+  function disegnaLente() {
+    if (neuroneScelto < 0 || !studio) {
+      tLente.g.selectAll('*').remove();
+      tLente.svg.selectAll('text.titolo-grafico').data([0]).join('text')
+        .attr('class', 'titolo-grafico').attr('x', 6).attr('y', 16)
+        .text('cliccate una maschera qui sopra per vedere come si usa');
+      return;
+    }
+    const j = neuroneScelto;
+    const ingresso = R.vettoreCorrente || verifica.X.subarray(0, 784);
+    const w = W1.subarray(j * 784, j * 784 + 784);
+    const massimo = Math.max(1e-6, d3.max(w, Math.abs));
+    scalaPeso.domain([-massimo, 0, massimo]);
+
+    const LATO = 4.2, PASSO = 150;
+    let somma = 0;
+    const prodotto = new Float32Array(784);
+    for (let i = 0; i < 784; i++) { prodotto[i] = ingresso[i] * w[i]; somma += prodotto[i]; }
+    const massimoP = Math.max(1e-6, d3.max(prodotto, Math.abs));
+    const scalaProdotto = d3.scaleDiverging(t => d3.interpolateRgbBasis(['#c0392b', '#f0efec', '#2a78d6'])(t))
+      .domain([-massimoP, 0, massimoP]);
+
+    tLente.svg.selectAll('text.titolo-grafico').data([0]).join('text')
+      .attr('class', 'titolo-grafico').attr('x', 6).attr('y', 16)
+      .text(`il neurone n. ${j + 1}, sulla cifra qui sopra`);
+
+    const pezzi = [
+      { g: 'a', x: 0, valori: ingresso, colore: scalaIngresso, sotto: 'la cifra' },
+      { g: 'b', x: PASSO, valori: w, colore: scalaPeso, sotto: 'la sua maschera' },
+      { g: 'c', x: 2 * PASSO, valori: prodotto, colore: scalaProdotto, sotto: 'blu: conferma · rosso: smentisce' }
+    ];
+    const gruppi = tLente.g.selectAll('g.pezzo').data(pezzi).join(
+      entra => {
+        const g = entra.append('g').attr('class', 'pezzo');
+        g.append('g').attr('class', 'quadretti');
+        g.append('rect').attr('class', 'cornice').attr('width', 28 * LATO).attr('height', 28 * LATO)
+          .attr('fill', 'none').attr('stroke', C.bordo).attr('rx', 3);
+        g.append('text').attr('class', 'sotto').attr('x', 14 * LATO).attr('y', 28 * LATO + 18)
+          .attr('text-anchor', 'middle').attr('font-size', 12).attr('fill', C.inchiostro2);
+        return g;
+      })
+      .attr('transform', d => `translate(${d.x},6)`);
+    gruppi.each(function (d) {
+      quadretti(d3.select(this).select('g.quadretti'), d.valori, d.colore, LATO);
+      d3.select(this).select('text.sotto').text(d.sotto);
+    });
+
+    tLente.g.selectAll('text.segno').data(['×', '=']).join('text').attr('class', 'segno')
+      .attr('x', (d, k) => PASSO * (k + 1) - 16).attr('y', 6 + 14 * LATO + 6)
+      .attr('text-anchor', 'middle').attr('font-size', 22).attr('fill', C.inchiostro2).text(d => d);
+
+    /* il conto sotto la terza immagine, così non esce dalla colonna */
+    const xConto = 2 * PASSO + 14 * LATO;
+    tLente.g.selectAll('text.conto').data([0]).join('text').attr('class', 'conto')
+      .attr('x', xConto).attr('y', 6 + 28 * LATO + 44).attr('text-anchor', 'middle')
+      .attr('font-size', 16).attr('fill', C.dati)
+      .html(`somma di tutti i quadretti = <tspan font-weight="700">${L.num(somma, 1)}</tspan>`);
+    tLente.g.selectAll('text.conto2').data([0]).join('text').attr('class', 'conto2')
+      .attr('x', xConto).attr('y', 6 + 28 * LATO + 66).attr('text-anchor', 'middle')
+      .attr('font-size', 13).attr('fill', somma > 0 ? C.verifica : C.inchiostro3)
+      .text(somma > 0 ? '→ positiva: questo neurone si accende' : '→ negativa: questo neurone resta spento');
   }
 
   /* ═════════ il grafico delle risposte esatte ═════════ */
@@ -278,6 +372,7 @@ LEZIONE.registra('rete', function () {
 
   function disegnaTutto() {
     disegnaMaschere();
+    disegnaLente();
     disegnaAccuratezza();
     disegnaPrevisione();
     aggiornaStatistiche();
@@ -306,7 +401,7 @@ LEZIONE.registra('rete', function () {
       if (durata < 6 && lottiPerFrame < 2) lottiPerFrame++;
       else if (durata > 16 && lottiPerFrame > 1) lottiPerFrame--;
 
-      if (frame % 2 === 0) { disegnaMaschere(); disegnaPrevisione(); }
+      if (frame % 2 === 0) { disegnaMaschere(); disegnaPrevisione(); disegnaLente(); }
       if (frame % 12 === 0) { misura(); disegnaAccuratezza(); aggiornaStatistiche(); }
       frame++;
       if (viste >= 120000) ferma();

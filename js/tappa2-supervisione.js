@@ -108,13 +108,13 @@ LEZIONE.registra('supervisione', function () {
   const cxy = d3.mean(altezze, d => (d.padre - mx) * (d.figlio - my));
 
   /* le tre rette, tutte passanti per il punto medio della nuvola */
+  /* Due sole rette: l'esperienza in aula dice che la terza (indovinare il
+     padre dal figlio) confonde più di quanto aggiunga. Resta citata nella nota. */
   const RETTE = {
-    /* minimi quadrati verticali: figlio da padre */
-    figlio: { pendenza: cxy / cxx, colore: C.modello, nome: 'indovina il figlio' },
-    /* minimi quadrati orizzontali: padre da figlio (disegnata come y in funzione di x) */
-    padre: { pendenza: cyy / cxy, colore: C.errore, nome: 'indovina il padre' },
+    /* minimi quadrati verticali: figlio da padre — supervisionata */
+    figlio: { pendenza: cxy / cxx, colore: C.modello, nome: 'per indovinare il figlio' },
     /* retta di minima distanza perpendicolare (prima componente principale) */
-    nuvola: { pendenza: Math.tan(0.5 * Math.atan2(2 * cxy, cxx - cyy)), colore: C.lingua, nome: 'descrive la nuvola' }
+    nuvola: { pendenza: Math.tan(0.5 * Math.atan2(2 * cxy, cxx - cyy)), colore: C.lingua, nome: 'per descrivere la nuvola' }
   };
   const valutaRetta = (r, x) => my + r.pendenza * (x - mx);
 
@@ -132,7 +132,7 @@ LEZIONE.registra('supervisione', function () {
     return { verticale: Math.sqrt(v / n), orizzontale: Math.sqrt(o / n), perpendicolare: Math.sqrt(p / n) };
   }
 
-  const COSTO_DI = { figlio: 'verticale', padre: 'orizzontale', nuvola: 'perpendicolare' };
+  const COSTO_DI = { figlio: 'verticale', nuvola: 'perpendicolare' };
   let scopo = 'figlio';
 
   const LATO = 430;
@@ -163,7 +163,7 @@ LEZIONE.registra('supervisione', function () {
   const tCosti = L.tela('#sup-costi', 360, 150, { t: 30, d: 60, b: 24, s: 116 });
 
   function disegnaRette() {
-    const chiavi = ['figlio', 'padre', 'nuvola'];
+    const chiavi = ['figlio', 'nuvola'];
 
     gRette.selectAll('line').data(chiavi).join('line')
       .attr('x1', xr(140)).attr('y1', k => yr(valutaRetta(RETTE[k], 140)))
@@ -220,11 +220,13 @@ LEZIONE.registra('supervisione', function () {
 
   function disegnaCosti() {
     const misura = COSTO_DI[scopo];
-    const dati = ['figlio', 'padre', 'nuvola'].map(k => ({ k, v: costi(RETTE[k])[misura] }));
+    const dati = ['figlio', 'nuvola'].map(k => ({ k, v: costi(RETTE[k])[misura] }));
     tCosti.g.selectAll('*').remove();
     tCosti.svg.selectAll('text.titolo-grafico').data([0]).join('text')
       .attr('class', 'titolo-grafico').attr('x', 6).attr('y', 16)
-      .text(`Errore misurato in modo «${misura}»`);
+      .text(misura === 'verticale'
+        ? 'Errore misurato in verticale: vince la retta blu'
+        : 'Errore misurato in perpendicolare: vince la viola');
     const x = d3.scaleLinear().domain([0, d3.max(dati, d => d.v) * 1.15]).range([0, tCosti.w]);
     const y = d3.scaleBand().domain(dati.map(d => d.k)).range([0, tCosti.h]).padding(.25);
     tCosti.g.selectAll('rect').data(dati).join('rect')
@@ -244,17 +246,15 @@ LEZIONE.registra('supervisione', function () {
 
   function disegnaVerdettoRette() {
     const testi = {
-      figlio: `<strong>Supervisionata.</strong> La risposta da indovinare è l'altezza del figlio, ` +
-              `quindi l'errore si misura <em>in verticale</em>. Questa retta dice: ogni centimetro ` +
-              `in più nel padre vale <strong>${L.num(RETTE.figlio.pendenza, 2)} cm</strong> nel figlio. ` +
-              `Meno di uno: è la «regressione verso la media» di Galton.`,
-      padre: `<strong>Supervisionata, ma altra domanda.</strong> Adesso la risposta è l'altezza del padre, ` +
-             `e l'errore si misura <em>in orizzontale</em>. Stessi punti, retta diversa: ` +
-             `non esiste «la» retta dei dati, esiste la retta di una domanda.`,
-      nuvola: `<strong>Non supervisionata.</strong> Nessuna delle due altezze è «la risposta»: ` +
-              `l'errore è la distanza <em>perpendicolare</em>, che tratta le due misure allo stesso modo. ` +
-              `Questa retta non predice niente, descrive come si allunga la nuvola — e se scambiaste ` +
-              `i due assi resterebbe la stessa.`
+      figlio: `<strong>Con la risposta: supervisionata.</strong> La risposta da indovinare è ` +
+              `l'altezza del figlio, quindi l'errore si misura <em>in verticale</em> — quanto sbaglio ` +
+              `sulla risposta. Questa retta dice: ogni centimetro in più nel padre vale ` +
+              `<strong>${L.num(RETTE.figlio.pendenza, 2)} cm</strong> nel figlio. Meno di uno: ` +
+              `è la «regressione verso la media» di Galton.`,
+      nuvola: `<strong>Senza risposta: non supervisionata.</strong> Qui non c'è niente da indovinare, ` +
+              `quindi l'errore è la distanza <em>perpendicolare</em>, che tratta le due altezze allo ` +
+              `stesso modo. Questa retta non predice niente: descrive come si allunga la nuvola. ` +
+              `Notate che è più inclinata dell'altra, sugli stessi identici punti.`
     };
     d3.select('#sup-rette-verdetto').attr('class', 'verdetto').html(testi[scopo]);
   }

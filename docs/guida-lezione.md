@@ -75,7 +75,7 @@ Tre cose da sapere prima di entrare in aula:
 1. **Le diapositive restano vive.** Non è un export in PowerPoint: quello che vedete è la pagina
    vera, quindi dentro la diapositiva si clicca, si trascina, si disegna, si allena. È tutto il
    punto della lezione.
-2. **Il numero di diapositive dipende dal livello.** In *essenziale* sono 36, in *completa* 39:
+2. **Il numero di diapositive dipende dal livello.** In *essenziale* sono 38, in *completa* 41:
    scegliete il livello **prima** di entrare in presentazione (si può cambiare anche dopo,
    e la diapositiva corrente resta al suo posto).
 3. **Si parte dalla tappa in cui siete.** Comodo per riprendere dopo una pausa o per provare
@@ -156,6 +156,15 @@ la regola deve escludere anche quelli.
 > Poi si è cambiata strada: non dire com'è fatto un sette, ma far vedere ottomila sette.
 > Questo è il passaggio che chiamiamo intelligenza artificiale.»
 
+**1-bis. «Due modi di far fare qualcosa a un computer» (4 min).**
+Subito dopo i sette, il confronto messo in fila. A sinistra fate eseguire l'ordinamento delle
+carte «Un passo» alla volta, leggendo ad alta voce la regola che si illumina: *«guardo due carte
+vicine, se la seconda è più piccola le scambio»*. Quando finisce: *«il computer non ha imparato
+niente: ha eseguito. La regola l'abbiamo pensata noi, vale per qualsiasi mazzo, e sappiamo
+dimostrare che funziona sempre»*. Poi a destra premete «Mostra una cifra mai vista»:
+*«qui la regola non l'ha scritta nessuno, e funziona lo stesso»*. Tenete il confronto sullo
+schermo dieci secondi senza parlare: è la diapositiva che spiega perché esiste questa materia.
+
 **2. «Adesso la macchina siete voi» (7 min). È il cuore dell'apertura.**
 Mostrate la scatola: un biglietto entra da sinistra (i metri quadri), esce una risposta a destra
 (il prezzo), e dentro non c'è nessuna regola scritta — ci sono **due manopole**.
@@ -165,10 +174,15 @@ Poi fate salire qualcuno, o girate voi seguendo i suggerimenti della sala:
 - sotto, le cinque case con la loro barra d'errore: le barre si accorciano mentre vi avvicinate;
 - l'obiettivo è arrivare al «fuoco fuoco», sotto 3 mila € di errore.
 Fateli faticare: un minuto buono di tentativi, con la sala che dice «più su!», «troppo!».
+Mentre girano, indicate due cose: la **formula sotto la scatola**, dove i due numeri colorati
+cambiano insieme alle manopole (*«le manopole non sono un'immagine: sono questi due numeri dentro
+la formula»*), e la **mappa a destra**, dove il puntino arancione si muove: *«ogni punto della
+mappa è una coppia di manopole; più è chiaro, meno si sbaglia; la stellina è il posto giusto»*.
 Quando ci arrivano (o quando si stancano), **rivelate la regola vera**: 20 mila € più 1,6 mila €
 al metro quadro. *«Non l'avete mai saputa. Avete solo guardato se l'errore scendeva.»*
-Infine premete **«Lascia fare a lei»** e leggete il confronto: la macchina fa la stessa identica
-cosa, ma qualche migliaio di volte al secondo.
+Infine premete **«Lascia fare a lei»** e guardate il puntino **scendere sulla mappa** fino alla
+stellina: è la risposta alla domanda «come si trovano i numeri giusti?». La macchina fa la stessa
+identica cosa che facevate voi, ma qualche migliaio di volte al secondo.
 > «Non è più intelligente di voi. È più veloce a girare le manopole. Tutta l'intelligenza
 > artificiale sta in questa differenza.»
 
@@ -196,12 +210,19 @@ L'esempio delle case funziona perché tutti hanno un'opinione sul prezzo di un a
    Tenetelo a mente per quando parleremo dei dati con cui si allenano i modelli veri».
 3. **Alzate il cursore della complessità fino a 10.** L'errore scende a quasi zero:
    *«sembra bravissima, no?»* — pausa — *«adesso però verifichiamo».*
-4. **Spuntate «nascondi 1/3 dei dati».** I rombi verdi sono case che il modello non ha mai visto.
+4. **Prima, però, fate arrivare una casa nuova.** Premete «Fai arrivare una casa nuova»:
+   compare una stella con il prezzo vero e un tratteggio rosso che mostra di quanto la curva
+   sbaglia su un caso **mai visto**. Con la complessità a 10, premetelo tre o quattro volte:
+   ogni tanto esce un errore da cinquanta o sessanta mila euro, quasi sempre su una casa molto
+   piccola o molto grande. *«Sui quindici appartamenti che ha studiato era perfetta. Sul primo
+   che arriva davvero, no.»* Poi riportate la complessità a 2 e rifate: la stessa casa viene
+   azzeccata. Questo è il modo più diretto di far vedere l'imparare a memoria.
+5. **Spuntate «nascondi 1/3 dei dati».** I rombi verdi sono case che il modello non ha mai visto.
    L'errore in verifica schizza. Questo è il momento più importante dell'ora: lasciatelo respirare.
    *«Non ha imparato il mercato immobiliare. Ha imparato a memoria quindici case.»*
-5. **Tornate a grado 2 o 3.** I due errori si riavvicinano. Regola d'oro pronunciata ad alta voce:
+6. **Tornate a grado 2 o 3.** I due errori si riavvicinano. Regola d'oro pronunciata ad alta voce:
    *«il modello giusto non è quello che sbaglia meno su quello che ha già visto».*
-6. **La collina dell'errore** *(solo in modalità «completa»)*. Premete «Scendi lungo la collina».
+7. **La collina dell'errore** *(solo in modalità «completa»)*. Premete «Scendi lungo la collina».
    Collegatela esplicitamente all'apertura: *«le frecce sulle manopole che avete visto all'inizio
    sono la pendenza di questa collina»*. Metafora:
    *«è come scendere una collina nella nebbia: si guarda solo la pendenza sotto i piedi e si fa un passo in giù.
@@ -273,6 +294,12 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
 
 La tappa risponde a tre domande in fila: **com'è fatta**, **come impara**, **che cosa sa fare**.
 
+**0. «Un'immagine è una fila di numeri» (3 min).** Prima di tutto il resto: premete
+**«Srotola l'immagine»** e state zitti tre secondi. Le 28 righe scendono una alla volta e si
+mettono in coda. *«La rete non vedrà mai un disegno: vedrà questa fila di 784 numeri, e non saprà
+nemmeno che una volta erano un sette.»* È il passaggio che di solito nessuno racconta, e senza
+il quale tutto il resto resta magia.
+
 **1. Un neurone (5 min).** Prima di ogni disegno di rete, un neurone solo, con una decisione che
 conoscono tutti: *esco a fare la spesa?* Accendete e spegnete le tre situazioni e fate notare che
 il peso può essere **negativo** — «mi fanno male le gambe» spinge dall'altra parte.
@@ -298,8 +325,16 @@ Poi **«Allena»** e guardate i fili: alcuni si ingrossano, altri spariscono.
 > «Nessuno ha detto a quel filo di ingrossarsi. Ha ricevuto la sua parte di colpa e si è spostato.
 > Ripetuto qualche centinaio di volte, questo è "la rete impara".»
 
-**4. E adesso in grande (7 min).** Il resto della tappa come prima: la cifra scritta dal pubblico,
-le maschere, il laboratorio che impara da zero.
+**4. E adesso in grande (7 min).** La cifra scritta dal pubblico. Il pannello è ordinato in
+quattro passi da sinistra a destra — scrivete, i 784 numeri, dentro la rete, la risposta — e il
+riquadro centrale dice dove stanno le 50.890 manopole: 50.176 fili fra l'immagine e i neuroni,
+640 fra i neuroni e le risposte.
+
+**5. Il laboratorio, e le maschere (8 min).** Dopo aver allenato la rete dal vivo, **cliccate una
+maschera**: sotto compare il conto vero e proprio — la cifra × la maschera = quello che conta,
+e la somma. *«Questo neurone si accende se trova inchiostro dove la sua maschera è blu e non ne
+trova dove è rossa. Il conto è una moltiplicazione, quadretto per quadretto, e una somma.»*
+È la spiegazione più concreta possibile di che cosa sia un «peso».
 
 ### Tappa 4 — Le cifre scritte a mano (dentro la stessa tappa)
 

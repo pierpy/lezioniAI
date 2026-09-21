@@ -183,6 +183,14 @@ LEZIONE.registra('copertina', function () {
   tm.g.append('path').attr('d', 'M645,175 L680,175 M670,167 L680,175 L670,183')
     .attr('fill', 'none').attr('stroke', C.inchiostro3).attr('stroke-width', 2.5);
 
+  /* la formula: le manopole sono i due numeri che ci stanno dentro */
+  const gFormula = tm.g.append('g').attr('transform', 'translate(215,398)');
+  gFormula.append('text').attr('x', 210).attr('y', -6).attr('text-anchor', 'middle')
+    .attr('font-size', 12).attr('fill', C.inchiostro3)
+    .text('la formula che c\'è dentro la scatola:');
+  const testoFormula = gFormula.append('text').attr('x', 210).attr('y', 22)
+    .attr('text-anchor', 'middle').attr('font-size', 21).attr('fill', C.dati);
+
   /* la finestrella con la risposta */
   const gUscita = tm.g.append('g').attr('transform', 'translate(690,120)');
   gUscita.append('text').attr('x', 110).attr('y', -12).attr('text-anchor', 'middle')
@@ -228,6 +236,65 @@ LEZIONE.registra('copertina', function () {
   const testoVerso = tt.g.append('text').attr('x', 0).attr('y', 78)
     .attr('font-size', 13).attr('fill', C.inchiostro3);
 
+  /* ── la mappa dell'errore: dove stanno i numeri giusti ──────────────── */
+
+  const tmap = L.tela('#macchina-mappa', 420, 250, { t: 28, d: 16, b: 40, s: 54 });
+  tmap.svg.append('text').attr('class', 'titolo-grafico').attr('x', 6).attr('y', 16)
+    .text('La mappa: ogni punto è una coppia di manopole');
+  const xm = d3.scaleLinear().domain([0, 80]).range([0, tmap.w]);
+  const ym = d3.scaleLinear().domain([0, 3]).range([tmap.h, 0]);
+  const gContorniM = tmap.g.append('g');
+  const gCamminoM = tmap.g.append('g');
+  tmap.g.append('g').attr('class', 'asse').attr('transform', `translate(0,${tmap.h})`)
+    .call(d3.axisBottom(xm).ticks(4));
+  tmap.g.append('g').attr('class', 'asse').call(d3.axisLeft(ym).ticks(4).tickFormat(d => L.num(d, 1)));
+  tmap.g.append('text').attr('class', 'etichetta-asse').attr('x', tmap.w).attr('y', tmap.h + 34)
+    .attr('text-anchor', 'end').text('manopola 1: prezzo di base');
+  tmap.g.append('text').attr('class', 'etichetta-asse')
+    .attr('transform', `translate(-40,${tmap.h / 2}) rotate(-90)`).attr('text-anchor', 'middle')
+    .text('manopola 2: al m²');
+
+  /* le curve di livello dell'errore: si calcolano una volta sola */
+  (function disegnaContorni() {
+    const n = 70;
+    const valori = new Array(n * n);
+    for (let j = 0; j < n; j++) {
+      const mq = ym.invert((j + 0.5) * tmap.h / n);
+      for (let i = 0; i < n; i++) {
+        const base = xm.invert((i + 0.5) * tmap.w / n);
+        valori[j * n + i] = d3.mean(CASE, c => Math.abs(base + mq * c.m - c.prezzo));
+      }
+    }
+    const minV = d3.min(valori), maxV = d3.max(valori);
+    const soglie = d3.range(9).map(k => minV + (maxV - minV) * Math.pow((k + 1) / 9, 2));
+    const colore = d3.scaleSequential(d3.interpolateRgbBasis(C.bluRampa.slice().reverse()))
+      .domain([maxV, minV]);
+    gContorniM.attr('transform', `scale(${tmap.w / n},${tmap.h / n})`);
+    gContorniM.selectAll('path').data(d3.contours().size([n, n]).thresholds(soglie)(valori))
+      .join('path')
+      .attr('d', d3.geoPath())
+      .attr('fill', d => colore(d.value))
+      .attr('stroke', 'rgba(255,255,255,.5)').attr('stroke-width', 0.6 * n / tmap.w);
+    tmap.g.append('path').attr('class', 'ottimo')
+      .attr('d', d3.symbol(d3.symbolStar, 170)())
+      .attr('transform', `translate(${xm(BASE_VERA)},${ym(MQ_VERO)})`)
+      .attr('fill', '#ffd9a8').attr('stroke', C.dati).attr('stroke-width', 1.2);
+    tmap.g.append('text').attr('x', xm(BASE_VERA) + 12).attr('y', ym(MQ_VERO) + 4)
+      .attr('font-size', 12).attr('fill', C.dati).text('qui è perfetta');
+  })();
+
+  let cammino = [];
+
+  function disegnaMappa() {
+    gCamminoM.selectAll('path.traccia').data([cammino]).join('path').attr('class', 'traccia')
+      .attr('fill', 'none').attr('stroke', C.errore).attr('stroke-width', 2)
+      .attr('stroke-opacity', .8)
+      .attr('d', d3.line().x(d => xm(d[0])).y(d => ym(d[1]))(cammino));
+    gCamminoM.selectAll('circle').data([[MANOPOLE[0].valore, MANOPOLE[1].valore]]).join('circle')
+      .attr('cx', d => xm(d[0])).attr('cy', d => ym(d[1])).attr('r', 6)
+      .attr('fill', C.errore).attr('stroke', '#fff').attr('stroke-width', 2);
+  }
+
   /* ── le cinque case, con i loro errori ─────────────────────────────── */
 
   const te = L.tela('#macchina-esempi', 420, 190, { t: 26, d: 90, b: 10, s: 78 });
@@ -268,6 +335,12 @@ LEZIONE.registra('copertina', function () {
       .startAngle(-ANG).endAngle(angolo(d))());
     gManopole.select('text.valore').text(d => L.num(d.valore, d.passo < 1 ? 1 : 0));
 
+    testoFormula.html(
+      'prezzo = <tspan font-weight="700" fill="' + C.modello + '">' +
+      L.num(MANOPOLE[0].valore, 0) + '</tspan>' +
+      ' + <tspan font-weight="700" fill="' + C.errore + '">' +
+      L.num(MANOPOLE[1].valore, 1) + '</tspan> × metri quadri');
+
     /* termometro */
     const err = erroreMedio();
     const zona = ZONE.find(z => err < z.fino);
@@ -278,6 +351,15 @@ LEZIONE.registra('copertina', function () {
       testoVerso.text(err < erroreScorso ? '↑ vi state scaldando' : '↓ vi state raffreddando');
     }
     erroreScorso = err;
+
+    /* la mappa */
+    const ultimo = cammino[cammino.length - 1];
+    if (!ultimo || Math.abs(ultimo[0] - MANOPOLE[0].valore) > 0.4 ||
+        Math.abs(ultimo[1] - MANOPOLE[1].valore) > 0.02) {
+      cammino.push([MANOPOLE[0].valore, MANOPOLE[1].valore]);
+      if (cammino.length > 400) cammino.shift();
+    }
+    disegnaMappa();
 
     /* le cinque case */
     te.g.selectAll('text.et').data(CASE).join('text').attr('class', 'et')
@@ -369,6 +451,7 @@ LEZIONE.registra('copertina', function () {
     MANOPOLE[0].valore = 10 + Math.random() * 60;
     MANOPOLE[1].valore = 0.2 + Math.random() * 2.4;
     aggiustamenti = 0; inizio = null; erroreScorso = null;
+    cammino = [];
     testoVerso.text('');
     disegnaMacchina();
   });

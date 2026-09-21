@@ -401,7 +401,7 @@ LEZIONE.registra('rete', function () {
       setTimeout(() => {
         evidenziaFase(3);
         aggiornaVerdettoImpara('<strong>3.</strong> L\'errore torna indietro lungo gli stessi fili: ' +
-                               'ogni filo riceve la sua parte di colpa, tanta quanto ci ha messo del suo.');
+                               'ogni filo riceve la parte che gli spetta, tanta quanta ne ha causata.');
         animaFlusso(teleRete[1], true, () => {
           evidenziaFase(4);
           unaCorrezione(esempio);
