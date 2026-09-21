@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Che cos'è l'intelligenza artificiale — lezione interattiva</title>
+<meta name="description" content="Lezione interattiva in cinque tappe: dall'idea di regressione alle reti neurali e ai modelli linguistici.">
+<link rel="stylesheet" href="css/stile.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📈</text></svg>">
+</head>
+<body>
+
+<header class="barra">
+  <div class="barra-titolo">
+    <span class="logo" aria-hidden="true">∿</span>
+    <span>L'intelligenza artificiale spiegata con una curva</span>
+  </div>
+  <nav class="barra-nav" aria-label="Tappe della lezione">
+    <button class="passo" data-vai="copertina"><span class="num">0</span> Apertura</button>
+    <button class="passo" data-vai="regressione"><span class="num">1</span> La retta che indovina</button>
+    <button class="passo" data-vai="approssimatore"><span class="num">2</span> Qualsiasi curva</button>
+    <button class="passo" data-vai="rete"><span class="num">3</span> Cifre scritte a mano</button>
+    <button class="passo" data-vai="llm"><span class="num">4</span> La macchina che scrive</button>
+    <button class="passo" data-vai="limiti"><span class="num">5</span> Limiti e domande</button>
+  </nav>
+</header>
+
+<main id="palco">
+
+<!-- ═══════════════════════════ TAPPA 0 ═══════════════════════════ -->
+<section class="tappa" id="copertina">
+  <h1>Che cos'è, davvero, l'intelligenza artificiale?</h1>
+  <p class="sommario">
+    Dietro ai programmi che riconoscono un volto, traducono una lingua o scrivono un testo
+    non c'è magia e non c'è pensiero: c'è <strong>un'unica idea matematica</strong>, vecchia di
+    due secoli, portata a una scala che due secoli fa nessuno poteva immaginare.
+  </p>
+
+  <div class="lavagna">
+    <p>Un programma di intelligenza artificiale è una <strong>funzione con molte manopole</strong>.</p>
+    <p>Gli mostriamo tanti esempi di «domanda → risposta giusta» e lui gira le manopole
+       finché non sbaglia quasi più.</p>
+    <p class="lavagna-piccolo">In una parola sola: è una <strong>regressione</strong>. Enorme, ma una regressione.</p>
+  </div>
+
+  <div class="pannello">
+    <h2>La stessa idea, tre volte</h2>
+    <div class="griglia-tre">
+      <div class="scheda">
+        <div class="scheda-icona" aria-hidden="true">📈</div>
+        <h3>Una riga di numeri</h3>
+        <p>Da qualche punto su un foglio, tiriamo la riga che li segue meglio.
+           <em>2 manopole.</em></p>
+      </div>
+      <div class="scheda">
+        <div class="scheda-icona" aria-hidden="true">✍️</div>
+        <h3>Una cifra scritta a mano</h3>
+        <p>Da 784 puntini di grigio, la risposta «è un 7».
+           <em>50.000 manopole.</em></p>
+      </div>
+      <div class="scheda">
+        <div class="scheda-icona" aria-hidden="true">💬</div>
+        <h3>Un discorso</h3>
+        <p>Dalle parole già scritte, la parola successiva.
+           <em>Da qualche migliaio a mille miliardi di manopole.</em></p>
+      </div>
+    </div>
+    <p class="nota">
+      Cambiano i numeri, non l'idea. Nelle prossime tappe costruiamo le tre cose,
+      una alla volta, qui davanti a voi.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Cominciamo da qui: dei punti e una curva</h2>
+    <p class="istruzioni">La curva qui sotto cerca i punti da sola. Premete il pulsante e guardatela mentre «impara».</p>
+    <div id="intro-animazione" class="tela"></div>
+    <div class="controlli">
+      <button class="bottone bottone-primario" id="intro-vai">▶ Fai imparare la curva</button>
+      <button class="bottone" id="intro-nuovi">Nuovi punti</button>
+    </div>
+    <p class="didascalia" id="intro-didascalia">La macchina non sa nulla di case, di cifre o di parole: sa solo avvicinarsi ai punti.</p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="regressione">Tappa 1 — La retta che indovina →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 1 ═══════════════════════════ -->
+<section class="tappa" id="regressione">
+  <h1><span class="etichetta-tappa">Tappa 1</span> La retta che indovina</h1>
+  <p class="sommario">
+    Il mestiere più antico della statistica: ho dei dati, voglio una regola.
+    Qui i dati sono le case di un paese: quanto costa un appartamento, dati i metri quadri?
+  </p>
+
+  <div class="pannello">
+    <div class="doppia-colonna">
+      <div>
+        <div id="reg-grafico" class="tela"></div>
+        <p class="istruzioni">
+          <strong>Provate voi:</strong> cliccate sul grafico per aggiungere una casa,
+          trascinate un punto per spostarlo, cliccate su un punto tenendo premuto
+          <kbd>Shift</kbd> per toglierlo.
+        </p>
+      </div>
+      <div class="colonna-controlli">
+        <div class="controllo">
+          <label for="reg-grado">Quanto è «furba» la curva</label>
+          <input type="range" id="reg-grado" min="1" max="12" value="1" step="1">
+          <output id="reg-grado-out">grado 1 — una retta (2 manopole)</output>
+        </div>
+        <div class="controllo interruttori">
+          <label><input type="checkbox" id="reg-errori" checked> Mostra gli errori</label>
+          <label><input type="checkbox" id="reg-verifica"> Nascondi 1/3 dei dati per verificare</label>
+        </div>
+        <div id="reg-punteggi" class="punteggi"></div>
+        <div id="reg-verdetto" class="verdetto"></div>
+        <div class="controlli">
+          <button class="bottone" id="reg-reset">Ricomincia</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello">
+    <h2>Come fa a trovarla? Scende lungo la collina dell'errore</h2>
+    <p>
+      Ogni coppia di manopole (inclinazione e altezza della retta) produce un errore.
+      Mettendo tutti gli errori su una mappa si ottiene una <strong>conca</strong>:
+      imparare vuol dire scendere fino al fondo, un passettino alla volta.
+    </p>
+    <div class="griglia-due">
+      <div id="gd-mappa" class="tela"></div>
+      <div id="gd-retta" class="tela"></div>
+    </div>
+    <div class="controlli">
+      <button class="bottone bottone-primario" id="gd-vai">▶ Scendi lungo la collina</button>
+      <button class="bottone" id="gd-passo">Un passo alla volta</button>
+      <button class="bottone" id="gd-reset">Riparti da capo</button>
+      <span class="stato" id="gd-stato"></span>
+    </div>
+    <p class="nota">
+      Questo procedimento si chiama <strong>discesa del gradiente</strong>. È lo stesso,
+      identico, che fa imparare la rete della Tappa 3 e il modello linguistico della Tappa 4:
+      cambia solo il numero di manopole — da 2 a qualche centinaio di miliardi.
+    </p>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>Due lezioni da portarsi a casa</h2>
+    <div class="griglia-due">
+      <div class="scheda">
+        <h3>Troppo semplice non basta…</h3>
+        <p>Una retta su dati curvi sbaglia sempre, per quanti esempi le diate.</p>
+      </div>
+      <div class="scheda">
+        <h3>…troppo furba è peggio</h3>
+        <p>Una curva con troppe manopole passa esattamente per i vostri punti
+           e <strong>impara a memoria</strong>: sui dati nuovi si comporta malissimo.
+           È il problema numero uno di tutta l'intelligenza artificiale.</p>
+      </div>
+    </div>
+    <p class="fonte">
+      Il compromesso ha un nome tecnico: <em>bias–variance dilemma</em>
+      (Geman, Bienenstock &amp; Doursat, <em>Neural Computation</em> 4(1), 1992).
+      Il metodo dei minimi quadrati che usiamo qui è di Legendre (1805) e Gauss (1809).
+    </p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="approssimatore">Tappa 2 — Qualsiasi curva →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 2 ═══════════════════════════ -->
+<section class="tappa" id="approssimatore">
+  <h1><span class="etichetta-tappa">Tappa 2</span> Da una retta a qualsiasi curva</h1>
+  <p class="sommario">
+    Il salto che porta dalla statistica dell'Ottocento all'intelligenza artificiale è uno solo:
+    invece di una formula scelta da noi, <strong>si sommano tanti pezzetti tutti uguali</strong>.
+    Ogni pezzetto è un «neurone»: una manopola che dice <em>quando</em> accendersi e una che dice <em>quanto</em> contare.
+  </p>
+
+  <div class="pannello">
+    <div class="doppia-colonna">
+      <div>
+        <div id="ua-grafico" class="tela"></div>
+        <p class="istruzioni" id="ua-istruzioni">La linea grigia è quello che vogliamo ottenere; la linea blu è quello che la rete sa fare.</p>
+      </div>
+      <div class="colonna-controlli">
+        <div class="controllo">
+          <label for="ua-obiettivo">Che cosa deve imparare</label>
+          <select id="ua-obiettivo" class="scelta">
+            <option value="onda">Un'onda</option>
+            <option value="gradino">Uno scalino</option>
+            <option value="montagna">Una montagna</option>
+            <option value="battito">Un battito cardiaco</option>
+            <option value="disegno">✏️ Disegnatela voi col mouse</option>
+          </select>
+        </div>
+        <div class="controllo">
+          <label for="ua-neuroni">Quanti neuroni</label>
+          <input type="range" id="ua-neuroni" min="1" max="40" value="3" step="1">
+          <output id="ua-neuroni-out">3 neuroni</output>
+        </div>
+        <div class="controllo interruttori">
+          <label><input type="checkbox" id="ua-pezzi"> Mostra i singoli pezzetti</label>
+        </div>
+        <div id="ua-punteggi" class="punteggi"></div>
+        <div id="ua-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="fonte">
+      Che <em>qualsiasi</em> curva ragionevole si possa ottenere sommando abbastanza pezzetti di questo tipo
+      non è un'opinione: è un teorema. Cybenko, <em>Approximation by superpositions of a sigmoidal function</em>,
+      <em>Mathematics of Control, Signals and Systems</em> 2, 303–314 (1989); Hornik, Stinchcombe &amp; White,
+      <em>Neural Networks</em> 2(5), 359–366 (1989). È il <strong>teorema di approssimazione universale</strong>.
+    </p>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>Che cos'è un neurone, in concreto</h2>
+    <div class="formula">
+      <span class="formula-testo">uscita&nbsp;=&nbsp;a₁·<em>s</em>(w₁·x + b₁) + a₂·<em>s</em>(w₂·x + b₂) + … + a<sub>n</sub>·<em>s</em>(w<sub>n</sub>·x + b<sub>n</sub>)</span>
+    </div>
+    <p>
+      <em>s</em> è un interruttore morbido: per valori piccoli dà 0, per valori grandi dà 1, in mezzo sale dolcemente.
+      Tutto il resto sono <strong>numeri da regolare</strong>: le manopole.
+      Una rete neurale non è altro che questa somma, ripetuta su più livelli.
+    </p>
+    <p class="nota">
+      Attenzione al punto delicato: il teorema dice che la rete <em>può</em> rappresentare la curva giusta.
+      Non dice che riuscirà a <em>trovarla</em> partendo dagli esempi — quello è il lavoro della discesa del gradiente,
+      e non è mai garantito.
+    </p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="rete">Tappa 3 — Cifre scritte a mano →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 3 ═══════════════════════════ -->
+<section class="tappa" id="rete">
+  <h1><span class="etichetta-tappa">Tappa 3</span> La rete che legge i numeri scritti a mano</h1>
+  <p class="sommario">
+    Stessa storia, dimensioni diverse. La «domanda» non è più un numero solo: sono 784 numeri,
+    i puntini di grigio di un quadratino 28×28. La «risposta» sono dieci numeri: quanto è convinta
+    che sia uno 0, un 1, un 2…
+  </p>
+
+  <div class="pannello">
+    <div class="tre-colonne">
+      <div>
+        <h3>1. Scrivete una cifra</h3>
+        <canvas id="rete-tela" width="280" height="280" aria-label="Area di disegno per la cifra"></canvas>
+        <div class="controlli">
+          <button class="bottone" id="rete-pulisci">Cancella</button>
+          <button class="bottone" id="rete-esempio">Esempio vero</button>
+        </div>
+        <p class="istruzioni">Disegnate col mouse (o col dito) una cifra da 0 a 9, grande e al centro.</p>
+        <h3>2. Quello che vede la rete</h3>
+        <div id="rete-ingresso" class="tela tela-minuscola"></div>
+        <p class="istruzioni">L'immagine viene rimpicciolita a 28×28 e centrata: 784 numeri fra 0 e 1.</p>
+      </div>
+      <div>
+        <h3>3. I 64 neuroni nascosti</h3>
+        <div id="rete-nascosti" class="tela"></div>
+        <p class="istruzioni">Ognuno cerca un pezzetto di forma. Passateci sopra il mouse per vedere <em>che cosa cerca</em>: le zone blu sono quelle dove vuole trovare inchiostro, le rosse dove <em>non</em> ne vuole.</p>
+      </div>
+      <div>
+        <h3>4. La risposta</h3>
+        <div id="rete-uscita" class="tela"></div>
+        <div id="rete-verdetto" class="verdetto verdetto-grande"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>Questa rete non è un trucco: è stata davvero addestrata</h2>
+    <div id="rete-statistiche" class="statistiche"></div>
+    <p>
+      Le manopole che state usando sono state regolate una per una su
+      <strong>8.000 cifre scritte a mano vere</strong>, con la stessa discesa del gradiente della Tappa 1,
+      e poi provate su cifre che la rete non aveva mai visto.
+      Notate la differenza fra il punteggio sugli esempi di studio e quello sugli esempi mai visti:
+      è l'<em>imparare a memoria</em> della Tappa 1, che ritorna.
+    </p>
+    <p class="fonte">
+      Le cifre vengono dall'archivio <strong>MNIST</strong>, lo standard di riferimento dal 1998:
+      LeCun, Bottou, Bengio &amp; Haffner, <em>Gradient-based learning applied to document recognition</em>,
+      <em>Proceedings of the IEEE</em> 86(11), 2278–2324 (1998). Le reti migliori oggi sbagliano
+      circa 2 cifre su 1.000 (Ciresan, Meier &amp; Schmidhuber, CVPR 2012); un essere umano ne sbaglia
+      all'incirca altrettante.
+    </p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="llm">Tappa 4 — La macchina che scrive →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 4 ═══════════════════════════ -->
+<section class="tappa" id="llm">
+  <h1><span class="etichetta-tappa">Tappa 4</span> La macchina che scrive</h1>
+  <p class="sommario">
+    ChatGPT e i suoi parenti fanno una cosa sola, e la fanno miliardi di volte:
+    <strong>dato quello che c'è scritto fin qui, indovinare il pezzo di parola successivo</strong>.
+    Non c'è una frase pensata in anticipo. C'è una previsione, poi un'altra, poi un'altra.
+  </p>
+
+  <div class="pannello">
+    <h2>Primo passo: le parole diventano numeri</h2>
+    <div class="controlli">
+      <input type="text" id="tok-testo" class="campo" value="Oggi il cielo è sereno sulla costa" aria-label="Frase da trasformare in numeri">
+    </div>
+    <div id="tok-uscita" class="gettoni"></div>
+    <p class="nota">
+      Un modello vero non spezza il testo in parole ma in <em>pezzetti</em> (le cosiddette
+      <em>sottoparole</em>): «costiera» diventa «costi» + «era». Così bastano circa 50.000 pezzetti
+      per scrivere qualsiasi cosa in qualsiasi lingua.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Secondo passo: la previsione della parola successiva</h2>
+    <p class="istruzioni">
+      Questo modello impara <strong>adesso, qui</strong>, dal testo che scegliete: conta quali parole
+      seguono quali. Poi scrive, una parola alla volta, mostrandovi ogni volta le candidate.
+    </p>
+    <div class="doppia-colonna">
+      <div class="colonna-controlli">
+        <div class="controllo">
+          <label for="lm-corpus">Su che cosa lo facciamo studiare</label>
+          <select id="lm-corpus" class="scelta"></select>
+        </div>
+        <div class="controllo">
+          <label for="lm-memoria">Quante parole si ricorda</label>
+          <input type="range" id="lm-memoria" min="1" max="3" value="2" step="1">
+          <output id="lm-memoria-out">2 parole</output>
+        </div>
+        <div class="controllo">
+          <label for="lm-temperatura">Fantasia (temperatura)</label>
+          <input type="range" id="lm-temperatura" min="0.1" max="1.6" value="0.8" step="0.1">
+          <output id="lm-temperatura-out">0,8 — equilibrata</output>
+        </div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="lm-passo">Una parola</button>
+          <button class="bottone" id="lm-frase">▶ Scrivi da solo</button>
+          <button class="bottone" id="lm-pulisci">Ricomincia</button>
+        </div>
+        <div id="lm-statistiche" class="statistiche statistiche-piccole"></div>
+      </div>
+      <div>
+        <div id="lm-testo" class="foglio" aria-live="polite"></div>
+        <h3 class="titolino">Le parole candidate, adesso</h3>
+        <div id="lm-candidate" class="tela tela-piccola"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello">
+    <h2>Che cosa ha imparato: la tabella delle probabilità</h2>
+    <p class="istruzioni">
+      Righe: la parola di adesso. Colonne: la parola dopo. Più è scuro, più spesso quella coppia
+      compare nel testo di studio. Tutta la «conoscenza» di questo modellino sta qui dentro.
+    </p>
+    <div id="lm-matrice" class="tela"></div>
+    <p class="fonte">
+      È l'idea di Claude Shannon, <em>A Mathematical Theory of Communication</em>,
+      <em>Bell System Technical Journal</em> 27, 379–423 (1948): già lì ci sono frasi inglesi generate
+      contando coppie e terne di lettere e parole. Settantacinque anni dopo, l'idea è la stessa.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Terzo passo: da tabella a rete neurale</h2>
+    <p>
+      La tabella ha un difetto: se una coppia di parole non compare nel testo di studio, per lei
+      non esiste. Una rete neurale invece <strong>trasforma ogni parola in un punto</strong> e impara
+      a muovere i punti: parole usate allo stesso modo finiscono vicine, e quello che impara su una
+      lo sa usare sull'altra. È esattamente la regressione della Tappa 1, con le parole al posto dei metri quadri.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="emb-scatter" class="tela"></div>
+        <p class="istruzioni">Ogni pallino è una parola. Durante l'allenamento si spostano da sole.</p>
+      </div>
+      <div>
+        <div id="emb-perdita" class="tela tela-piccola"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="emb-vai">▶ Allena la rete</button>
+          <button class="bottone" id="emb-reset">Ricomincia</button>
+          <span class="stato" id="emb-stato"></span>
+        </div>
+        <p class="nota">
+          La curva che scende è la stessa «collina dell'errore» della Tappa 1.
+          Qui sta imparando una funzione con qualche migliaio di manopole;
+          GPT-4 ne ha, secondo le stime pubbliche, dell'ordine di mille miliardi.
+        </p>
+      </div>
+    </div>
+    <p class="fonte">
+      Bengio, Ducharme, Vincent &amp; Jauvin, <em>A Neural Probabilistic Language Model</em>,
+      <em>Journal of Machine Learning Research</em> 3, 1137–1155 (2003) — è il modello che state allenando,
+      in versione minima. L'idea delle parole-come-punti è diventata popolare con
+      Mikolov et al. (word2vec), arXiv:1301.3781 (2013).
+    </p>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>E allora perché ChatGPT sembra capire?</h2>
+    <p>
+      Perché al modellino qui sopra sono state aggiunte tre cose, tutte e tre quantitative,
+      nessuna delle quali cambia la natura dell'operazione:
+    </p>
+    <ol class="elenco-grande">
+      <li><strong>L'attenzione</strong>: invece di guardare solo le ultime due parole, il modello pesa
+          <em>tutte</em> le parole precedenti e decide da sole quali contano
+          (Vaswani et al., <em>Attention Is All You Need</em>, NeurIPS 2017).</li>
+      <li><strong>La scala</strong>: miliardi di manopole e migliaia di miliardi di parole di allenamento,
+          invece di poche centinaia (Kaplan et al., arXiv:2001.08361, 2020; Hoffmann et al., arXiv:2203.15556, 2022).</li>
+      <li><strong>Le correzioni umane</strong>: dopo l'allenamento, persone in carne e ossa giudicano le risposte
+          e il modello viene ritoccato per assomigliare ai giudizi migliori
+          (Ouyang et al., <em>InstructGPT</em>, arXiv:2203.02155, 2022).</li>
+    </ol>
+    <div id="att-figura" class="tela"></div>
+    <p class="didascalia">
+      Schema illustrativo dell'attenzione: nella frase, la parola evidenziata «guarda indietro»
+      alle parole che le servono per essere capita. I pesi mostrati sono a scopo di esempio,
+      non calcolati da un modello.
+    </p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="limiti">Tappa 5 — Limiti e domande →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 5 ═══════════════════════════ -->
+<section class="tappa" id="limiti">
+  <h1><span class="etichetta-tappa">Tappa 5</span> Che cosa sa fare, e che cosa no</h1>
+
+  <div class="pannello">
+    <h2>La macchina risponde sempre. Anche quando non dovrebbe.</h2>
+    <p class="istruzioni">
+      Disegnate nel riquadro una cosa qualsiasi che <em>non</em> sia una cifra: una casetta, un fiore, uno scarabocchio.
+      La rete della Tappa 3 vi dirà comunque un numero, spesso con grande sicurezza.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <canvas id="lim-tela" width="280" height="280" aria-label="Area di disegno libero"></canvas>
+        <div class="controlli"><button class="bottone" id="lim-pulisci">Cancella</button></div>
+      </div>
+      <div>
+        <div id="lim-uscita" class="tela"></div>
+        <div id="lim-verdetto" class="verdetto verdetto-grande"></div>
+      </div>
+    </div>
+    <p class="nota">
+      Questa è, in miniatura, l'origine delle «allucinazioni» dei modelli linguistici: un sistema
+      addestrato a dare sempre la risposta più plausibile non ha un modo naturale per dire
+      «questa cosa non l'ho mai vista». La sicurezza che esprime non è una misura di verità.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Quattro cose vere che conviene ricordare</h2>
+    <div class="griglia-due">
+      <div class="scheda">
+        <h3>Non capisce, calcola</h3>
+        <p>Non c'è nessuna comprensione del mondo: c'è una funzione che, vista una domanda,
+           produce la risposta statisticamente più adatta agli esempi visti.</p>
+      </div>
+      <div class="scheda">
+        <h3>Vale quanto i suoi esempi</h3>
+        <p>Se gli esempi sono sbilanciati o sbagliati, il modello lo sarà allo stesso modo,
+           con la differenza che sembrerà obiettivo perché è un computer.</p>
+      </div>
+      <div class="scheda">
+        <h3>Sbaglia in modo strano</h3>
+        <p>Non sbaglia come sbagliamo noi: può leggere perfettamente mille cifre
+           e poi inciampare su una che a noi pare ovvia.</p>
+      </div>
+      <div class="scheda">
+        <h3>Ma è utilissima</h3>
+        <p>Per tutti i problemi in cui esistono molti esempi e la risposta giusta è difficile
+           da scrivere come regola — leggere una lastra, tradurre, riconoscere una voce —
+           funziona meglio di qualunque regola scritta a mano.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="lavagna">
+    <p>Abbiamo fatto tre volte la stessa cosa:</p>
+    <p class="lavagna-piccolo">
+      punti e una curva → puntini di grigio e dieci probabilità → parole e la parola dopo.
+    </p>
+    <p>Tre regressioni. Una piccola, una media, una gigantesca.</p>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>Per chi vuole approfondire</h2>
+    <ul class="elenco-grande">
+      <li>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer 2006 — il testo classico (cap. 1 e 3 bastano per la Tappa 1).</li>
+      <li>I. Goodfellow, Y. Bengio &amp; A. Courville, <em>Deep Learning</em>, MIT Press 2016 — disponibile gratuitamente online.</li>
+      <li>M. Nielsen, <em>Neural Networks and Deep Learning</em> — divulgativo, gratuito, con la stessa rete della Tappa 3.</li>
+      <li>S. Wolfram, <em>What Is ChatGPT Doing… and Why Does It Work?</em>, 2023 — per la Tappa 4.</li>
+    </ul>
+    <p class="fonte">Gli estremi completi di tutti i lavori citati nella lezione sono nel file <code>docs/bibliografia.md</code>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <button class="bottone" id="nav-indietro">← Indietro</button>
+  <span class="pie-testo">Usate i tasti <kbd>←</kbd> <kbd>→</kbd> per spostarvi fra le tappe</span>
+  <button class="bottone" id="nav-avanti">Avanti →</button>
+</footer>
+
+<script src="vendor/d3.v7.min.js"></script>
+<script src="data/mnist-mlp.js"></script>
+<script src="data/mnist-esempi.js"></script>
+<script src="data/corpora.js"></script>
+<script src="js/comune.js"></script>
+<script src="js/tappa0-intro.js"></script>
+<script src="js/tappa1-regressione.js"></script>
+<script src="js/tappa2-approssimatore.js"></script>
+<script src="js/tappa3-rete.js"></script>
+<script src="js/tappa4-llm.js"></script>
+<script src="js/tappa5-limiti.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

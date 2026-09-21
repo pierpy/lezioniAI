@@ -1,0 +1,102 @@
+# L'intelligenza artificiale spiegata con una curva
+
+Lezione interattiva in cinque tappe per l'Università della Terza Età.
+Il filo conduttore è uno solo: **l'intelligenza artificiale è una regressione
+con moltissime manopole**. Lo si mostra tre volte, sempre più in grande —
+una retta, una rete che legge le cifre scritte a mano, un modello che scrive.
+
+Tutto gira nel browser, **senza rete e senza installare niente**: si apre
+`index.html` con un doppio clic e la lezione parte.
+
+## Le cinque tappe
+
+| | Tappa | Che cosa si tocca con mano |
+|---|---|---|
+| 0 | Apertura | Una curva che «impara» dei punti sotto gli occhi del pubblico. |
+| 1 | La retta che indovina | Regressione polinomiale interattiva: si aggiungono punti col mouse, si alza la complessità, si nascondono dati per verificare. Sovradattamento e discesa del gradiente sulla «collina dell'errore» (curve di livello). |
+| 2 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Teorema di approssimazione universale. |
+| 3 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. |
+| 4 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
+| 5 | Limiti e domande | La stessa rete della Tappa 3 chiamata a giudicare uno scarabocchio: risponde «0 al 99 %». Da lì, le allucinazioni. |
+
+## Come si usa
+
+```bash
+# il modo più semplice: doppio clic su index.html
+# (oppure, per stare tranquilli con qualsiasi browser)
+python3 -m http.server 8000     # poi http://localhost:8000
+```
+
+- Tasti `←` e `→` per cambiare tappa, oppure la barra in alto.
+- `F11` per lo schermo intero, `Ctrl` `+` per ingrandire il testo (la pagina regge il 150 %).
+- Niente connessione internet richiesta: D3 (v7.9.0) e i pesi della rete sono nel repository.
+
+Prima di andare in aula, leggete **[`docs/guida-lezione.md`](docs/guida-lezione.md)**:
+scaletta con i tempi, che cosa dire e che cosa cliccare tappa per tappa, le domande
+che arrivano sempre con le risposte pronte, e gli errori da non fare.
+Tutte le fonti sono in **[`docs/bibliografia.md`](docs/bibliografia.md)**.
+
+## Gli stessi conti in MATLAB
+
+La cartella `matlab/` contiene la versione MATLAB (provata anche con Octave 9)
+di tutto ciò che accade nella pagina — utile per preparare la lezione, per
+controllare i numeri o per mostrare il codice a chi lo chiede:
+
+| File | Contenuto |
+|---|---|
+| `tappa1_regressione.m` | Minimi quadrati, curva errore-contro-complessità, discesa del gradiente con la mappa dell'errore. |
+| `tappa2_approssimatore.m` | Somma di sigmoidi, errore contro numero di neuroni (scala logaritmica). |
+| `tappa3_rete_mnist.m` | Carica i pesi della pagina web, ricalcola l'accuratezza (96,1 % sul sottoinsieme incluso), matrice di confusione, maschere dei 64 neuroni. |
+| `tappa3b_allena_rete.m` | Retropropagazione scritta a mano: allena la rete da zero su 3.000 cifre. |
+| `tappa4_modello_linguistico.m` | Modello a n-grammi con temperatura e tabella dei bigrammi. |
+
+```matlab
+cd matlab
+tappa1_regressione
+tappa3_rete_mnist
+```
+
+## Com'è fatto
+
+```
+index.html              una pagina sola, cinque sezioni
+css/stile.css           testo grande e contrasto alto, pensato per il proiettore
+js/comune.js            minimi quadrati, softmax, sigmoide, aiuti per i grafici
+js/tappa0…tappa5        una tappa per file, ognuna si accende alla prima apertura
+data/mnist-mlp.js       i 50.890 pesi della rete (JSON dentro una variabile globale)
+data/mnist-esempi.js    40 cifre vere dell'archivio MNIST
+data/corpora.js         quattro testi italiani scritti per la lezione
+data/mnist-sottoinsieme.mat  3.000 + 1.000 cifre per gli script MATLAB
+vendor/d3.v7.min.js     D3 7.9.0, in locale
+tools/                  come sono stati preparati i dati (vedi sotto)
+```
+
+Scelte tecniche, per chi volesse metterci le mani:
+
+- **Niente moduli ES e niente `fetch`**: i dati sono file `.js` che definiscono una
+  variabile globale. È l'unico modo perché la pagina funzioni anche aperta da `file://`,
+  cioè con un doppio clic sul portatile dell'aula.
+- **Colori** presi da una tavolozza verificata per il daltonismo (blu = modello,
+  arancio = errore, verde = verifica, viola = linguaggio); rosso/blu divergente per i pesi.
+  Ogni serie ha sempre anche un'etichetta scritta: il colore non è mai l'unica informazione.
+- **Modalità chiara soltanto**: in aula si proietta su schermo bianco.
+
+## Rigenerare i dati
+
+```bash
+npm install mnist                          # 10.000 cifre MNIST vere
+node tools/export-mnist.js /tmp/mnist      # → file binari uint8
+pip install numpy
+python3 tools/train-mlp.py /tmp/mnist data/mnist-mlp.js
+```
+
+L'allenamento dura una ventina di secondi e, con il seme 42, è **riproducibile
+bit per bit**: 99,9 % sugli esempi di studio, 96,5 % sulle cifre mai viste.
+
+## Licenza e crediti
+
+- Testi, codice e corpora italiani: scritti per questa lezione, riusabili liberamente
+  citando la fonte.
+- [D3.js](https://d3js.org) — ISC License, © Mike Bostock.
+- Archivio MNIST — Y. LeCun, C. Cortes, C. Burges; qui distribuito attraverso il
+  pacchetto npm [`mnist`](https://www.npmjs.com/package/mnist).

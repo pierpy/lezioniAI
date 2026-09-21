@@ -1,0 +1,3 @@
+node_modules/
+*.u8
+.DS_Store
