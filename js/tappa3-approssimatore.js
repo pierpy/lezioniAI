@@ -353,3 +353,107 @@ LEZIONE.registra('approssimatore', function () {
   d3.select('#ua-neuroni-out').text('3 neuroni — 7 manopole');
   aggiorna();
 });
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Tappa 3 — un neurone solo, in azione.
+   Nella tappa precedente il neurone è una decisione con una lampadina;
+   qui è una curva, ed è la stessa cosa vista da un'altra parte:
+        uscita = a · s(w · (x − c))
+   Tre manopole, un gradino morbido. Sommandone tanti si ottiene qualsiasi
+   curva — che è esattamente quello che fa il pannello qui sopra.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+LEZIONE.registra('approssimatore', function () {
+  const L = LEZIONE, C = L.colori;
+
+  let centro = 5, pendenza = 2, peso = 1, secondo = false;
+  const SECONDO = { centro: 7.5, pendenza: 3, peso: -0.9 };
+
+  const W = 640, H = 340;
+  const t = L.tela('#neurone-curva', W, H);
+  const x = d3.scaleLinear().domain([0, 10]).range([0, t.w]);
+  const y = d3.scaleLinear().domain([-1.6, 1.6]).range([t.h, 0]);
+
+  t.g.append('g').attr('class', 'griglia')
+    .call(d3.axisLeft(y).ticks(5).tickSize(-t.w).tickFormat('')).select('.domain').remove();
+  t.g.append('g').attr('class', 'asse').attr('transform', `translate(0,${t.h})`)
+    .call(d3.axisBottom(x).ticks(6));
+  t.g.append('g').attr('class', 'asse').call(d3.axisLeft(y).ticks(5));
+  t.g.append('text').attr('class', 'etichetta-asse')
+    .attr('x', t.w).attr('y', t.h + 36).attr('text-anchor', 'end')
+    .text('quello che entra');
+  t.g.append('text').attr('class', 'etichetta-asse')
+    .attr('transform', `translate(-36,${t.h / 2}) rotate(-90)`).attr('text-anchor', 'middle')
+    .text('quello che esce');
+
+  const gPezzi = t.g.append('g');
+  const linea = t.g.append('path').attr('fill', 'none')
+    .attr('stroke', C.modello).attr('stroke-width', 3.5).attr('stroke-linecap', 'round');
+  const lineaCentro = t.g.append('line')
+    .attr('stroke', C.errore).attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+  const etichettaCentro = t.g.append('text')
+    .attr('font-size', 12).attr('fill', C.errore).attr('text-anchor', 'middle');
+
+  const griglia = d3.range(0, 10.01, 0.05);
+  const gen = d3.line().x(d => x(d[0])).y(d => y(Math.max(-1.6, Math.min(1.6, d[1]))));
+  const unNeurone = (n, xv) => n.peso * L.sigmoide(n.pendenza * (xv - n.centro));
+
+  function aggiornaNeurone() {
+    const primo = { centro, pendenza, peso };
+    const neuroni = secondo ? [primo, SECONDO] : [primo];
+    const somma = xv => d3.sum(neuroni.map(n => unNeurone(n, xv)));
+
+    linea.attr('d', gen(griglia.map(xv => [xv, somma(xv)])));
+
+    gPezzi.selectAll('path').data(secondo ? neuroni : []).join('path')
+      .attr('fill', 'none').attr('stroke', C.errore).attr('stroke-width', 1.8)
+      .attr('stroke-opacity', .65).attr('stroke-dasharray', '6 4')
+      .attr('d', n => gen(griglia.map(xv => [xv, unNeurone(n, xv)])));
+
+    lineaCentro.attr('x1', x(centro)).attr('x2', x(centro)).attr('y1', 0).attr('y2', t.h);
+    etichettaCentro.attr('x', x(centro)).attr('y', -6).text('si accende qui');
+
+    /* larghezza della salita: da σ = 0,1 a σ = 0,9 sono 4,4/w unità */
+    const larghezza = 4.4 / pendenza;
+    d3.select('#nc-centro-out').text(`a ${L.num(centro, 1)}`);
+    d3.select('#nc-pendenza-out').text(
+      larghezza < 0.8 ? `di scatto (in ${L.num(larghezza, 1)} di larghezza)`
+        : larghezza < 3 ? `in una salita di ${L.num(larghezza, 1)}`
+        : `pianissimo (una rampa larga ${L.num(larghezza, 1)})`);
+    d3.select('#nc-peso-out').text(
+      peso > 0.05 ? `sale fino a ${L.num(peso, 1)}`
+        : peso < -0.05 ? `scende fino a ${L.num(peso, 1)}: il gradino è rovesciato`
+        : 'a zero: questo neurone non serve a niente');
+
+    d3.select('#nc-formula').html(
+      `<span class="formula-testo">uscita = ` +
+      `<strong style="color:${C.modello}">${L.num(peso, 1)}</strong> · <em>s</em>( ` +
+      `<strong style="color:${C.verifica}">${L.num(pendenza, 1)}</strong> · ( x − ` +
+      `<strong style="color:${C.errore}">${L.num(centro, 1)}</strong> ) )</span>`);
+
+    let testo;
+    if (Math.abs(peso) < 0.1) {
+      testo = '<strong>Piatto.</strong> Con il peso a zero il neurone c\'è ma non conta: ' +
+              'è una manopola sprecata. Nelle reti vere ce ne sono parecchie così.';
+    } else if (secondo) {
+      testo = '<strong>Due gradini, una collina.</strong> Il primo sale, il secondo (tratteggiato) ' +
+              'scende: sommati fanno una gobba. Con quaranta gradini si fa qualsiasi cosa — ' +
+              'ed è esattamente quello che succede nel pannello qui sopra.';
+    } else if (larghezza < 0.8) {
+      testo = `<strong>Un gradino netto</strong> a ${L.num(centro, 1)}: sotto non fa niente, ` +
+              'sopra dà tutto. Somiglia a un interruttore.';
+    } else {
+      testo = `<strong>Una salita dolce</strong> centrata su ${L.num(centro, 1)}. ` +
+              'È questo il «morbido» che rende possibile aggiustare le manopole un pochino alla volta: ' +
+              'con un interruttore secco non si saprebbe da che parte girarle.';
+    }
+    d3.select('#nc-verdetto').attr('class', 'verdetto').html(testo);
+  }
+
+  d3.select('#nc-centro').on('input', function () { centro = +this.value; aggiornaNeurone(); });
+  d3.select('#nc-pendenza').on('input', function () { pendenza = +this.value; aggiornaNeurone(); });
+  d3.select('#nc-peso').on('input', function () { peso = +this.value; aggiornaNeurone(); });
+  d3.select('#nc-secondo').on('change', function () { secondo = this.checked; aggiornaNeurone(); });
+
+  aggiornaNeurone();
+});

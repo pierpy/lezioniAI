@@ -545,20 +545,50 @@
     </p>
   </div>
 
-  <div class="pannello pannello-chiaro" data-nota="Solo in modalità completa. Da dire: il teorema dice che la rete PUÒ rappresentare la curva, non che riuscirà a trovarla." data-avanzato>
-    <h2>Che cos'è un neurone, in concreto</h2>
-    <div class="formula">
-      <span class="formula-testo">uscita&nbsp;=&nbsp;a₁·<em>s</em>(w₁·x + b₁) + a₂·<em>s</em>(w₂·x + b₂) + … + a<sub>n</sub>·<em>s</em>(w<sub>n</sub>·x + b<sub>n</sub>)</span>
-    </div>
-    <p>
-      <em>s</em> è un interruttore morbido: per valori piccoli dà 0, per valori grandi dà 1, in mezzo sale dolcemente.
-      Tutto il resto sono <strong>numeri da regolare</strong>: le manopole.
-      Una rete neurale non è altro che questa somma, ripetuta su più livelli.
+  <div class="pannello" data-nota="Muovete una manopola alla volta e fate dire al pubblico che cosa cambia. Poi «aggiungi un secondo neurone»: due gradini che si sommano fanno una collina.">
+    <h2>Un neurone solo, in azione</h2>
+    <p class="istruzioni">
+      Qui sotto c'è <strong>un neurone soltanto</strong>, disegnato per quello che è davvero:
+      un <strong>gradino morbido</strong>. Ha tre manopole e non fa nient'altro che questo.
+      Muovetele una alla volta e guardate la curva.
     </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="neurone-curva" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div class="controllo">
+          <label for="nc-centro"><span class="pallino" style="background:#eb6834"></span>Dove si accende</label>
+          <input type="range" id="nc-centro" min="0.5" max="9.5" step="0.1" value="5">
+          <output id="nc-centro-out"></output>
+        </div>
+        <div class="controllo">
+          <label for="nc-pendenza"><span class="pallino" style="background:#1baf7a"></span>Quanto in fretta si accende</label>
+          <input type="range" id="nc-pendenza" min="0.4" max="12" step="0.2" value="2">
+          <output id="nc-pendenza-out"></output>
+        </div>
+        <div class="controllo">
+          <label for="nc-peso"><span class="pallino" style="background:#2a78d6"></span>Quanto conta, e in che verso</label>
+          <input type="range" id="nc-peso" min="-1.4" max="1.4" step="0.1" value="1">
+          <output id="nc-peso-out"></output>
+        </div>
+        <div class="controllo interruttori">
+          <label><input type="checkbox" id="nc-secondo"> Aggiungi un secondo neurone</label>
+        </div>
+        <div id="nc-formula" class="formula"></div>
+        <div id="nc-verdetto" class="verdetto"></div>
+      </div>
+    </div>
     <p class="nota">
-      Attenzione al punto delicato: il teorema dice che la rete <em>può</em> rappresentare la curva giusta.
-      Non dice che riuscirà a <em>trovarla</em> partendo dagli esempi — quello è il lavoro della discesa del gradiente,
-      e non è mai garantito.
+      Ecco perché sommandone tanti viene fuori qualsiasi curva: ogni neurone porta
+      <strong>un gradino</strong>, e si decide dove metterlo, quanto ripido farlo e quanto conta.
+      Nella rete della prossima tappa i gradini sono 64 e le manopole 50.890, ma il pezzetto
+      elementare è sempre questo.
+    </p>
+    <p class="nota" data-avanzato>
+      Attenzione al punto delicato: il teorema dice che la rete <em>può</em> rappresentare la curva
+      giusta. Non dice che riuscirà a <em>trovarla</em> partendo dagli esempi — quello è il lavoro
+      della discesa del gradiente, e non è mai garantito.
     </p>
   </div>
 

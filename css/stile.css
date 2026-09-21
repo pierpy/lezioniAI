@@ -431,6 +431,14 @@ code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; backgrou
 .controllo-in-riga input[type="range"] { width: 130px; }
 .controllo-in-riga output { margin-top: 0; min-width: 16rem; }
 
+.pallino {
+  display: inline-block;
+  width: .7rem; height: .7rem;
+  border-radius: 3px;
+  margin-right: .4rem;
+  vertical-align: baseline;
+}
+
 .controllo label {
   display: block;
   font-weight: 600;

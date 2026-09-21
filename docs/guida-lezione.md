@@ -75,7 +75,7 @@ Tre cose da sapere prima di entrare in aula:
 1. **Le diapositive restano vive.** Non è un export in PowerPoint: quello che vedete è la pagina
    vera, quindi dentro la diapositiva si clicca, si trascina, si disegna, si allena. È tutto il
    punto della lezione.
-2. **Il numero di diapositive dipende dal livello.** In *essenziale* sono 38, in *completa* 41:
+2. **Il numero di diapositive dipende dal livello.** In *essenziale* sono 39, in *completa* 41:
    scegliete il livello **prima** di entrare in presentazione (si può cambiare anche dopo,
    e la diapositiva corrente resta al suo posto).
 3. **Si parte dalla tappa in cui siete.** Comodo per riprendere dopo una pausa o per provare
@@ -285,6 +285,16 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
   Se dopo qualche secondo l'errore non scende più, è un regalo: premete «Ricomincia da manopole
   a caso» e dite che *esiste* una soluzione ma non è detto che la si trovi — è la differenza
   fra il teorema e la pratica.
+- **Un neurone solo, in azione** (3 min, subito dopo il cursore dei neuroni): qui il neurone non
+  è una decisione con la lampadina — quella arriva nella tappa dopo — ma **una curva**, ed è la
+  stessa cosa vista da un'altra parte. Muovete **una manopola alla volta** e fate dire al pubblico
+  che cosa cambia: *dove si accende*, *quanto in fretta*, *quanto conta*. Due passaggi da non
+  saltare: portate la pendenza al massimo (*«così è un interruttore: acceso o spento»*) e poi
+  rimettetela dolce, spiegando perché serve — *«con un interruttore secco non si saprebbe da che
+  parte girare le manopole; è la salita dolce che permette di correggere un pochino alla volta»*.
+  Infine spuntate **«aggiungi un secondo neurone»**: due gradini, uno che sale e uno che scende,
+  fanno una collina. *«Con quaranta di questi si fa qualsiasi cosa, ed è quello che avete appena
+  visto qui sopra.»*
 - Chiudete con **«disegnatela voi col mouse»**: fate disegnare una curva a una persona del pubblico
   e fatela copiare alla rete. Nessuno dimentica di aver fatto imparare qualcosa a una macchina.
 - La citazione da dire a voce: *«che questo funzioni sempre è un teorema del 1989, di George Cybenko.
