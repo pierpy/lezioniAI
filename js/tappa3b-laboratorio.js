@@ -237,11 +237,12 @@ LEZIONE.registra('rete', function () {
   function aggiornaStatistiche() {
     const ultimo = storia.length ? storia[storia.length - 1] : { studio: 0.1, verifica: 0.1 };
     d3.select('#lab-statistiche').html([
-      ['cifre guardate', viste.toLocaleString('it-IT')],
-      ['giri sul materiale', studio ? L.num(viste / studio.n, 1) : '0'],
-      ['esatte su cifre mai viste', L.perc(ultimo.verifica, 0)]
-    ].map(([et, v]) => `<div class="statistica"><span class="valore">${v}</span>` +
-                       `<span class="etichetta">${et}</span></div>`).join(''));
+      ['cifre guardate', viste.toLocaleString('it-IT'), false],
+      ['giri sul materiale', studio ? L.num(viste / studio.n, 1) : '0', true],
+      ['esatte su cifre mai viste', L.perc(ultimo.verifica, 0), false]
+    ].map(([et, v, avanzato]) =>
+      `<div class="statistica"${avanzato ? ' data-avanzato' : ''}><span class="valore">${v}</span>` +
+      `<span class="etichetta">${et}</span></div>`).join(''));
 
     const a = ultimo.verifica;
     let testo, classe = '';

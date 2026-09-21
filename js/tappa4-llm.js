@@ -42,11 +42,12 @@ LEZIONE.registra('llm', function () {
       modelli[n] = tavola;
     }
     d3.select('#lm-statistiche').html([
-      ['parole nel testo', token.length],
-      ['parole diverse', vocabolario.size],
-      ['coppie diverse', modelli[1].size ? d3.sum([...modelli[1].values()], m => m.size) : 0]
-    ].map(([et, v]) => `<div class="statistica"><span class="valore">${v}</span>` +
-                       `<span class="etichetta">${et}</span></div>`).join(''));
+      ['parole nel testo', token.length, false],
+      ['parole diverse', vocabolario.size, false],
+      ['coppie diverse', modelli[1].size ? d3.sum([...modelli[1].values()], m => m.size) : 0, true]
+    ].map(([et, v, avanzato]) =>
+      `<div class="statistica"${avanzato ? ' data-avanzato' : ''}><span class="valore">${v}</span>` +
+      `<span class="etichetta">${et}</span></div>`).join(''));
     aggiornaGettoni();
     disegnaMatrice();
     reimpostaEmbedding();

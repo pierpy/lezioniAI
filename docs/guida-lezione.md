@@ -20,6 +20,40 @@ Le tre parole da far entrare nel lessico, in quest'ordine: **manopole** (paramet
 Non servono altri termini tecnici; se ne serve uno, si introduce dopo aver mostrato la cosa,
 mai prima.
 
+## Due livelli: «essenziale» e «completa»
+
+In alto a destra c'è un interruttore. **La lezione si tiene in «essenziale»**: è il livello
+predefinito, si riapre da solo la volta dopo, e mostra una cosa per schermata con due comandi
+al massimo. «Completa» rimette in vista tutto, senza togliere né semplificare nulla di ciò
+che resta: è la stessa lezione con gli approfondimenti accesi.
+
+| Cosa resta nascosto in «essenziale» | Perché | Quando accenderlo |
+|---|---|---|
+| Il cursore «di quanto le giro» (apertura) | un secondo parametro da spiegare | se qualcuno chiede «e se sbaglia a girare?» |
+| La collina dell'errore (Tappa 1) | è uno spazio astratto: gli assi non sono più metri quadri ed euro | con un pubblico che ha fatto matematica, o su richiesta |
+| La spunta «mostra gli errori» (Tappa 1) | resta accesa comunque | mai, serve solo a spegnerla |
+| «Come trova le manopole» + allenamento (Tappa 2) | due modi invece di uno | quando c'è tempo: è il momento più bello della tappa |
+| La formula del neurone (Tappa 2) | una formula in aula perde metà sala | se qualcuno chiede «ma in pratica cos'è?» |
+| I 64 neuroni nascosti (Tappa 3) | un quarto riquadro da guardare | dopo che la cifra è stata riconosciuta, come bis |
+| La curva delle risposte esatte (laboratorio, Tappa 3) | bastano le maschere e un numero | per far vedere il divario studio/mai-viste |
+| Le parole-punti (Tappa 4) | il passaggio più astratto di tutta la lezione | con un pubblico curioso, o in una seconda lezione |
+
+Tutti i numeri, le citazioni e i comportamenti restano gli stessi nei due livelli: «essenziale»
+non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra parentesi
+(«sovradattamento», «temperatura», «grado 7») compare solo in «completa».
+
+### Le cinque regole che tengono semplice il racconto
+
+1. **Una cosa per schermata.** Se sullo schermo ci sono due cose che si muovono, il pubblico
+   ne guarda una e perde l'altra. Fermate un'animazione prima di avviarne un'altra.
+2. **Sempre le stesse tre parole**: *manopole*, *errore*, *imparare a memoria*. Mai sinonimi:
+   «parametri», «costo», «sovradattamento» confondono chi sta seguendo a fatica.
+3. **Ogni numero va ancorato.** Non «errore 24,8», ma «sbaglia venticinque mila euro su una casa
+   da centocinquanta: un sesto del prezzo».
+4. **Prima si guarda, poi si spiega.** Fate partire l'animazione, tacete, e commentate dopo.
+5. **Le citazioni non si leggono ad alta voce.** Stanno lì perché la lezione sia verificabile,
+   non per essere recitate: basta dire «è un teorema del 1989, c'è scritto lì sotto chi l'ha dimostrato».
+
 ## Scaletta
 
 | Tempo | Tappa | Cosa succede sullo schermo |
@@ -39,12 +73,27 @@ torna **cinque volte**, ed è la spina dorsale della lezione. Nominatela ogni vo
 | Dove | Che cosa impara | Quante manopole |
 |---|---|---|
 | Apertura | una curva su 24 punti | 4 |
-| Tappa 1, la collina | una retta sui prezzi delle case | 2 |
-| Tappa 2, «a tentoni» | pesi, pendenze e centri dei neuroni | fino a 121 |
+| *(le righe in corsivo sono visibili solo in «completa»)* | | |
+| *Tappa 1, la collina* | *una retta sui prezzi delle case* | *2* |
+| *Tappa 2, «a tentoni»* | *pesi, pendenze e centri dei neuroni* | *fino a 121* |
 | Tappa 3, il laboratorio | a leggere le cifre, da zero, dal vivo | 19.090 |
-| Tappa 4, le parole-punti | dove mettere ogni parola nel piano | qualche migliaio |
+| *Tappa 4, le parole-punti* | *dove mettere ogni parola nel piano* | *qualche migliaio* |
 
-**Se avete solo 60 minuti**: tagliate la Tappa 2 (bastano due minuti a voce: «più pezzetti,
+### Lezione essenziale da 50 minuti (il formato consigliato per la prima volta)
+
+| Tempo | Che cosa |
+|---|---|
+| 0–10 | Apertura: le quattro manopole, «un passo alla volta» due o tre volte, poi la corsa. |
+| 10–22 | Tappa 1: i prezzi delle case, il cursore della complessità, la verifica sui dati nascosti. |
+| 22–30 | Tappa 2: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
+| 30–42 | Tappa 3: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
+| 42–50 | Tappa 4 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 5. |
+
+Con questo taglio non si perde nessun concetto: si perdono gli approfondimenti.
+La Tappa 4 completa e la collina dell'errore diventano la seconda lezione.
+
+**Se avete 90 minuti e volete tutto**: mettete l'interruttore su «completa» e seguite la scaletta
+qui sopra. **Se avete solo 60 minuti**: tagliate la Tappa 2 (bastano due minuti a voce: «più pezzetti,
 più dettagli — ed è un teorema del 1989») e la parte di allenamento dal vivo della Tappa 4.
 Non tagliate mai la verifica su dati mai visti della Tappa 1: è il concetto più prezioso di tutta l'ora.
 
@@ -105,7 +154,7 @@ L'esempio delle case funziona perché tutti hanno un'opinione sul prezzo di un a
    *«Non ha imparato il mercato immobiliare. Ha imparato a memoria quindici case.»*
 5. **Tornate a grado 2 o 3.** I due errori si riavvicinano. Regola d'oro pronunciata ad alta voce:
    *«il modello giusto non è quello che sbaglia meno su quello che ha già visto».*
-6. **La collina dell'errore.** Premete «Scendi lungo la collina».
+6. **La collina dell'errore** *(solo in modalità «completa»)*. Premete «Scendi lungo la collina».
    Collegatela esplicitamente all'apertura: *«le frecce sulle manopole che avete visto all'inizio
    sono la pendenza di questa collina»*. Metafora:
    *«è come scendere una collina nella nebbia: si guarda solo la pendenza sotto i piedi e si fa un passo in giù.
@@ -119,7 +168,7 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
 - Accendete **«mostra i singoli pezzetti»**: si vede la somma prendere forma. È la diapositiva più bella della lezione.
 - Scegliete **«il battito cardiaco»** e restate a 8 neuroni: la rete ignora i picchi.
   Salite a 40: i picchi compaiono. *«Ecco perché i modelli sono diventati grandi: i dettagli costano manopole.»*
-- **Il momento chiave della tappa**: cambiate «Come trova le manopole» da *la scorciatoia* a
+- **Il momento chiave della tappa** *(solo in modalità «completa»)*: cambiate «Come trova le manopole» da *la scorciatoia* a
   *le cerca a tentoni* e premete «Allena». La curva parte da manopole casuali e si avvicina
   da sola, mentre l'errore scende.
   *«Fin qui avevamo barato: per un modello così semplice esiste una formula che dà la risposta
@@ -140,7 +189,7 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
 
 - **Fate scrivere la cifra a qualcuno del pubblico**, non fatelo voi. Con il dito su un tablet, se c'è.
 - Mostrate il riquadro «quello che vede la rete»: *«non vede un sette. Vede 784 numeri fra 0 e 1.»*
-- Passate il mouse sui neuroni nascosti: compaiono le maschere. *«Questo neurone si accende se trova
+- *(in modalità «completa»)* Passate il mouse sui neuroni nascosti: compaiono le maschere. *«Questo neurone si accende se trova
   inchiostro dove c'è blu e non ne trova dove c'è rosso. Nessuno gliel'ha insegnato: l'ha trovato da solo,
   girando le manopole.»*
 - Guardate insieme le quattro statistiche: **99,9 % contro 96,5 %**.
@@ -182,7 +231,7 @@ L'obiettivo è smontare il mistero senza sminuire il risultato.
    comprensione, c'è contabilità.»* Dopo dieci secondi premete «Mostra la tabella completa».
    *«tutta la conoscenza di questo modellino sta in questo quadrato.
    Con 50.000 parole servirebbero due miliardi e mezzo di caselle: per questo servono le reti.»*
-7. **Allenamento dal vivo**: premete «Allena la rete» e commentate la curva che scende.
+7. **Allenamento dal vivo** *(solo in modalità «completa»)*: premete «Allena la rete» e commentate la curva che scende.
    *«È la stessa collina della Tappa 1. Stessa identica idea, un'ora dopo.»*
 8. **Le tre differenze con ChatGPT** (attenzione, scala, correzioni umane) e la figura dell'attenzione.
    Dite sempre che quella figura è uno schema, non un calcolo.
@@ -244,6 +293,8 @@ l'autore l'abbia deciso. È il tema legale più caldo del settore.
 3. Portare il browser a schermo intero (`F11`) e regolare lo zoom (`Ctrl` + `+`) finché il testo si legge
    dall'ultima fila. La pagina è pensata per reggere zoom fino al 150 %.
 4. Verificare che i tasti `←` e `→` cambino tappa: è il modo più comodo per non perdere il filo.
+   Controllare che l'interruttore in alto a destra sia su **Essenziale** (il browser ricorda
+   l'ultima scelta fatta su quel computer).
 5. Se c'è un tablet o uno schermo touch, usatelo per la Tappa 3: il dito funziona.
 6. Piano B senza computer: la stessa lezione si tiene con una lavagna, quindici puntini,
    un righello e la domanda «e se la retta la facessi passare *esattamente* per tutti i punti?».

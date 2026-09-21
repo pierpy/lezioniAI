@@ -35,5 +35,26 @@
     if (ev.key === 'ArrowLeft' || ev.key === 'PageUp') { vai(tappe[Math.max(0, corrente - 1)]); }
   });
 
+  /* ── livello di dettaglio: essenziale (predefinito) o completa ─────────
+     In aula si parte sempre dall'essenziale: una cosa per schermata, due
+     comandi al massimo. «Completa» rimette in vista tutto — la collina
+     dell'errore, l'allenamento della Tappa 2, le parole-punti — per chi
+     fa domande o per una seconda lezione. */
+  function impostaModo(modo, ricorda) {
+    document.body.classList.toggle('essenziale', modo !== 'completa');
+    document.querySelectorAll('.bottone-modo').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.modo === modo ? 'true' : 'false'));
+    if (ricorda) {
+      try { localStorage.setItem('lezione-modo', modo); } catch (e) { /* file:// senza permessi */ }
+    }
+  }
+
+  document.querySelectorAll('.bottone-modo').forEach(b =>
+    b.addEventListener('click', () => impostaModo(b.dataset.modo, true)));
+
+  let modoIniziale = 'essenziale';
+  try { modoIniziale = localStorage.getItem('lezione-modo') || 'essenziale'; } catch (e) { /* ignora */ }
+  impostaModo(modoIniziale, false);
+
   vai((location.hash || '').replace('#', '') || tappe[0], false);
 })();

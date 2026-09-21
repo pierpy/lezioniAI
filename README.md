@@ -19,6 +19,19 @@ Tutto gira nel browser, **senza rete e senza installare niente**: si apre
 | 4 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità che **si riempie sotto gli occhi** mentre il modello legge il testo, parola per parola; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
 | 5 | Limiti e domande | La stessa rete della Tappa 3 chiamata a giudicare uno scarabocchio: risponde «0 al 99 %». Da lì, le allucinazioni. |
 
+## Due livelli di dettaglio
+
+In alto a destra c'è l'interruttore **Essenziale / Completa**.
+
+- **Essenziale** (predefinito, ed è il livello con cui si tiene la lezione): una cosa per
+  schermata, al massimo due comandi, niente gergo. Restano nascosti la collina dell'errore,
+  l'allenamento della Tappa 2, i 64 neuroni nascosti, la curva del laboratorio e le parole-punti.
+- **Completa**: rimette in vista tutto, approfondimenti e termini tecnici fra parentesi
+  («sovradattamento», «temperatura», «grado 7»).
+
+Nessuno dei due livelli cambia i conti, i numeri o le citazioni: «essenziale» mostra
+**meno cose per volta**, non cose più semplici. La scelta resta memorizzata nel browser.
+
 ## Come si usa
 
 ```bash
@@ -28,6 +41,7 @@ python3 -m http.server 8000     # poi http://localhost:8000
 ```
 
 - Tasti `←` e `→` per cambiare tappa, oppure la barra in alto.
+- Interruttore **Essenziale / Completa** in alto a destra (si parte sempre da «essenziale»).
 - `F11` per lo schermo intero, `Ctrl` `+` per ingrandire il testo (la pagina regge il 150 %).
 - Niente connessione internet richiesta: D3 (v7.9.0) e i pesi della rete sono nel repository.
 

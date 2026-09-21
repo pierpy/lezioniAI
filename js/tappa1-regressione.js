@@ -177,22 +177,24 @@ LEZIONE.registra('regressione', function () {
     if (conVerifica && isFinite(ev)) {
       if (ev > 2.2 * es + 4) {
         return `<strong>Impara a memoria.</strong> Con ${manopole} manopole la curva passa quasi esattamente ` +
-               `per i dati di studio (errore ${L.num(es, 1)}), ma sulle case mai viste sbaglia ` +
-               `${L.num(ev, 1)} mila €: <em>più del triplo</em>. Questo è il sovradattamento.`;
+               `per le case che ha studiato (sbaglia ${L.num(es, 1)} mila €), ma su quelle mai viste ` +
+               `sbaglia ${L.num(ev, 1)} mila €: <em>più del triplo</em>. ` +
+               `<span class="tecnico">In gergo: sovradattamento (<em>overfitting</em>).</span>`;
       }
-      return `<strong>Equilibrio ragionevole.</strong> L'errore sui dati mai visti (${L.num(ev, 1)}) ` +
-             `è simile a quello sui dati di studio (${L.num(es, 1)}): il modello ha colto la regola, non i dettagli.`;
+      return `<strong>Equilibrio ragionevole.</strong> Sbaglia quasi uguale sulle case mai viste ` +
+             `(${L.num(ev, 1)}) e su quelle studiate (${L.num(es, 1)}): ha imparato la regola, non i dettagli.`;
     }
     if (g === 1) {
-      return `<strong>Una retta: 2 manopole.</strong> «Prezzo = ${L.num(pendenzaAttuale(), 2)} × metri quadri + costante». ` +
-             `Semplice, spiegabile, un po' rigida. Sbaglia in media ${L.num(es, 1)} mila €.`;
+      return `<strong>Una retta: 2 manopole.</strong> Dice che ogni metro quadro in più vale ` +
+             `circa <strong>${L.num(pendenzaAttuale(), 1)} mila €</strong>. Semplice, chiara, un po' rigida: ` +
+             `sbaglia in media ${L.num(es, 1)} mila € a casa.`;
     }
     if (g >= 8) {
       return `<strong>Attenzione.</strong> ${manopole} manopole per ${n} case: la curva comincia a inseguire ` +
-             `ogni singolo punto. Provate ad accendere la verifica qui sopra e guardate che succede.`;
+             `ogni singolo punto. Accendete la verifica qui sopra e guardate che succede.`;
     }
-    return `Con ${manopole} manopole l'errore sui dati di studio scende a ${L.num(es, 1)} mila €. ` +
-           `Finché la curva resta "calma" fra i punti, va bene così.`;
+    return `Con ${manopole} manopole sbaglia ${L.num(es, 1)} mila € sulle case che ha studiato. ` +
+           `Finché la curva resta calma fra un punto e l'altro, va bene così.`;
   }
 
   function pendenzaAttuale() {
@@ -350,10 +352,21 @@ LEZIONE.registra('regressione', function () {
 
   /* ═════════════ comandi della tappa ═════════════ */
 
+  /** In aula «grado 7» non dice niente a nessuno: si descrive la forma, e il
+   *  termine tecnico resta per la modalità completa. */
+  function descriviComplessita(g) {
+    const forma = g === 1 ? 'una retta'
+      : g === 2 ? 'una curva semplice'
+      : g <= 4 ? 'una curva morbida'
+      : g <= 7 ? 'una curva che si piega molto'
+      : 'una curva liberissima';
+    return `${forma} — ${g + 1} manopole <span class="tecnico">(grado ${g})</span>`;
+  }
+
+  d3.select('#reg-grado-out').html(descriviComplessita(1));
   d3.select('#reg-grado').on('input', function () {
     grado = +this.value;
-    const etichette = { 1: 'grado 1 — una retta (2 manopole)', 2: 'grado 2 — una parabola (3 manopole)' };
-    d3.select('#reg-grado-out').text(etichette[grado] || `grado ${grado} — ${grado + 1} manopole`);
+    d3.select('#reg-grado-out').html(descriviComplessita(grado));
     aggiorna();
   });
   d3.select('#reg-errori').on('change', function () { mostraErrori = this.checked; aggiorna(); });

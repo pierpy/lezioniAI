@@ -66,6 +66,40 @@ body {
   color: var(--inchiostro-2);
 }
 
+/* ── interruttore fra lezione essenziale e lezione completa ─────────────── */
+
+.scelta-modo {
+  display: flex; align-items: center; gap: .3rem;
+  margin-left: auto;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+.scelta-modo-etichetta { font-size: .85rem; color: var(--inchiostro-3); margin-right: .2rem; }
+.bottone-modo {
+  font-family: inherit;
+  font-size: .88rem;
+  padding: .3rem .8rem;
+  border: 1px solid var(--bordo);
+  background: var(--superficie);
+  color: var(--inchiostro-2);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.bottone-modo:hover { background: var(--superficie-2); }
+.bottone-modo[aria-pressed="true"] {
+  background: var(--inchiostro);
+  border-color: var(--inchiostro);
+  color: #fff;
+}
+
+/* In modalità essenziale resta in vista una cosa per volta: i pannelli e i
+   comandi marcati con data-avanzato sono l'approfondimento, non il contenuto. */
+body.essenziale [data-avanzato] { display: none !important; }
+body.essenziale .tecnico { display: none; }
+body.essenziale .sommario { font-size: 1.24rem; }
+body.essenziale .istruzioni { font-size: 1rem; }
+
+.tecnico { color: var(--inchiostro-3); }
+
 .logo {
   color: var(--serie-1);
   font-size: 1.5rem;
@@ -489,6 +523,7 @@ canvas#rete-tela, canvas#lim-tela {
 @media (max-width: 700px) {
   body { font-size: 17px; }
   .pie-testo { display: none; }
+  .scelta-modo { width: 100%; margin: .3rem 0 0; }
 }
 
 @media print {

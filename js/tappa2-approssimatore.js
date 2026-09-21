@@ -233,7 +233,7 @@ LEZIONE.registra('approssimatore', function () {
     d3.select('#ua-punteggi').html(
       `<div class="punteggio studio"><span class="etichetta">Errore medio</span>` +
       `<span class="valore">${L.num(erms, 3)}</span></div>` +
-      `<div class="punteggio verifica"><span class="etichetta">Errore massimo</span>` +
+      `<div class="punteggio verifica" data-avanzato><span class="etichetta">Errore massimo</span>` +
       `<span class="valore">${L.num(emax, 3)}</span></div>`);
 
     if (metodo === 'gradiente') disegnaPerdita();

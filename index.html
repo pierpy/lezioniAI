@@ -14,6 +14,11 @@
   <div class="barra-titolo">
     <span class="logo" aria-hidden="true">∿</span>
     <span>L'intelligenza artificiale spiegata con una curva</span>
+    <div class="scelta-modo" role="group" aria-label="Livello di dettaglio della lezione">
+      <span class="scelta-modo-etichetta">Lezione:</span>
+      <button class="bottone-modo" data-modo="essenziale" aria-pressed="true">Essenziale</button>
+      <button class="bottone-modo" data-modo="completa" aria-pressed="false">Completa</button>
+    </div>
   </div>
   <nav class="barra-nav" aria-label="Tappe della lezione">
     <button class="passo" data-vai="copertina"><span class="num">0</span> Apertura</button>
@@ -99,7 +104,7 @@
       <button class="bottone bottone-primario" id="intro-vai">▶ Fai imparare la curva</button>
       <button class="bottone" id="intro-passo">Un passo alla volta</button>
       <button class="bottone" id="intro-nuovi">Nuovi punti</button>
-      <div class="controllo controllo-in-riga">
+      <div class="controllo controllo-in-riga" data-avanzato>
         <label for="intro-lr">Di quanto le giro ogni volta</label>
         <input type="range" id="intro-lr" min="1" max="3" step="1" value="2">
         <output id="intro-lr-out">il passo giusto</output>
@@ -136,7 +141,7 @@
           <output id="reg-grado-out">grado 1 — una retta (2 manopole)</output>
         </div>
         <div class="controllo interruttori">
-          <label><input type="checkbox" id="reg-errori" checked> Mostra gli errori</label>
+          <label data-avanzato><input type="checkbox" id="reg-errori" checked> Mostra gli errori</label>
           <label><input type="checkbox" id="reg-verifica"> Nascondi 1/3 dei dati per verificare</label>
         </div>
         <div id="reg-punteggi" class="punteggi"></div>
@@ -148,7 +153,7 @@
     </div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-avanzato>
     <h2>Come fa a trovarla? Scende lungo la collina dell'errore</h2>
     <p>
       Ogni coppia di manopole (inclinazione e altezza della retta) produce un errore.
@@ -230,14 +235,14 @@
         <div class="controllo interruttori">
           <label><input type="checkbox" id="ua-pezzi"> Mostra i singoli pezzetti</label>
         </div>
-        <div class="controllo">
+        <div class="controllo" data-avanzato>
           <label for="ua-metodo">Come trova le manopole</label>
           <select id="ua-metodo" class="scelta">
             <option value="formula">La scorciatoia: le calcola con una formula</option>
             <option value="gradiente">Come una rete vera: le cerca a tentoni</option>
           </select>
         </div>
-        <div id="ua-allenamento" hidden>
+        <div id="ua-allenamento" data-avanzato hidden>
           <div id="ua-perdita" class="tela"></div>
           <div class="controlli">
             <button class="bottone bottone-primario" id="ua-vai">▶ Allena</button>
@@ -248,7 +253,7 @@
         <div id="ua-verdetto" class="verdetto"></div>
       </div>
     </div>
-    <p class="nota">
+    <p class="nota" data-avanzato>
       <strong>Due modi di trovare le manopole.</strong> Per un modello così semplice esiste una formula
       che le calcola in un colpo solo: è la scorciatoia, ed è quella che usa il cursore qui sopra.
       Una rete vera non ce l'ha: deve cercarle a tentoni, come nell'apertura della lezione.
@@ -264,7 +269,7 @@
     </p>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-avanzato>
     <h2>Che cos'è un neurone, in concreto</h2>
     <div class="formula">
       <span class="formula-testo">uscita&nbsp;=&nbsp;a₁·<em>s</em>(w₁·x + b₁) + a₂·<em>s</em>(w₂·x + b₂) + … + a<sub>n</sub>·<em>s</em>(w<sub>n</sub>·x + b<sub>n</sub>)</span>
@@ -308,14 +313,14 @@
         <p class="istruzioni">L'immagine viene rimpicciolita a 28×28 e centrata: 784 numeri fra 0 e 1.</p>
       </div>
       <div>
-        <h3>3. I 64 neuroni nascosti</h3>
-        <div id="rete-nascosti" class="tela"></div>
-        <p class="istruzioni">Ognuno cerca un pezzetto di forma. Passateci sopra il mouse per vedere <em>che cosa cerca</em>: le zone blu sono quelle dove vuole trovare inchiostro, le rosse dove <em>non</em> ne vuole.</p>
-      </div>
-      <div>
-        <h3>4. La risposta</h3>
+        <h3>3. La risposta</h3>
         <div id="rete-uscita" class="tela"></div>
         <div id="rete-verdetto" class="verdetto verdetto-grande"></div>
+      </div>
+      <div data-avanzato>
+        <h3>4. I 64 neuroni nascosti</h3>
+        <div id="rete-nascosti" class="tela"></div>
+        <p class="istruzioni">Ognuno cerca un pezzetto di forma. Passateci sopra il mouse per vedere <em>che cosa cerca</em>: le zone blu sono quelle dove vuole trovare inchiostro, le rosse dove <em>non</em> ne vuole.</p>
       </div>
     </div>
   </div>
@@ -358,7 +363,7 @@
         <div id="lab-previsione" class="tela tela-minuscola"></div>
       </div>
       <div class="colonna-controlli">
-        <div id="lab-accuratezza" class="tela"></div>
+        <div id="lab-accuratezza" class="tela" data-avanzato></div>
         <div id="lab-statistiche" class="statistiche statistiche-piccole"></div>
         <div class="controlli">
           <button class="bottone bottone-primario" id="lab-vai">▶ Allena</button>
@@ -417,7 +422,7 @@
           <output id="lm-memoria-out">2 parole</output>
         </div>
         <div class="controllo">
-          <label for="lm-temperatura">Fantasia (temperatura)</label>
+          <label for="lm-temperatura">Fantasia <span class="tecnico">(temperatura)</span></label>
           <input type="range" id="lm-temperatura" min="0.1" max="1.6" value="0.8" step="0.1">
           <output id="lm-temperatura-out">0,8 — equilibrata</output>
         </div>
@@ -455,7 +460,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-avanzato>
     <h2>Terzo passo: da tabella a rete neurale</h2>
     <p>
       La tabella ha un difetto: se una coppia di parole non compare nel testo di studio, per lei
