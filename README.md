@@ -14,9 +14,9 @@ Tutto gira nel browser, **senza rete e senza installare niente**: si apre
 |---|---|---|
 | 0 | Apertura | Una curva con **quattro manopole visibili**: si vedono gli errori misurati, la freccia che dice da che parte girare ogni manopola, le lancette che si spostano e l'errore che scende. Modalità «un passo alla volta» che racconta le quattro fasi, e cursore del passo di apprendimento (troppo grande = la curva schizza via). |
 | 1 | La retta che indovina | Regressione polinomiale interattiva: si aggiungono punti col mouse, si alza la complessità, si nascondono dati per verificare. Sovradattamento e discesa del gradiente sulla «collina dell'errore» (curve di livello). |
-| 2 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Teorema di approssimazione universale. |
-| 3 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. |
-| 4 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
+| 2 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Due modi di trovare le manopole: **la formula** (minimi quadrati, istantanea) oppure **a tentoni come una rete vera** — allenamento dal vivo di pesi, pendenze e centri con Adam, curva dell'errore inclusa. Teorema di approssimazione universale. |
+| 3 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. In fondo, il **laboratorio**: una seconda rete 784–24–10 parte da zero e si allena **dal vivo nel browser** su 1.200 cifre vere — le maschere emergono dal rumore, le risposte esatte salgono, e la previsione sulla cifra disegnata dal pubblico cambia mentre studia. |
+| 4 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità che **si riempie sotto gli occhi** mentre il modello legge il testo, parola per parola; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
 | 5 | Limiti e domande | La stessa rete della Tappa 3 chiamata a giudicare uno scarabocchio: risponde «0 al 99 %». Da lì, le allucinazioni. |
 
 ## Come si usa
@@ -63,8 +63,10 @@ index.html              una pagina sola, cinque sezioni
 css/stile.css           testo grande e contrasto alto, pensato per il proiettore
 js/comune.js            minimi quadrati, softmax, sigmoide, aiuti per i grafici
 js/tappa0…tappa5        una tappa per file, ognuna si accende alla prima apertura
+js/tappa3b-laboratorio  la rete che si allena dal vivo nel browser
 data/mnist-mlp.js       i 50.890 pesi della rete (JSON dentro una variabile globale)
 data/mnist-esempi.js    40 cifre vere dell'archivio MNIST
+data/mnist-allenamento  1.600 cifre per l'allenamento dal vivo (due PNG in base64)
 data/corpora.js         quattro testi italiani scritti per la lezione
 data/mnist-sottoinsieme.mat  3.000 + 1.000 cifre per gli script MATLAB
 vendor/d3.v7.min.js     D3 7.9.0, in locale
@@ -76,6 +78,11 @@ Scelte tecniche, per chi volesse metterci le mani:
 - **Niente moduli ES e niente `fetch`**: i dati sono file `.js` che definiscono una
   variabile globale. È l'unico modo perché la pagina funzioni anche aperta da `file://`,
   cioè con un doppio clic sul portatile dell'aula.
+- **Le 1.600 cifre dell'allenamento dal vivo** viaggiano come due PNG in base64 (una cifra
+  per riquadro 28×28): il PNG comprime MNIST circa quattro volte meglio del base64 dei byte
+  grezzi, e il browser lo decodifica da solo anche da `file://`.
+- **Gli allenamenti si fermano da soli** quando si cambia tappa, e si adattano alla velocità
+  del portatile: puntano a un numero di lotti per fotogramma che tenga l'animazione fluida.
 - **Colori** presi da una tavolozza verificata per il daltonismo (blu = modello,
   arancio = errore, verde = verifica, viola = linguaggio); rosso/blu divergente per i pesi.
   Ogni serie ha sempre anche un'etichetta scritta: il colore non è mai l'unica informazione.
@@ -88,6 +95,9 @@ npm install mnist                          # 10.000 cifre MNIST vere
 node tools/export-mnist.js /tmp/mnist      # → file binari uint8
 pip install numpy
 python3 tools/train-mlp.py /tmp/mnist data/mnist-mlp.js
+
+pip install pillow                         # per l'allenamento dal vivo (Tappa 3)
+python3 tools/export-allenamento.py /tmp/mnist data/mnist-allenamento.js
 ```
 
 L'allenamento dura una ventina di secondi e, con il seme 42, è **riproducibile

@@ -181,14 +181,31 @@ window.LEZIONE = (function () {
   /* ── registro delle tappe ────────────────────────────────────────────── */
 
   const _tappe = {};
-  function registra(id, avvia) { _tappe[id] = { avvia, pronta: false }; }
+  function registra(id, avvia) {
+    if (!_tappe[id]) _tappe[id] = [];
+    _tappe[id].push({ avvia, pronta: false });
+  }
   function accendi(id) {
-    const t = _tappe[id];
-    if (t && !t.pronta) { t.pronta = true; t.avvia(); }
+    (_tappe[id] || []).forEach(t => {
+      if (!t.pronta) { t.pronta = true; t.avvia(); }
+    });
+  }
+
+  /* Le tappe che animano qualcosa (allenamenti, discese del gradiente)
+     registrano qui come fermarsi: lasciare un allenamento acceso in
+     sottofondo scalda il portatile e rallenta le tappe successive. */
+  const _uscite = {};
+  function allUscita(id, ferma) {
+    if (!_uscite[id]) _uscite[id] = [];
+    _uscite[id].push(ferma);
+  }
+  function spegni(id) {
+    (_uscite[id] || []).forEach(f => f());
   }
 
   return {
     colori, num, perc, risolviSistema, minimiQuadrati, adattaPolinomio, rmse,
-    sigmoide, relu, softmax, casuale, estrai, tela, suggerimento, registra, accendi
+    sigmoide, relu, softmax, casuale, estrai, tela, suggerimento,
+    registra, accendi, allUscita, spegni
   };
 })();

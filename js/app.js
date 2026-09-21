@@ -11,6 +11,7 @@
   function vai(id, aggiornaIndirizzo = true) {
     const i = tappe.indexOf(id);
     if (i < 0) return;
+    if (tappe[corrente] !== id) LEZIONE.spegni(tappe[corrente]);
     corrente = i;
     document.querySelectorAll('.tappa').forEach(s => s.classList.toggle('attiva', s.id === id));
     document.querySelectorAll('.passo').forEach(b =>

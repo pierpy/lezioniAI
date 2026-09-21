@@ -150,14 +150,17 @@ LEZIONE.registra('llm', function () {
 
   /* ── tabella delle probabilità (bigrammi) ────────────────────────────── */
 
-  function disegnaMatrice() {
+  /** Disegna la tabella dei bigrammi. `tavola` può essere quella completa
+   *  oppure quella parziale costruita durante l'animazione del conteggio. */
+  function disegnaMatrice(tavola, letto) {
+    tavola = tavola || modelli[1];
     const frequenze = new Map();
     token.forEach(p => frequenze.set(p, (frequenze.get(p) || 0) + 1));
     const top = [...frequenze.entries()].sort((a, b) => b[1] - a[1]).slice(0, 14).map(d => d[0]);
 
     const celle = [];
     top.forEach(a => {
-      const m = modelli[1].get(a) || new Map();
+      const m = tavola.get(a) || new Map();
       const tot = d3.sum([...m.values()]) || 1;
       top.forEach(b => celle.push({ a, b, p: (m.get(b) || 0) / tot, n: m.get(b) || 0 }));
     });
@@ -185,6 +188,62 @@ LEZIONE.registra('llm', function () {
       .attr('font-size', 12).attr('fill', C.inchiostro2).text(d => d);
     t.svg.append('text').attr('class', 'etichetta-asse').attr('x', 8).attr('y', 16)
       .text('riga = parola di adesso · colonna = parola successiva');
+
+    if (letto) {                       // evidenzia la coppia appena letta
+      t.g.selectAll('rect.appena').data([letto]).join('rect').attr('class', 'appena')
+        .attr('x', d => x(d[1])).attr('y', d => y(d[0]))
+        .attr('width', x.bandwidth()).attr('height', y.bandwidth())
+        .attr('fill', 'none').attr('stroke', C.errore).attr('stroke-width', 3)
+        .attr('opacity', (x(letto[1]) === undefined || y(letto[0]) === undefined) ? 0 : 1);
+    }
+  }
+
+  /* ── il conteggio, guardato mentre avviene ───────────────────────────── */
+
+  let timerConta = null, parzialeIndice = 0, tavolaParziale = new Map();
+
+  function fermaConta() {
+    if (timerConta) { timerConta.stop(); timerConta = null; }
+    d3.select('#lm-conta').text(parzialeIndice > 0 ? '▶ Continua a leggere' : '▶ Guardalo mentre impara');
+  }
+
+  function contaTutto() {
+    fermaConta();
+    parzialeIndice = 0;
+    tavolaParziale = new Map();
+    d3.select('#lm-conta-stato').text('');
+    d3.select('#lm-conta').text('▶ Guardalo mentre impara');
+    disegnaMatrice();
+  }
+
+  function unaLettura() {
+    if (parzialeIndice >= token.length - 1) { fermaConta(); return null; }
+    const a = token[parzialeIndice], b = token[parzialeIndice + 1];
+    if (!tavolaParziale.has(a)) tavolaParziale.set(a, new Map());
+    const m = tavolaParziale.get(a);
+    m.set(b, (m.get(b) || 0) + 1);
+    parzialeIndice++;
+    return [a, b];
+  }
+
+  function avviaConta() {
+    if (timerConta) { fermaConta(); return; }
+    if (parzialeIndice >= token.length - 1) { parzialeIndice = 0; tavolaParziale = new Map(); }
+    d3.select('#lm-conta').text('❚❚ Ferma');
+    timerConta = d3.interval(() => {
+      const coppia = unaLettura();
+      if (!coppia) return;
+      disegnaMatrice(tavolaParziale, coppia);
+      d3.select('#lm-conta-stato').html(
+        `ha letto <strong>${parzialeIndice}</strong> parole su ${token.length} · ` +
+        `ultima coppia: «${coppia[0]}» → «${coppia[1]}»`);
+      if (parzialeIndice >= token.length - 1) {
+        fermaConta();
+        d3.select('#lm-conta-stato').html(
+          `<strong>Finito.</strong> Ha letto tutte le ${token.length} parole: ` +
+          'la tabella qui sopra è tutto quello che ha imparato.');
+      }
+    }, 100);
   }
 
   /* ── modello neurale: le parole diventano punti ──────────────────────── */
@@ -336,6 +395,9 @@ LEZIONE.registra('llm', function () {
     fermaLm();
     corpus = window.CORPORA[+this.value];
     scritte = [];
+    parzialeIndice = 0;
+    tavolaParziale = new Map();
+    d3.select('#lm-conta-stato').text('');
     preparaCorpus();
     d3.select('#lm-testo').html('<span style="opacity:.5">Premete «Una parola» oppure «Scrivi da solo».</span>');
     L.tela('#lm-candidate', 460, 120);
@@ -385,6 +447,12 @@ LEZIONE.registra('llm', function () {
     }, 40);
   });
   d3.select('#emb-reset').on('click', reimpostaEmbedding);
+  d3.select('#lm-conta').on('click', avviaConta);
+  d3.select('#lm-conta-tutto').on('click', contaTutto);
+
+  /* uscendo dalla tappa si spegne tutto ciò che sta animando */
+  L.allUscita('llm', () => { fermaLm(); fermaConta();
+    if (timerEmb) { timerEmb.stop(); timerEmb = null; d3.select('#emb-vai').text('▶ Allena la rete'); } });
 
   /* ── avvio ───────────────────────────────────────────────────────────── */
 

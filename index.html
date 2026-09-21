@@ -230,10 +230,32 @@
         <div class="controllo interruttori">
           <label><input type="checkbox" id="ua-pezzi"> Mostra i singoli pezzetti</label>
         </div>
+        <div class="controllo">
+          <label for="ua-metodo">Come trova le manopole</label>
+          <select id="ua-metodo" class="scelta">
+            <option value="formula">La scorciatoia: le calcola con una formula</option>
+            <option value="gradiente">Come una rete vera: le cerca a tentoni</option>
+          </select>
+        </div>
+        <div id="ua-allenamento" hidden>
+          <div id="ua-perdita" class="tela"></div>
+          <div class="controlli">
+            <button class="bottone bottone-primario" id="ua-vai">▶ Allena</button>
+            <button class="bottone" id="ua-reset">Ricomincia da manopole a caso</button>
+          </div>
+        </div>
         <div id="ua-punteggi" class="punteggi"></div>
         <div id="ua-verdetto" class="verdetto"></div>
       </div>
     </div>
+    <p class="nota">
+      <strong>Due modi di trovare le manopole.</strong> Per un modello così semplice esiste una formula
+      che le calcola in un colpo solo: è la scorciatoia, ed è quella che usa il cursore qui sopra.
+      Una rete vera non ce l'ha: deve cercarle a tentoni, come nell'apertura della lezione.
+      Scegliete «le cerca a tentoni» e premete «Allena»: vedrete i pezzetti spostarsi, allargarsi
+      e alzarsi finché la somma non assomiglia all'obiettivo. Qualche volta si incastra e non ci arriva:
+      succede anche ai modelli veri.
+    </p>
     <p class="fonte">
       Che <em>qualsiasi</em> curva ragionevole si possa ottenere sommando abbastanza pezzetti di questo tipo
       non è un'opinione: è un teorema. Cybenko, <em>Approximation by superpositions of a sigmoidal function</em>,
@@ -317,6 +339,41 @@
     </p>
   </div>
 
+  <div class="pannello">
+    <h2>E adesso guardiamola imparare, da zero</h2>
+    <p class="istruzioni">
+      Questa è una <strong>seconda rete</strong>, più piccola, con le manopole messe a caso: non sa niente.
+      Premete «Allena» e guardatela studiare <strong>1.200 cifre vere</strong>, qui, adesso.
+      Se avete disegnato una cifra qui sopra, la sua risposta cambierà sotto i vostri occhi.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <h3>Le maschere dei 24 neuroni, mentre si formano</h3>
+        <canvas id="lab-maschere" width="336" height="224" aria-label="Le maschere imparate dai neuroni"></canvas>
+        <p class="istruzioni">
+          All'inizio è rumore puro: le manopole sono numeri a caso. Dopo qualche migliaio di cifre
+          compaiono archi, tratti e curve — nessuno gliel'ha insegnati.
+        </p>
+        <h3>La sua risposta sulla vostra cifra, adesso</h3>
+        <div id="lab-previsione" class="tela tela-minuscola"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div id="lab-accuratezza" class="tela"></div>
+        <div id="lab-statistiche" class="statistiche statistiche-piccole"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="lab-vai">▶ Allena</button>
+          <button class="bottone" id="lab-reset">Ricomincia da zero</button>
+        </div>
+        <div id="lab-verdetto" class="verdetto"></div>
+        <p class="nota">
+          È lo stesso procedimento dell'apertura: misura l'errore, calcola da che parte girare ogni
+          manopola, le gira di un pochino, ricomincia. Qui le manopole sono <strong>19.090</strong>
+          invece di quattro, e la curva dell'errore è diventata una curva di risposte esatte.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="avanza"><button class="bottone bottone-grande" data-vai="llm">Tappa 4 — La macchina che scrive →</button></div>
 </section>
 
@@ -385,6 +442,11 @@
       Righe: la parola di adesso. Colonne: la parola dopo. Più è scuro, più spesso quella coppia
       compare nel testo di studio. Tutta la «conoscenza» di questo modellino sta qui dentro.
     </p>
+    <div class="controlli">
+      <button class="bottone bottone-primario" id="lm-conta">▶ Guardalo mentre impara</button>
+      <button class="bottone" id="lm-conta-tutto">Mostra la tabella completa</button>
+      <span class="stato" id="lm-conta-stato"></span>
+    </div>
     <div id="lm-matrice" class="tela"></div>
     <p class="fonte">
       È l'idea di Claude Shannon, <em>A Mathematical Theory of Communication</em>,
@@ -540,12 +602,14 @@
 <script src="vendor/d3.v7.min.js"></script>
 <script src="data/mnist-mlp.js"></script>
 <script src="data/mnist-esempi.js"></script>
+<script src="data/mnist-allenamento.js"></script>
 <script src="data/corpora.js"></script>
 <script src="js/comune.js"></script>
 <script src="js/tappa0-intro.js"></script>
 <script src="js/tappa1-regressione.js"></script>
 <script src="js/tappa2-approssimatore.js"></script>
 <script src="js/tappa3-rete.js"></script>
+<script src="js/tappa3b-laboratorio.js"></script>
 <script src="js/tappa4-llm.js"></script>
 <script src="js/tappa5-limiti.js"></script>
 <script src="js/app.js"></script>

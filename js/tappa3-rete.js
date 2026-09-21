@@ -241,6 +241,7 @@ LEZIONE.registra('rete', function () {
   function aggiorna() {
     if (!tela) return;
     vettore = R.estraiVettore(tela.tela);
+    R.vettoreCorrente = vettore;          // la usa anche il laboratorio (tappa3b)
     R.disegnaImmagine(gImmagine, vettore, 248 / 28);
 
     const esito = vettore ? R.prevedi(vettore) : null;

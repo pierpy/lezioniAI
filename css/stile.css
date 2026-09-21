@@ -407,6 +407,17 @@ input[type="range"] { width: 100%; accent-color: var(--serie-1); height: 1.8rem;
 .tela svg { display: block; width: 100%; height: auto; overflow: visible; }
 .tela-piccola svg { max-width: 460px; }
 .tela-minuscola svg { max-width: 220px; }
+#lab-previsione svg { max-width: 330px; }
+
+canvas#lab-maschere {
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  image-rendering: pixelated;
+  border: 1px solid var(--bordo);
+  border-radius: 8px;
+  background: #fff;
+}
 
 canvas#rete-tela, canvas#lim-tela {
   width: 280px; height: 280px;
