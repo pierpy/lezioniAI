@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Allena la rete neurale 784-64-10 usata nella tappa 3 della lezione.
+"""Allena la rete neurale 784-64-10 usata nella tappa 4 della lezione.
 
 Architettura: input 784 (28x28) -> nascosto 64 (ReLU) -> uscita 10 (softmax).
 Ottimizzatore: SGD con momento (Rumelhart, Hinton & Williams, 1986;

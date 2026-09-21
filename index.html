@@ -23,10 +23,11 @@
   <nav class="barra-nav" aria-label="Tappe della lezione">
     <button class="passo" data-vai="copertina"><span class="num">0</span> Apertura</button>
     <button class="passo" data-vai="regressione"><span class="num">1</span> La retta che indovina</button>
-    <button class="passo" data-vai="approssimatore"><span class="num">2</span> Qualsiasi curva</button>
-    <button class="passo" data-vai="rete"><span class="num">3</span> Cifre scritte a mano</button>
-    <button class="passo" data-vai="llm"><span class="num">4</span> La macchina che scrive</button>
-    <button class="passo" data-vai="limiti"><span class="num">5</span> Limiti e domande</button>
+    <button class="passo" data-vai="supervisione"><span class="num">2</span> Con o senza risposte</button>
+    <button class="passo" data-vai="approssimatore"><span class="num">3</span> Qualsiasi curva</button>
+    <button class="passo" data-vai="rete"><span class="num">4</span> Cifre a mano</button>
+    <button class="passo" data-vai="llm"><span class="num">5</span> La macchina che scrive</button>
+    <button class="passo" data-vai="limiti"><span class="num">6</span> Limiti</button>
   </nav>
 </header>
 
@@ -172,7 +173,7 @@
     </div>
     <p class="nota">
       Questo procedimento si chiama <strong>discesa del gradiente</strong>. È lo stesso,
-      identico, che fa imparare la rete della Tappa 3 e il modello linguistico della Tappa 4:
+      identico, che fa imparare la rete della Tappa 4 e il modello linguistico della Tappa 5:
       cambia solo il numero di manopole — da 2 a qualche centinaio di miliardi.
     </p>
   </div>
@@ -198,12 +199,187 @@
     </p>
   </div>
 
-  <div class="avanza"><button class="bottone bottone-grande" data-vai="approssimatore">Tappa 2 — Qualsiasi curva →</button></div>
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="supervisione">Tappa 2 — Con o senza risposte →</button></div>
 </section>
 
 <!-- ═══════════════════════════ TAPPA 2 ═══════════════════════════ -->
+<section class="tappa" id="supervisione">
+  <h1><span class="etichetta-tappa">Tappa 2</span> Con o senza risposte giuste</h1>
+  <p class="sommario">
+    Nella tappa precedente, per ogni casa, qualcuno ci aveva detto il prezzo: avevamo
+    <strong>le risposte giuste</strong>. Non è sempre così, e la differenza divide in due
+    tutta l'intelligenza artificiale.
+  </p>
+
+  <div class="lavagna">
+    <p><strong>Con le risposte</strong>: impariamo a rispondere come chi ce le ha date.</p>
+    <p><strong>Senza risposte</strong>: possiamo solo cercare l'ordine che c'è già nei dati.</p>
+    <p class="lavagna-piccolo">In gergo: apprendimento <em>supervisionato</em> e <em>non supervisionato</em>.</p>
+  </div>
+
+  <div class="pannello">
+    <h2>Provate voi: con o senza?</h2>
+    <p class="istruzioni">
+      Per ognuno di questi lavori: qualcuno deve preparare le risposte giuste, oppure no?
+      Rispondete a mente e poi cliccate — non c'è da vergognarsi, il secondo è difficile anche per gli addetti.
+    </p>
+    <div id="sup-gioco" class="elenco-quiz"></div>
+    <div id="sup-gioco-esito" class="verdetto"></div>
+  </div>
+
+  <div class="pannello">
+    <h2>La stessa nuvola di punti, tre rette diverse</h2>
+    <p class="istruzioni">
+      Le altezze di 200 padri e dei loro figli. Scegliete che cosa volete fare con questi dati:
+      <strong>la nuvola è sempre la stessa, ma la retta che ne esce cambia</strong>, perché cambia
+      la domanda — cioè che cosa decidiamo di chiamare «errore».
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="sup-rette" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div class="controllo">
+          <label for="sup-scopo">Che cosa voglio fare</label>
+          <select id="sup-scopo" class="scelta">
+            <option value="figlio">Indovinare l'altezza del figlio, sapendo quella del padre</option>
+            <option value="padre">Indovinare l'altezza del padre, sapendo quella del figlio</option>
+            <option value="nuvola">Solo descrivere com'è fatta la nuvola</option>
+          </select>
+        </div>
+        <div id="sup-rette-verdetto" class="verdetto"></div>
+        <div id="sup-costi" class="tela" data-avanzato></div>
+        <p class="nota" data-avanzato>
+          Le prime due rette sono <strong>supervisionate</strong>: una delle due misure fa da
+          «risposta giusta», e l'errore si misura solo su quella (i segmenti sono paralleli a
+          quell'asse). La terza è <strong>non supervisionata</strong>: nessuna delle due misure è
+          la risposta, l'errore è la distanza perpendicolare, e infatti la retta resta la stessa
+          anche se scambiate i due assi. È la <em>retta di minima distanza</em> di Pearson (1901),
+          il nonno di quella che oggi si chiama analisi delle componenti principali.
+        </p>
+      </div>
+    </div>
+    <p class="fonte">
+      Dati simulati con le statistiche pubblicate da Pearson &amp; Lee, <em>Biometrika</em> 2(4),
+      357–462 (1903): correlazione fra padre e figlio circa 0,5, deviazione standard attorno ai 7 cm.
+      La parola «regressione» nasce proprio qui: Galton, <em>Regression towards mediocrity in
+      hereditary stature</em>, <em>Journal of the Anthropological Institute</em> 15, 246–263 (1886),
+      notò che i figli dei padri altissimi sono alti, ma <em>meno</em> del padre — «regrediscono»
+      verso la media. Lo vedete anche qui: la retta blu è meno inclinata della diagonale.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Senza nessuna risposta: trovare i gruppi</h2>
+    <p class="istruzioni">
+      Ecco le case di un paese: superficie e prezzo, e <strong>nient'altro</strong>. Nessuno ci ha
+      detto quali tipi di casa esistono. La macchina può comunque accorgersi che i punti stanno
+      in mucchi separati: sceglie qualche centro a caso e poi ripete due mosse finché non si ferma.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="sup-gruppi" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <ol class="ricetta" id="sup-ricetta">
+          <li data-fase="1"><span class="n">1</span> Ogni casa va <strong>al centro più vicino</strong></li>
+          <li data-fase="2"><span class="n">2</span> Ogni centro si sposta <strong>in mezzo alle sue case</strong></li>
+        </ol>
+        <div class="controllo">
+          <label for="sup-k">Quanti gruppi cerchiamo</label>
+          <input type="range" id="sup-k" min="2" max="5" value="3" step="1">
+          <output id="sup-k-out">3 gruppi</output>
+        </div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="sup-gruppi-vai">▶ Trova i gruppi</button>
+          <button class="bottone" id="sup-gruppi-passo">Una mossa</button>
+          <button class="bottone" id="sup-gruppi-reset">Ricomincia</button>
+        </div>
+        <div id="sup-gruppi-costo" class="tela" data-avanzato></div>
+        <div id="sup-gruppi-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="nota">
+      Attenzione a due cose. Primo: <strong>il numero dei gruppi lo decidiamo noi</strong>, e con un
+      numero diverso vengono gruppi diversi — non esiste una risposta giusta da confrontare.
+      Secondo: i gruppi <strong>non hanno un nome</strong>. La macchina trova tre mucchi; che uno sia
+      «monolocali in centro» e l'altro «ville» lo diciamo noi guardandoli.
+    </p>
+    <p class="fonte">
+      Il procedimento si chiama <em>k-medie</em>: Steinhaus (1956); Lloyd, scritto nel 1957 e
+      pubblicato in <em>IEEE Transactions on Information Theory</em> 28(2), 129–137 (1982);
+      MacQueen, <em>Proc. 5th Berkeley Symposium</em> 1, 281–297 (1967), che gli diede il nome.
+      Si ferma sempre, ma il risultato dipende da dove sono stati messi i centri all'inizio:
+      premete «Ricomincia» qualche volta e guardate.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Che cos'è davvero una «funzione di costo»</h2>
+    <p class="istruzioni">
+      Il costo è <strong>la domanda che facciamo alla macchina</strong>: le dice che cosa vuol dire
+      sbagliare. Cambiando la domanda, sugli stessi identici dati, cambia la risposta.
+      Qui ci sono le case della Tappa 1 e <strong>una casa strana</strong>: trascinatela in alto
+      — è un errore di battitura, un prezzo da mezzo milione — e guardate le due rette.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="sup-costo" class="tela"></div>
+        <p class="istruzioni">Trascinate il punto cerchiato: è l'unico che potete spostare.</p>
+      </div>
+      <div class="colonna-controlli">
+        <div id="sup-costo-verdetto" class="verdetto"></div>
+        <p class="nota">
+          <strong>Nessuna delle due è sbagliata.</strong> Se i dati strani sono errori, conviene la
+          retta che li ignora; se invece sono segnali veri (una villa, davvero), ignorarli è un
+          errore grave. La funzione di costo non è un dettaglio tecnico: è il punto in cui si decide
+          <em>che cosa conta</em>, ed è una scelta umana, non matematica.
+        </p>
+        <p class="nota" data-avanzato>
+          La retta blu minimizza la media dei <em>quadrati</em> degli errori: un errore doppio pesa
+          quattro volte, e il punto lontano trascina tutta la retta. L'arancione minimizza la media
+          dei <em>valori assoluti</em>: un errore doppio pesa due volte, e il punto lontano conta
+          come tutti gli altri. È la regressione mediana di Boscovich (1757) e Laplace (1793),
+          più vecchia dei minimi quadrati.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello pannello-chiaro">
+    <h2>E le tre cose che vediamo oggi?</h2>
+    <div class="griglia-tre">
+      <div class="scheda">
+        <h3>Le cifre scritte a mano</h3>
+        <p><strong>Con le risposte.</strong> Qualcuno ha scritto, per ognuna delle 8.000 cifre,
+           quale numero fosse. Senza quelle etichette non si può fare.</p>
+      </div>
+      <div class="scheda">
+        <h3>I gruppi di case</h3>
+        <p><strong>Senza risposte.</strong> Nessuno ha detto quali tipi di casa esistono:
+           la macchina ha trovato dei mucchi, e basta.</p>
+      </div>
+      <div class="scheda">
+        <h3>La macchina che scrive</h3>
+        <p><strong>Un terzo caso, ed è il segreto di ChatGPT.</strong> La risposta giusta c'era
+           già nel testo: è la parola successiva. Nessuno deve prepararla — ed è per questo che
+           si è potuto studiare su tutto il web.</p>
+      </div>
+    </div>
+    <p class="nota">
+      Quest'ultimo caso si chiama <strong>auto-supervisione</strong>: i dati fanno da domanda e da
+      risposta insieme. È la ragione principale per cui i modelli linguistici sono diventati enormi
+      mentre il riconoscimento delle immagini, che ha bisogno di etichette scritte da persone,
+      cresce molto più lentamente.
+    </p>
+  </div>
+
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="approssimatore">Tappa 3 — Qualsiasi curva →</button></div>
+</section>
+
+<!-- ═══════════════════════════ TAPPA 3 ═══════════════════════════ -->
 <section class="tappa" id="approssimatore">
-  <h1><span class="etichetta-tappa">Tappa 2</span> Da una retta a qualsiasi curva</h1>
+  <h1><span class="etichetta-tappa">Tappa 3</span> Da una retta a qualsiasi curva</h1>
   <p class="sommario">
     Il salto che porta dalla statistica dell'Ottocento all'intelligenza artificiale è uno solo:
     invece di una formula scelta da noi, <strong>si sommano tanti pezzetti tutti uguali</strong>.
@@ -286,12 +462,12 @@
     </p>
   </div>
 
-  <div class="avanza"><button class="bottone bottone-grande" data-vai="rete">Tappa 3 — Cifre scritte a mano →</button></div>
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="rete">Tappa 4 — Cifre scritte a mano →</button></div>
 </section>
 
-<!-- ═══════════════════════════ TAPPA 3 ═══════════════════════════ -->
+<!-- ═══════════════════════════ TAPPA 4 ═══════════════════════════ -->
 <section class="tappa" id="rete">
-  <h1><span class="etichetta-tappa">Tappa 3</span> La rete che legge i numeri scritti a mano</h1>
+  <h1><span class="etichetta-tappa">Tappa 4</span> La rete che legge i numeri scritti a mano</h1>
   <p class="sommario">
     Stessa storia, dimensioni diverse. La «domanda» non è più un numero solo: sono 784 numeri,
     i puntini di grigio di un quadratino 28×28. La «risposta» sono dieci numeri: quanto è convinta
@@ -379,12 +555,12 @@
     </div>
   </div>
 
-  <div class="avanza"><button class="bottone bottone-grande" data-vai="llm">Tappa 4 — La macchina che scrive →</button></div>
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="llm">Tappa 5 — La macchina che scrive →</button></div>
 </section>
 
-<!-- ═══════════════════════════ TAPPA 4 ═══════════════════════════ -->
+<!-- ═══════════════════════════ TAPPA 5 ═══════════════════════════ -->
 <section class="tappa" id="llm">
-  <h1><span class="etichetta-tappa">Tappa 4</span> La macchina che scrive</h1>
+  <h1><span class="etichetta-tappa">Tappa 5</span> La macchina che scrive</h1>
   <p class="sommario">
     ChatGPT e i suoi parenti fanno una cosa sola, e la fanno miliardi di volte:
     <strong>dato quello che c'è scritto fin qui, indovinare il pezzo di parola successivo</strong>.
@@ -519,18 +695,18 @@
     </p>
   </div>
 
-  <div class="avanza"><button class="bottone bottone-grande" data-vai="limiti">Tappa 5 — Limiti e domande →</button></div>
+  <div class="avanza"><button class="bottone bottone-grande" data-vai="limiti">Tappa 6 — Limiti e domande →</button></div>
 </section>
 
-<!-- ═══════════════════════════ TAPPA 5 ═══════════════════════════ -->
+<!-- ═══════════════════════════ TAPPA 6 ═══════════════════════════ -->
 <section class="tappa" id="limiti">
-  <h1><span class="etichetta-tappa">Tappa 5</span> Che cosa sa fare, e che cosa no</h1>
+  <h1><span class="etichetta-tappa">Tappa 6</span> Che cosa sa fare, e che cosa no</h1>
 
   <div class="pannello">
     <h2>La macchina risponde sempre. Anche quando non dovrebbe.</h2>
     <p class="istruzioni">
       Disegnate nel riquadro una cosa qualsiasi che <em>non</em> sia una cifra: una casetta, un fiore, uno scarabocchio.
-      La rete della Tappa 3 vi dirà comunque un numero, spesso con grande sicurezza.
+      La rete della Tappa 4 vi dirà comunque un numero, spesso con grande sicurezza.
     </p>
     <div class="doppia-colonna">
       <div>
@@ -589,8 +765,8 @@
     <ul class="elenco-grande">
       <li>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer 2006 — il testo classico (cap. 1 e 3 bastano per la Tappa 1).</li>
       <li>I. Goodfellow, Y. Bengio &amp; A. Courville, <em>Deep Learning</em>, MIT Press 2016 — disponibile gratuitamente online.</li>
-      <li>M. Nielsen, <em>Neural Networks and Deep Learning</em> — divulgativo, gratuito, con la stessa rete della Tappa 3.</li>
-      <li>S. Wolfram, <em>What Is ChatGPT Doing… and Why Does It Work?</em>, 2023 — per la Tappa 4.</li>
+      <li>M. Nielsen, <em>Neural Networks and Deep Learning</em> — divulgativo, gratuito, con la stessa rete della Tappa 4.</li>
+      <li>S. Wolfram, <em>What Is ChatGPT Doing… and Why Does It Work?</em>, 2023 — per la Tappa 5.</li>
     </ul>
     <p class="fonte">Gli estremi completi di tutti i lavori citati nella lezione sono nel file <code>docs/bibliografia.md</code>.</p>
   </div>
@@ -612,11 +788,12 @@
 <script src="js/comune.js"></script>
 <script src="js/tappa0-intro.js"></script>
 <script src="js/tappa1-regressione.js"></script>
-<script src="js/tappa2-approssimatore.js"></script>
-<script src="js/tappa3-rete.js"></script>
-<script src="js/tappa3b-laboratorio.js"></script>
-<script src="js/tappa4-llm.js"></script>
-<script src="js/tappa5-limiti.js"></script>
+<script src="js/tappa2-supervisione.js"></script>
+<script src="js/tappa3-approssimatore.js"></script>
+<script src="js/tappa4-rete.js"></script>
+<script src="js/tappa4b-laboratorio.js"></script>
+<script src="js/tappa5-llm.js"></script>
+<script src="js/tappa6-limiti.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Tappa 3 — la rete che legge le cifre scritte a mano.
+   Tappa 4 — la rete che legge le cifre scritte a mano.
    Rete 784 → 64 (ReLU) → 10 (softmax) addestrata davvero su 8.000 cifre
    dell'archivio MNIST (tools/export-mnist.js + tools/train-mlp.py).
    Qui si esegue solo il passaggio in avanti: moltiplicazioni e somme.

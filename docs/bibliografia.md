@@ -18,11 +18,32 @@ riportate a memoria, controllabili ma non ricontrollate in quell'occasione.
 | ○ | H. Robbins, S. Monro, «A Stochastic Approximation Method», *Annals of Mathematical Statistics* **22**(3), 400–407 (1951). | L'antenato della discesa del gradiente stocastica. |
 | ○ | C. M. Bishop, *Pattern Recognition and Machine Learning*, Springer 2006, capp. 1 e 3. | Testo di riferimento per tutta la Tappa 1. |
 
+## 1-bis. Con o senza risposte giuste (Tappa 2)
+
+| | Riferimento | Che cosa sostiene la lezione |
+|---|---|---|
+| ✔ | F. Galton, «Regression towards Mediocrity in Hereditary Stature», *Journal of the Anthropological Institute* **15**, 246–263 (1886). | Da qui viene la parola «regressione»: i figli dei padri altissimi sono alti, ma *meno* del padre. La retta blu della Tappa 2 è meno inclinata della diagonale proprio per questo. |
+| ✔ | K. Pearson, A. Lee, «On the Laws of Inheritance in Man: I», *Biometrika* **2**(4), 357–462 (1903). | Le statistiche con cui sono simulate le altezze mostrate: correlazione padre-figlio ≈ 0,5, deviazione standard ≈ 7 cm. **I punti sullo schermo sono simulati**, non sono dati di persone reali: va detto se qualcuno lo chiede. |
+| ✔ | K. Pearson, «On lines and planes of closest fit to systems of points in space», *Philosophical Magazine* **2**(11), 559–572 (1901). | La retta «non supervisionata»: quella che minimizza le distanze **perpendicolari**. È l'antenata dell'analisi delle componenti principali. |
+| ○ | H. Hotelling, *Journal of Educational Psychology* **24**, 417–441 e 498–520 (1933). | La formulazione moderna delle componenti principali. |
+| ○ | H. Steinhaus, «Sur la division des corps matériels en parties», *Bull. Acad. Polon. Sci.* **4**(12), 801–804 (1956). | Prima formulazione del problema delle k-medie. |
+| ○ | S. P. Lloyd, «Least squares quantization in PCM», *IEEE Trans. on Information Theory* **28**(2), 129–137 (1982) — scritto nei Bell Labs nel 1957. | L'algoritmo delle due mosse che si vede animato: assegna, sposta, ripeti. Converge sempre, ma a un minimo locale: dipende da dove partono i centri. |
+| ○ | J. MacQueen, «Some methods for classification and analysis of multivariate observations», *Proc. 5th Berkeley Symposium* **1**, 281–297 (1967). | Il nome «k-means». |
+| ○ | R. J. Boscovich (1757); P.-S. Laplace, *Mémoire sur…* (1793). | La retta che minimizza i valori **assoluti** degli errori: più vecchia dei minimi quadrati e più robusta ai dati sballati. |
+| ○ | P. J. Huber, «Robust estimation of a location parameter», *Annals of Mathematical Statistics* **35**(1), 73–101 (1964). | La teoria moderna della robustezza: perché la scelta del costo cambia tutto. |
+| ○ | C. M. Bishop, *PRML*, Springer 2006, cap. 9 (k-medie) e cap. 12 (componenti principali). | Trattazione di riferimento dei due metodi non supervisionati usati nella tappa. |
+
+> **Un punto di rigore da non sbagliare in aula.** «Regressione non supervisionata» non esiste:
+> la regressione ha bisogno delle risposte per definizione. Quello che la tappa mette a confronto
+> è **la stessa nuvola con due domande diverse**: predire una misura dall'altra (supervisionato,
+> distanze verticali od orizzontali) oppure descrivere la forma della nuvola (non supervisionato,
+> distanze perpendicolari). La differenza fra le due rette *è* la differenza fra le due famiglie.
+
 ## 2. Perché una rete può imparare *qualsiasi* funzione
 
 | | Riferimento | Che cosa sostiene la lezione |
 |---|---|---|
-| ✔ | G. Cybenko, «Approximation by superpositions of a sigmoidal function», *Mathematics of Control, Signals and Systems* **2**, 303–314 (1989). DOI 10.1007/BF02551274 | **Teorema di approssimazione universale**: combinazioni finite di sigmoidi approssimano uniformemente qualsiasi funzione continua sul cubo unitario. È la frase-chiave della Tappa 2. |
+| ✔ | G. Cybenko, «Approximation by superpositions of a sigmoidal function», *Mathematics of Control, Signals and Systems* **2**, 303–314 (1989). DOI 10.1007/BF02551274 | **Teorema di approssimazione universale**: combinazioni finite di sigmoidi approssimano uniformemente qualsiasi funzione continua sul cubo unitario. È la frase-chiave della Tappa 3. |
 | ✔ | K. Hornik, M. Stinchcombe, H. White, «Multilayer feedforward networks are universal approximators», *Neural Networks* **2**(5), 359–366 (1989). DOI 10.1016/0893-6080(89)90020-8 | Stesso risultato, ipotesi più generali (funzioni misurabili secondo Borel). |
 | ○ | K. Hornik, «Approximation capabilities of multilayer feedforward networks», *Neural Networks* **4**(2), 251–257 (1991). | Il risultato non dipende dalla scelta della sigmoide. |
 | ○ | A. R. Barron, «Universal approximation bounds for superpositions of a sigmoidal function», *IEEE Trans. on Information Theory* **39**(3), 930–945 (1993). | Velocità di convergenza O(1/n) indipendente dalla dimensione: il motivo per cui le reti reggono dati ad alta dimensione. |
@@ -38,7 +59,7 @@ riportate a memoria, controllabili ma non ricontrollate in quell'occasione.
 |---|---|---|
 | ○ | D. E. Rumelhart, G. E. Hinton, R. J. Williams, «Learning representations by back-propagating errors», *Nature* **323**, 533–536 (1986). | La retropropagazione: come si calcolano i gradienti in una rete a più strati. |
 | ✔ | Y. LeCun, L. Bottou, Y. Bengio, P. Haffner, «Gradient-based learning applied to document recognition», *Proceedings of the IEEE* **86**(11), 2278–2324 (1998). DOI 10.1109/5.726791 | Origine dell'archivio **MNIST** e del preprocessamento (cifra riportata a 20×20, centrata sul baricentro in 28×28) che la pagina replica sul disegno fatto col mouse. |
-| ✔ | D. Cireşan, U. Meier, J. Schmidhuber, «Multi-column deep neural networks for image classification», *CVPR 2012*. | Errore dello **0,23 %** su MNIST, «vicino allo ≈0,2 % degli esseri umani». È la frase citata nella Tappa 3. |
+| ✔ | D. Cireşan, U. Meier, J. Schmidhuber, «Multi-column deep neural networks for image classification», *CVPR 2012*. | Errore dello **0,23 %** su MNIST, «vicino allo ≈0,2 % degli esseri umani». È la frase citata nella Tappa 4. |
 | ○ | K. He, X. Zhang, S. Ren, J. Sun, «Delving Deep into Rectifiers», *ICCV 2015*, arXiv:1502.01852. | L'inizializzazione dei pesi usata da `tools/train-mlp.py`. |
 | ○ | A. Krizhevsky, I. Sutskever, G. E. Hinton, «ImageNet Classification with Deep CNNs», *NIPS 2012*. | Il momento in cui il metodo esce dai laboratori. |
 
@@ -51,11 +72,11 @@ Il divario fra i due numeri è il sovradattamento della Tappa 1, e va mostrato.
 
 | | Riferimento | Che cosa sostiene la lezione |
 |---|---|---|
-| ✔ | C. E. Shannon, «A Mathematical Theory of Communication», *Bell System Technical Journal* **27**, 379–423 e 623–656 (1948). | Nel §3 della prima parte Shannon genera testo inglese campionando da statistiche di lettere e di parole: è, letteralmente, il modello della Tappa 4. |
+| ✔ | C. E. Shannon, «A Mathematical Theory of Communication», *Bell System Technical Journal* **27**, 379–423 e 623–656 (1948). | Nel §3 della prima parte Shannon genera testo inglese campionando da statistiche di lettere e di parole: è, letteralmente, il modello della Tappa 5. |
 | ○ | C. E. Shannon, «Prediction and Entropy of Printed English», *BSTJ* **30**, 50–64 (1951). | Misura quanto è prevedibile una lingua: ~1 bit per lettera. |
-| ✔ | Y. Bengio, R. Ducharme, P. Vincent, C. Jauvin, «A Neural Probabilistic Language Model», *Journal of Machine Learning Research* **3**, 1137–1155 (2003). | Il modello neurale della Tappa 4: ogni parola diventa un punto e la rete impara insieme i punti e le probabilità. |
+| ✔ | Y. Bengio, R. Ducharme, P. Vincent, C. Jauvin, «A Neural Probabilistic Language Model», *Journal of Machine Learning Research* **3**, 1137–1155 (2003). | Il modello neurale della Tappa 5: ogni parola diventa un punto e la rete impara insieme i punti e le probabilità. |
 | ○ | T. Mikolov, K. Chen, G. Corrado, J. Dean, «Efficient Estimation of Word Representations in Vector Space», arXiv:1301.3781 (2013). | *word2vec*: le parole-come-punti diventano di uso comune. |
-| ○ | A. Vaswani et al., «Attention Is All You Need», *NeurIPS 2017*, arXiv:1706.03762. | Il meccanismo di attenzione: la figura illustrativa in fondo alla Tappa 4. |
+| ○ | A. Vaswani et al., «Attention Is All You Need», *NeurIPS 2017*, arXiv:1706.03762. | Il meccanismo di attenzione: la figura illustrativa in fondo alla Tappa 5. |
 | ○ | T. Brown et al., «Language Models are Few-Shot Learners», arXiv:2005.14165 (2020). | GPT-3: 175 miliardi di parametri. È l'unico numero di parametri *ufficiale* fra i modelli citati. |
 | ○ | J. Kaplan et al., arXiv:2001.08361 (2020); J. Hoffmann et al., arXiv:2203.15556 (2022). | Le «leggi di scala»: la qualità migliora in modo prevedibile con parametri e dati. |
 | ○ | L. Ouyang et al., «Training language models to follow instructions with human feedback», arXiv:2203.02155 (2022). | Le correzioni umane dopo l'allenamento (RLHF). |
@@ -75,7 +96,7 @@ Il divario fra i due numeri è il sovradattamento della Tappa 1, e va mostrato.
 
 ## Per approfondire (divulgativi, adatti a chi ha seguito la lezione)
 
-- M. Nielsen, *Neural Networks and Deep Learning* (gratuito, online) — la rete della Tappa 3, spiegata passo passo.
+- M. Nielsen, *Neural Networks and Deep Learning* (gratuito, online) — la rete della Tappa 4, spiegata passo passo.
 - I. Goodfellow, Y. Bengio, A. Courville, *Deep Learning*, MIT Press 2016 (gratuito, online).
 - S. Wolfram, *What Is ChatGPT Doing… and Why Does It Work?*, Wolfram Media 2023.
 - 3Blue1Brown, serie video *Neural networks* — ottima come compito a casa visivo.
@@ -84,5 +105,5 @@ Il divario fra i due numeri è il sovradattamento della Tappa 1, e va mostrato.
 
 - **MNIST**: distribuito attraverso il pacchetto npm `mnist` (10.000 campioni 28×28 in scala di grigi,
   già normalizzati come nell'archivio originale). Archivio originale: LeCun, Cortes, Burges.
-- **Testi italiani della Tappa 4**: scritti apposta per questa lezione (`data/corpora.js`),
+- **Testi italiani della Tappa 5**: scritti apposta per questa lezione (`data/corpora.js`),
   quindi liberi da vincoli di licenza e volutamente ripetitivi.

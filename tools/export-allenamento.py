@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepara i dati per l'allenamento dal vivo nel browser (Tappa 3).
+"""Prepara i dati per l'allenamento dal vivo nel browser (Tappa 4).
 
 1.600 cifre MNIST vere (1.200 di studio + 400 di verifica, bilanciate fra le
 dieci cifre) impacchettate come due immagini PNG in colonna: ogni riquadro
@@ -52,7 +52,7 @@ studio = impacchetta(*scegli(Xtr, ytr, 120))
 verifica = impacchetta(*scegli(Xte, yte, 40))
 
 with open(dst, "w") as f:
-    f.write("/* 1.600 cifre MNIST per l'allenamento dal vivo della Tappa 3.\n"
+    f.write("/* 1.600 cifre MNIST per l'allenamento dal vivo della Tappa 4.\n"
             "   Ogni PNG è una colonna di riquadri 28x28, una cifra per riquadro.\n"
             "   Generato da tools/export-allenamento.py: non modificare a mano. */\n"
             "window.MNIST_ALLENAMENTO = ")

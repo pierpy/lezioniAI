@@ -38,7 +38,7 @@
   /* ── livello di dettaglio: essenziale (predefinito) o completa ─────────
      In aula si parte sempre dall'essenziale: una cosa per schermata, due
      comandi al massimo. «Completa» rimette in vista tutto — la collina
-     dell'errore, l'allenamento della Tappa 2, le parole-punti — per chi
+     dell'errore, l'allenamento della Tappa 3, le parole-punti — per chi
      fa domande o per una seconda lezione. */
   function impostaModo(modo, ricorda) {
     document.body.classList.toggle('essenziale', modo !== 'completa');

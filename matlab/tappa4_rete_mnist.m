@@ -1,4 +1,4 @@
-%% TAPPA 3 — La rete che legge le cifre scritte a mano
+%% TAPPA 4 — La rete che legge le cifre scritte a mano
 %
 % Carica i pesi della rete 784-64-10 usata nella pagina web (addestrata da
 % tools/train-mlp.py su 8.000 cifre MNIST) e li usa qui: passaggio in
@@ -41,7 +41,7 @@ disp(confusione);
 [~, peggiore] = max(sum(confusione, 2) - diag(confusione));
 fprintf('La cifra che le riesce peggio è il %d.\n', peggiore-1);
 
-figure('Name', 'Tappa 3 — matrice di confusione');
+figure('Name', 'Tappa 4 — matrice di confusione');
 imagesc(0:9, 0:9, confusione); axis square; colorbar;
 xlabel('cifra prevista'); ylabel('cifra vera');
 title('Dove sbaglia la rete');
@@ -53,7 +53,7 @@ meta = linspace(0, 1, 32)';
 mappa_divergente = [ [0.75+0.25*meta, 0.20+0.80*meta, 0.15+0.85*meta]; ...
                      [1-0.84*meta,    1-0.53*meta,    1-0.16*meta   ] ];
 
-figure('Name', 'Tappa 3 — che cosa cercano i 64 neuroni');
+figure('Name', 'Tappa 4 — che cosa cercano i 64 neuroni');
 for j = 1:64
     subplot(8, 8, j);
     imagesc(reshape(modello.W1(j,:), 28, 28)');
@@ -65,7 +65,7 @@ colormap(mappa_divergente);
 %% Un esempio singolo, con le dieci probabilità
 k = find(previste ~= y, 1);          % il primo errore, che è più istruttivo
 if isempty(k), k = 1; end
-figure('Name', 'Tappa 3 — un caso difficile');
+figure('Name', 'Tappa 4 — un caso difficile');
 subplot(1,2,1);
 imagesc(reshape(X(k,:), 28, 28)'); axis image off; colormap(gray);
 title(sprintf('cifra vera: %d', y(k)));

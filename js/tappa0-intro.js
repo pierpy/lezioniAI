@@ -215,7 +215,7 @@ LEZIONE.registra('copertina', function () {
     } else if (iter >= PASSI_MAX) {
       d.html(`<strong>Finito.</strong> Dopo ${iter} passi l'errore è ${L.num(err, 3)}: ` +
              'la curva ha trovato i punti. Ha «imparato» girando quattro manopole — ' +
-             'la rete della Tappa 3 fa la stessa cosa con 50.890.');
+             'la rete della Tappa 4 fa la stessa cosa con 50.890.');
     } else {
       d.html(`Passo ${iter} — errore medio <strong>${L.num(err, 3)}</strong>. ` +
              'Le manopole si stanno ancora aggiustando: guardate le lancette.');

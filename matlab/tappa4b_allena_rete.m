@@ -1,6 +1,6 @@
-%% TAPPA 3-bis — Allenare la rete da zero, in MATLAB
+%% TAPPA 4-bis — Allenare la rete da zero, in MATLAB
 %
-% Stessa rete della Tappa 3, ma qui le manopole partono a caso e vengono
+% Stessa rete della Tappa 4, ma qui le manopole partono a caso e vengono
 % regolate con la retropropagazione dell'errore: è la versione MATLAB di
 % tools/train-mlp.py. Serve a mostrare che "imparare" è esattamente la
 % discesa del gradiente della Tappa 1, ripetuta su 25.000 manopole.
@@ -77,7 +77,7 @@ fprintf('\nCon %d cifre di studio: %.1f%% sulle cifre mai viste.\n', ...
 fprintf(['La rete della pagina web usa 8.000 cifre e aumento dei dati ' ...
          '(traslazioni), e arriva al 96,5%%.\n']);
 
-figure('Name', 'Tappa 3-bis — maschere imparate qui');
+figure('Name', 'Tappa 4-bis — maschere imparate qui');
 meta = linspace(0, 1, 32)';
 mappa_divergente = [ [0.75+0.25*meta, 0.20+0.80*meta, 0.15+0.85*meta]; ...
                      [1-0.84*meta,    1-0.53*meta,    1-0.16*meta   ] ];

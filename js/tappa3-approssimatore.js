@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Tappa 2 — l'approssimatore universale.
+   Tappa 3 — l'approssimatore universale.
    Una rete con un solo strato nascosto:
         f(x) = a₀ + Σ aᵢ · σ(w·(x − cᵢ))
    I centri cᵢ sono distribuiti uniformemente sull'intervallo; i pesi di

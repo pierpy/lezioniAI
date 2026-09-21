@@ -32,11 +32,13 @@ che resta: è la stessa lezione con gli approfondimenti accesi.
 | Il cursore «di quanto le giro» (apertura) | un secondo parametro da spiegare | se qualcuno chiede «e se sbaglia a girare?» |
 | La collina dell'errore (Tappa 1) | è uno spazio astratto: gli assi non sono più metri quadri ed euro | con un pubblico che ha fatto matematica, o su richiesta |
 | La spunta «mostra gli errori» (Tappa 1) | resta accesa comunque | mai, serve solo a spegnerla |
-| «Come trova le manopole» + allenamento (Tappa 2) | due modi invece di uno | quando c'è tempo: è il momento più bello della tappa |
-| La formula del neurone (Tappa 2) | una formula in aula perde metà sala | se qualcuno chiede «ma in pratica cos'è?» |
-| I 64 neuroni nascosti (Tappa 3) | un quarto riquadro da guardare | dopo che la cifra è stata riconosciuta, come bis |
-| La curva delle risposte esatte (laboratorio, Tappa 3) | bastano le maschere e un numero | per far vedere il divario studio/mai-viste |
-| Le parole-punti (Tappa 4) | il passaggio più astratto di tutta la lezione | con un pubblico curioso, o in una seconda lezione |
+| «Come trova le manopole» + allenamento (Tappa 3) | due modi invece di uno | quando c'è tempo: è il momento più bello della tappa |
+| La formula del neurone (Tappa 3) | una formula in aula perde metà sala | se qualcuno chiede «ma in pratica cos'è?» |
+| Il confronto numerico dei tre costi (Tappa 2) | un grafico in più mentre si parla | quando qualcuno chiede «e chi dice che sia la migliore?» |
+| Il grafico del costo delle k-medie (Tappa 2) | basta vedere i gruppi assestarsi | per mostrare che il costo scende sempre |
+| I 64 neuroni nascosti (Tappa 4) | un quarto riquadro da guardare | dopo che la cifra è stata riconosciuta, come bis |
+| La curva delle risposte esatte (laboratorio, Tappa 4) | bastano le maschere e un numero | per far vedere il divario studio/mai-viste |
+| Le parole-punti (Tappa 5) | il passaggio più astratto di tutta la lezione | con un pubblico curioso, o in una seconda lezione |
 
 Tutti i numeri, le citazioni e i comportamenti restano gli stessi nei due livelli: «essenziale»
 non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra parentesi
@@ -58,48 +60,52 @@ non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra pare
 
 | Tempo | Tappa | Cosa succede sullo schermo |
 |---|---|---|
-| 0–12 min | **0. Apertura** | La frase-chiave. Poi «Un passo alla volta»: si vedono gli errori, le frecce sulle manopole e le manopole che girano. Infine «Fai imparare la curva» a velocità piena. |
-| 12–27 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». La collina dell'errore. |
-| 27–40 min | **2. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Poi si passa da «la formula» a «le cerca a tentoni» e la si guarda allenarsi. Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
-| 40–62 min | **3. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Si guardano i neuroni che si accendono e le maschere imparate. Poi il laboratorio: una rete che parte da zero e impara dal vivo, in venti secondi. |
-| 62–80 min | **4. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, la tabella che si riempie mentre legge, allenamento dal vivo della rete linguistica. |
-| 80–90 min | **5. Limiti e domande** | Lo scarabocchio che la rete chiama «zero al 99 %». Le quattro cose da ricordare. Domande. |
+| 0–10 min | **0. Apertura** | La frase-chiave. Poi «Un passo alla volta»: si vedono gli errori, le frecce sulle manopole e le manopole che girano. Infine «Fai imparare la curva» a velocità piena. |
+| 10–24 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». |
+| 24–38 min | **2. Con o senza risposte giuste** | Il gioco dei sei lavori; la stessa nuvola con tre rette; i gruppi trovati dalle k-medie; la casa sballata da trascinare. |
+| 38–48 min | **3. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
+| 48–66 min | **4. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Poi il laboratorio: una rete che parte da zero e impara dal vivo, in venti secondi. |
+| 66–82 min | **5. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, la tabella che si riempie mentre legge. |
+| 82–90 min | **6. Limiti e domande** | Lo scarabocchio che la rete chiama «zero al 99 %». Le quattro cose da ricordare. Domande. |
 
 ### Il filo dell'apprendimento
 
 La stessa scena — *misuro l'errore, calcolo da che parte girare le manopole, le giro, ricomincio* —
-torna **cinque volte**, ed è la spina dorsale della lezione. Nominatela ogni volta:
+torna **sei volte**, ed è la spina dorsale della lezione. Vale anche per i metodi non
+supervisionati della Tappa 2: le k-medie non hanno risposte giuste da imitare, ma hanno
+un costo da far scendere — la distanza delle case dal proprio centro. Nominatela ogni volta:
 
 | Dove | Che cosa impara | Quante manopole |
 |---|---|---|
 | Apertura | una curva su 24 punti | 4 |
 | *(le righe in corsivo sono visibili solo in «completa»)* | | |
 | *Tappa 1, la collina* | *una retta sui prezzi delle case* | *2* |
-| *Tappa 2, «a tentoni»* | *pesi, pendenze e centri dei neuroni* | *fino a 121* |
-| Tappa 3, il laboratorio | a leggere le cifre, da zero, dal vivo | 19.090 |
-| *Tappa 4, le parole-punti* | *dove mettere ogni parola nel piano* | *qualche migliaio* |
+| *Tappa 3, «a tentoni»* | *pesi, pendenze e centri dei neuroni* | *fino a 121* |
+| Tappa 4, il laboratorio | a leggere le cifre, da zero, dal vivo | 19.090 |
+| *Tappa 5, le parole-punti* | *dove mettere ogni parola nel piano* | *qualche migliaio* |
 
-### Lezione essenziale da 50 minuti (il formato consigliato per la prima volta)
+### Lezione essenziale da 60 minuti (il formato consigliato per la prima volta)
 
 | Tempo | Che cosa |
 |---|---|
 | 0–10 | Apertura: le quattro manopole, «un passo alla volta» due o tre volte, poi la corsa. |
 | 10–22 | Tappa 1: i prezzi delle case, il cursore della complessità, la verifica sui dati nascosti. |
-| 22–30 | Tappa 2: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
-| 30–42 | Tappa 3: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
-| 42–50 | Tappa 4 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 5. |
+| 22–34 | Tappa 2: il gioco dei sei lavori, le tre rette, i gruppi. (Se siete stretti, saltate il pannello sulla funzione di costo.) |
+| 34–41 | Tappa 3: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
+| 41–52 | Tappa 4: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
+| 52–60 | Tappa 5 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 6. |
 
 Con questo taglio non si perde nessun concetto: si perdono gli approfondimenti.
-La Tappa 4 completa e la collina dell'errore diventano la seconda lezione.
+La Tappa 5 completa, la collina dell'errore e le parole-punti diventano la seconda lezione.
 
 **Se avete 90 minuti e volete tutto**: mettete l'interruttore su «completa» e seguite la scaletta
-qui sopra. **Se avete solo 60 minuti**: tagliate la Tappa 2 (bastano due minuti a voce: «più pezzetti,
-più dettagli — ed è un teorema del 1989») e la parte di allenamento dal vivo della Tappa 4.
+qui sopra. **Se avete solo 60 minuti**: tagliate la Tappa 3 (bastano due minuti a voce: «più pezzetti,
+più dettagli — ed è un teorema del 1989») e la parte di allenamento dal vivo della Tappa 5.
 Non tagliate mai la verifica su dati mai visti della Tappa 1: è il concetto più prezioso di tutta l'ora.
 
 ## Che cosa fare, tappa per tappa
 
-### Tappa 0 — Apertura (12 min)
+### Tappa 0 — Apertura (10 min)
 
 Aprite con una domanda al pubblico: *«Secondo voi, quando il telefono riconosce una faccia,
 che cosa sta facendo?»* Raccogliete due o tre risposte, non correggetele.
@@ -111,7 +117,7 @@ L'ordine giusto è questo.
 1. **Presentate le quattro manopole.** Sono a destra, con la lancetta e il numero sotto.
    *«Questa curva è governata da quattro numeri. Altezza, inclinazione, curvatura, ondulazione.
    Adesso sono messi a caso, ed è per questo che la curva passa lontano dai punti.»*
-   Se qualcuno chiede perché proprio quattro: perché questa curva è semplice; la rete della Tappa 3
+   Se qualcuno chiede perché proprio quattro: perché questa curva è semplice; la rete della Tappa 4
    ne ha cinquantamila, ma la storia è identica.
 2. **Premete «Un passo alla volta»** e lasciate parlare lo schermo: la ricetta in quattro punti
    si illumina una riga per volta.
@@ -139,7 +145,7 @@ L'ordine giusto è questo.
 Chi vorrà il nome tecnico lo avrà nella Tappa 1 («discesa del gradiente») e vedrà lo stesso
 procedimento dall'alto, come una collina. Qui non serve: qui si guardano le manopole.
 
-### Tappa 1 — La retta che indovina (17 min)
+### Tappa 1 — La retta che indovina (14 min)
 
 L'esempio delle case funziona perché tutti hanno un'opinione sul prezzo di un appartamento.
 
@@ -160,7 +166,44 @@ L'esempio delle case funziona perché tutti hanno un'opinione sul prezzo di un a
    *«è come scendere una collina nella nebbia: si guarda solo la pendenza sotto i piedi e si fa un passo in giù.
    Con due manopole è una collina. Con cento miliardi è la stessa cosa, ma non possiamo disegnarla.»*
 
-### Tappa 2 — Qualsiasi curva (10 min)
+### Tappa 2 — Con o senza risposte giuste (14 min)
+
+È la tappa che dà i nomi alle cose. Attenzione a un punto di rigore: **non esiste una
+«regressione non supervisionata»** — la regressione ha bisogno delle risposte per definizione.
+Quello che si mostra è la stessa nuvola con *due domande diverse*, ed è più onesto e più bello.
+
+1. **Il gioco dei sei lavori.** Leggete il primo ad alta voce e fate rispondere *a voce* prima di
+   cliccare: «alzi la mano chi dice con le risposte». Poi cliccate e leggete la spiegazione.
+   Il sesto (il pagamento insolito) è volutamente ambiguo e la spiegazione lo dice: serve a far
+   capire che il confine non è sempre netto.
+2. **Le tre rette.** Partite da «indovinare l'altezza del figlio»: i segmenti sono verticali,
+   perché l'errore è solo sulla risposta.
+   *«La retta dice: ogni centimetro in più del padre vale mezzo centimetro nel figlio.»*
+   Qui raccontate Galton: **la parola "regressione" nasce da questa nuvola** — i figli dei padri
+   altissimi sono alti, ma meno del padre, «regrediscono» verso la media. È il 1886.
+   Poi passate a «indovinare l'altezza del padre»: **stessi punti, retta diversa**. Fermatevi un
+   momento su questo: *«non esiste la retta dei dati; esiste la retta di una domanda»*.
+   Infine «descrivere la nuvola»: i segmenti diventano perpendicolari, nessuna delle due misure
+   è la risposta. *«Questa non predice niente: descrive. Ed è l'unica che resta la stessa se
+   scambiate i due assi.»* In modalità completa, il grafico a barre mostra che ogni retta vince
+   con il proprio metro: è la dimostrazione che il costo *è* la domanda.
+3. **I gruppi.** Premete «Una mossa» tre o quattro volte, commentando le due mosse
+   (ogni casa al centro più vicino / ogni centro in mezzo alle sue case), poi «Trova i gruppi».
+   Quando si ferma: *«nessuno gli ha detto che esistono monolocali e ville: ha solo avvicinato
+   ogni casa a un centro»*. Poi due esperimenti da trenta secondi l'uno:
+   portate il cursore a 2 e a 5 gruppi (*«non c'è una risposta giusta: il numero lo decidiamo noi»*)
+   e premete «Un altro tentativo» un paio di volte (*«se i centri partono da un'altra parte,
+   qualche volta il risultato cambia»*).
+4. **La casa sballata.** Trascinatela verso l'alto lentamente: la retta blu la insegue, l'arancione
+   no. *«Ho cambiato solo la domanda — che cosa vuol dire sbagliare — e la risposta è cambiata.
+   Nessuna delle due è sbagliata: dipende se quel prezzo è un errore di battitura o una villa vera.
+   Questa scelta la fa una persona, non la matematica.»*
+5. **Chiusura.** Le tre schede in fondo collegano la tappa al resto della lezione: le cifre hanno
+   bisogno di etichette scritte da qualcuno; i gruppi no; il testo è la risposta di se stesso.
+   Quest'ultima — l'auto-supervisione — è la ragione per cui i modelli linguistici hanno potuto
+   studiare su tutto il web senza che nessuno preparasse le risposte.
+
+### Tappa 3 — Qualsiasi curva (10 min)
 
 Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone abbastanza si ottiene qualsiasi forma.*
 
@@ -185,7 +228,7 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
 - La citazione da dire a voce: *«che questo funzioni sempre è un teorema del 1989, di George Cybenko.
   Non è un'opinione degli informatici.»*
 
-### Tappa 3 — Le cifre scritte a mano (20 min)
+### Tappa 4 — Le cifre scritte a mano (18 min)
 
 - **Fate scrivere la cifra a qualcuno del pubblico**, non fatelo voi. Con il dito su un tablet, se c'è.
 - Mostrate il riquadro «quello che vede la rete»: *«non vede un sette. Vede 784 numeri fra 0 e 1.»*
@@ -214,7 +257,7 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
    cifre al secondo su un portatile; per un modello linguistico servono migliaia di schede
    grafiche per settimane.
 
-### Tappa 4 — La macchina che scrive (20 min)
+### Tappa 5 — La macchina che scrive (16 min)
 
 L'obiettivo è smontare il mistero senza sminuire il risultato.
 
@@ -236,7 +279,7 @@ L'obiettivo è smontare il mistero senza sminuire il risultato.
 8. **Le tre differenze con ChatGPT** (attenzione, scala, correzioni umane) e la figura dell'attenzione.
    Dite sempre che quella figura è uno schema, non un calcolo.
 
-### Tappa 5 — Limiti (15 min)
+### Tappa 6 — Limiti (8 min)
 
 - Disegnate una **casetta** o un **fiore** nel riquadro. La rete risponde «0 al 99 %».
   *«Non ha nessun modo di dire "questo non lo so". Le abbiamo insegnato a scegliere fra dieci cifre,
@@ -261,9 +304,15 @@ Automatizza *compiti*, non mestieri: quelli in cui esistono molti esempi e la ri
 da scrivere come regola. Chi fa quei compiti per lavoro deve cambiare qualcosa; chi decide e si assume
 responsabilità meno.
 
+**«Allora può imparare da sola, senza di noi?»**
+No, e la Tappa 2 lo mostra bene: anche senza risposte giuste qualcuno deve scegliere i dati,
+decidere che cosa misurare, stabilire quanti gruppi cercare e soprattutto **dire che cosa
+significano** i gruppi trovati. La macchina trova mucchi di punti; che quel mucchio sia
+«famiglie giovani» lo decidiamo noi.
+
 **«Perché sbaglia cose facilissime?»**
 Perché non ha il nostro modello del mondo: ha una superficie di risposte costruita sugli esempi.
-Appena esce da lì, sbaglia — e sbaglia con la stessa faccia sicura di quando ha ragione (Tappa 5).
+Appena esce da lì, sbaglia — e sbaglia con la stessa faccia sicura di quando ha ragione (Tappa 6).
 
 **«Come fa a sapere quello che sa?»**
 Non lo sa: lo ricostruisce ogni volta. Tutto ciò che ha imparato è un enorme insieme di numeri,
@@ -280,7 +329,7 @@ l'autore l'abbia deciso. È il tema legale più caldo del settore.
 - **Non dire «la rete funziona come il cervello».** Ha preso in prestito un'immagine dalla neurofisiologia degli anni '40
   e poco altro. Se qualcuno insiste: i neuroni veri non fanno moltiplicazioni di matrici.
 - **Non usare la parola «algoritmo» come spiegazione.** Non spiega nulla e fa sembrare tutto più oscuro.
-- **Non promettere che l'incertezza mostrata sia una probabilità vera.** Il 99 % della Tappa 5 è un numero
+- **Non promettere che l'incertezza mostrata sia una probabilità vera.** Il 99 % della Tappa 6 è un numero
   che esce dal calcolo, non una misura di verità.
 - **Non nascondere quello che non si sa.** Dire «su questo gli esperti non sono d'accordo» aumenta la fiducia,
   non la diminuisce.
@@ -295,6 +344,6 @@ l'autore l'abbia deciso. È il tema legale più caldo del settore.
 4. Verificare che i tasti `←` e `→` cambino tappa: è il modo più comodo per non perdere il filo.
    Controllare che l'interruttore in alto a destra sia su **Essenziale** (il browser ricorda
    l'ultima scelta fatta su quel computer).
-5. Se c'è un tablet o uno schermo touch, usatelo per la Tappa 3: il dito funziona.
+5. Se c'è un tablet o uno schermo touch, usatelo per la Tappa 4: il dito funziona.
 6. Piano B senza computer: la stessa lezione si tiene con una lavagna, quindici puntini,
    un righello e la domanda «e se la retta la facessi passare *esattamente* per tutti i punti?».

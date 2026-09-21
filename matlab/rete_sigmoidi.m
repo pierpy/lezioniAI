@@ -3,7 +3,7 @@ function [pesi, stima, pezzi] = rete_sigmoidi(x, y, n_neuroni, dominio)
 %   [pesi, stima, pezzi] = RETE_SIGMOIDI(x, y, n, dominio)
 %   costruisce n sigmoidi con centri equispaziati su `dominio` e risolve
 %   esattamente (minimi quadrati regolarizzati) i soli pesi di uscita.
-%   È il modello della Tappa 2: nella rete "vera" anche centri e pendenze
+%   È il modello della Tappa 3: nella rete "vera" anche centri e pendenze
 %   sono manopole, imparate con la discesa del gradiente.
 %
 %   pezzi(:,i) è il contributo del singolo neurone i, utile per mostrare

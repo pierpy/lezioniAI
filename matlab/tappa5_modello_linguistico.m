@@ -1,4 +1,4 @@
-%% TAPPA 4 — Il modello linguistico a n-grammi
+%% TAPPA 5 — Il modello linguistico a n-grammi
 %
 % Legge uno dei testi di data/corpora.js, conta quali parole seguono quali
 % e genera frasi campionando dalla distribuzione stimata, con temperatura.
@@ -93,7 +93,7 @@ for i = 1:numel(frequenti)
     end
 end
 
-figure('Name', 'Tappa 4 — tabella delle probabilità');
+figure('Name', 'Tappa 5 — tabella delle probabilità');
 imagesc(M); colorbar; axis square;
 set(gca, 'XTick', 1:numel(frequenti), 'XTickLabel', frequenti, ...
          'YTick', 1:numel(frequenti), 'YTickLabel', frequenti);

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Tappa 5 — i limiti. Riusa la stessa rete della Tappa 3, ma la invita a
+   Tappa 6 — i limiti. Riusa la stessa rete della Tappa 4, ma la invita a
    rispondere su qualcosa che non ha mai visto: un disegno qualsiasi.
    La rete risponde comunque, spesso con grande sicurezza: è la versione
    in miniatura delle "allucinazioni" dei modelli linguistici.

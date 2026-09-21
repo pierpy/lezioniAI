@@ -290,6 +290,39 @@ kbd {
 
 code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; background: var(--superficie-2); padding: .1em .35em; border-radius: 4px; }
 
+/* ─────────────────── il gioco «con o senza risposte» ──────────────────── */
+
+.elenco-quiz { display: grid; gap: .5rem; margin-top: .8rem; }
+
+.quiz {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .6rem 1rem;
+  align-items: center;
+  padding: .6rem .9rem;
+  border: 1px solid var(--bordo);
+  border-left: 4px solid var(--bordo);
+  border-radius: 8px;
+  background: var(--superficie);
+}
+.quiz-testo { font-size: 1.02rem; }
+.quiz-bottoni { display: flex; gap: .4rem; }
+.quiz-bottoni .bottone { font-size: .92rem; padding: .35rem .8rem; }
+.quiz-spiegazione {
+  grid-column: 1 / -1;
+  font-size: .94rem;
+  color: var(--inchiostro-2);
+  border-top: 1px dashed var(--bordo);
+  padding-top: .5rem;
+}
+.quiz.risposto .quiz-bottoni { display: none; }
+.quiz.giusto { border-left-color: var(--serie-3); background: #f2faf6; }
+.quiz.sbagliato { border-left-color: var(--serie-2); background: #fdf6f1; }
+
+@media (max-width: 620px) {
+  .quiz { grid-template-columns: 1fr; }
+}
+
 /* ─────────────── la "ricetta" in quattro passi (apertura) ─────────────── */
 
 .ricetta {

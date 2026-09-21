@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Tappa 4 — la macchina che scrive.
+   Tappa 5 — la macchina che scrive.
    Tre livelli, in ordine di complessità crescente:
      a) tokenizzazione: il testo diventa numeri;
      b) modello a n-grammi costruito dal vivo sul testo scelto

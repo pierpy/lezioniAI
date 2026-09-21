@@ -14,10 +14,11 @@ Tutto gira nel browser, **senza rete e senza installare niente**: si apre
 |---|---|---|
 | 0 | Apertura | Una curva con **quattro manopole visibili**: si vedono gli errori misurati, la freccia che dice da che parte girare ogni manopola, le lancette che si spostano e l'errore che scende. Modalità «un passo alla volta» che racconta le quattro fasi, e cursore del passo di apprendimento (troppo grande = la curva schizza via). |
 | 1 | La retta che indovina | Regressione polinomiale interattiva: si aggiungono punti col mouse, si alza la complessità, si nascondono dati per verificare. Sovradattamento e discesa del gradiente sulla «collina dell'errore» (curve di livello). |
-| 2 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Due modi di trovare le manopole: **la formula** (minimi quadrati, istantanea) oppure **a tentoni come una rete vera** — allenamento dal vivo di pesi, pendenze e centri con Adam, curva dell'errore inclusa. Teorema di approssimazione universale. |
-| 3 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. In fondo, il **laboratorio**: una seconda rete 784–24–10 parte da zero e si allena **dal vivo nel browser** su 1.200 cifre vere — le maschere emergono dal rumore, le risposte esatte salgono, e la previsione sulla cifra disegnata dal pubblico cambia mentre studia. |
-| 4 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità che **si riempie sotto gli occhi** mentre il modello legge il testo, parola per parola; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
-| 5 | Limiti e domande | La stessa rete della Tappa 3 chiamata a giudicare uno scarabocchio: risponde «0 al 99 %». Da lì, le allucinazioni. |
+| 2 | Con o senza risposte giuste | Un gioco per smistare sei lavori fra supervisionato e non supervisionato; **la stessa nuvola di punti (altezze di padri e figli) con tre rette diverse** — due supervisionate, una per ogni «risposta» possibile, e una non supervisionata che minimizza le distanze perpendicolari (Pearson 1901); le **k-medie animate** che trovano i gruppi di case senza che nessuno glieli abbia detti; e un punto sballato da trascinare per vedere che **la funzione di costo decide la risposta** (quadratico contro assoluto). |
+| 3 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Due modi di trovare le manopole: **la formula** (minimi quadrati, istantanea) oppure **a tentoni come una rete vera** — allenamento dal vivo di pesi, pendenze e centri con Adam, curva dell'errore inclusa. Teorema di approssimazione universale. |
+| 4 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. In fondo, il **laboratorio**: una seconda rete 784–24–10 parte da zero e si allena **dal vivo nel browser** su 1.200 cifre vere — le maschere emergono dal rumore, le risposte esatte salgono, e la previsione sulla cifra disegnata dal pubblico cambia mentre studia. |
+| 5 | La macchina che scrive | Tokenizzazione; modello a n-grammi costruito dal vivo sul testo scelto, con temperatura e tabella delle probabilità che **si riempie sotto gli occhi** mentre il modello legge il testo, parola per parola; piccolo modello neurale (Bengio 2003) allenato nel browser, con le parole che diventano punti; schema dell'attenzione. |
+| 6 | Limiti e domande | La stessa rete della Tappa 4 chiamata a giudicare uno scarabocchio: risponde «0 al 99 %». Da lì, le allucinazioni. |
 
 ## Due livelli di dettaglio
 
@@ -25,7 +26,7 @@ In alto a destra c'è l'interruttore **Essenziale / Completa**.
 
 - **Essenziale** (predefinito, ed è il livello con cui si tiene la lezione): una cosa per
   schermata, al massimo due comandi, niente gergo. Restano nascosti la collina dell'errore,
-  l'allenamento della Tappa 2, i 64 neuroni nascosti, la curva del laboratorio e le parole-punti.
+  l'allenamento della Tappa 3, i 64 neuroni nascosti, la curva del laboratorio e le parole-punti.
 - **Completa**: rimette in vista tutto, approfondimenti e termini tecnici fra parentesi
   («sovradattamento», «temperatura», «grado 7»).
 
@@ -59,15 +60,15 @@ controllare i numeri o per mostrare il codice a chi lo chiede:
 | File | Contenuto |
 |---|---|
 | `tappa1_regressione.m` | Minimi quadrati, curva errore-contro-complessità, discesa del gradiente con la mappa dell'errore. |
-| `tappa2_approssimatore.m` | Somma di sigmoidi, errore contro numero di neuroni (scala logaritmica). |
-| `tappa3_rete_mnist.m` | Carica i pesi della pagina web, ricalcola l'accuratezza (96,1 % sul sottoinsieme incluso), matrice di confusione, maschere dei 64 neuroni. |
-| `tappa3b_allena_rete.m` | Retropropagazione scritta a mano: allena la rete da zero su 3.000 cifre. |
-| `tappa4_modello_linguistico.m` | Modello a n-grammi con temperatura e tabella dei bigrammi. |
+| `tappa3_approssimatore.m` | Somma di sigmoidi, errore contro numero di neuroni (scala logaritmica). |
+| `tappa4_rete_mnist.m` | Carica i pesi della pagina web, ricalcola l'accuratezza (96,1 % sul sottoinsieme incluso), matrice di confusione, maschere dei 64 neuroni. |
+| `tappa4b_allena_rete.m` | Retropropagazione scritta a mano: allena la rete da zero su 3.000 cifre. |
+| `tappa5_modello_linguistico.m` | Modello a n-grammi con temperatura e tabella dei bigrammi. |
 
 ```matlab
 cd matlab
 tappa1_regressione
-tappa3_rete_mnist
+tappa4_rete_mnist
 ```
 
 ## Com'è fatto
@@ -76,8 +77,8 @@ tappa3_rete_mnist
 index.html              una pagina sola, cinque sezioni
 css/stile.css           testo grande e contrasto alto, pensato per il proiettore
 js/comune.js            minimi quadrati, softmax, sigmoide, aiuti per i grafici
-js/tappa0…tappa5        una tappa per file, ognuna si accende alla prima apertura
-js/tappa3b-laboratorio  la rete che si allena dal vivo nel browser
+js/tappa0…tappa6        una tappa per file, ognuna si accende alla prima apertura
+js/tappa4b-laboratorio  la rete che si allena dal vivo nel browser
 data/mnist-mlp.js       i 50.890 pesi della rete (JSON dentro una variabile globale)
 data/mnist-esempi.js    40 cifre vere dell'archivio MNIST
 data/mnist-allenamento  1.600 cifre per l'allenamento dal vivo (due PNG in base64)
@@ -110,7 +111,7 @@ node tools/export-mnist.js /tmp/mnist      # → file binari uint8
 pip install numpy
 python3 tools/train-mlp.py /tmp/mnist data/mnist-mlp.js
 
-pip install pillow                         # per l'allenamento dal vivo (Tappa 3)
+pip install pillow                         # per l'allenamento dal vivo (Tappa 4)
 python3 tools/export-allenamento.py /tmp/mnist data/mnist-allenamento.js
 ```
 

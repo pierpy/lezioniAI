@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Tappa 3-bis — «guardala imparare»: una seconda rete 784-24-10 che parte
+   Tappa 4-bis — «guardala imparare»: una seconda rete 784-24-10 che parte
    da manopole casuali e viene allenata DAL VIVO nel browser su 1.200 cifre
    MNIST vere (data/mnist-allenamento.js).
 

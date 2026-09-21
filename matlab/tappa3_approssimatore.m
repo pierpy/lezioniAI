@@ -1,4 +1,4 @@
-%% TAPPA 2 — L'approssimatore universale
+%% TAPPA 3 — L'approssimatore universale
 %
 % Una rete con un solo strato nascosto di sigmoidi:
 %       f(x) = a0 + sum_i a_i * sigma(w*(x - c_i))
@@ -41,7 +41,7 @@ for io = 1:numel(obiettivi)
     fprintf('\n');
 end
 
-figure('Name', 'Tappa 2 — errore contro numero di neuroni');
+figure('Name', 'Tappa 3 — errore contro numero di neuroni');
 semilogy(numeri_neuroni, errori', '-o', 'LineWidth', 2);
 xlabel('numero di neuroni nascosti');
 ylabel('errore medio (scala logaritmica)');
@@ -54,7 +54,7 @@ n_mostrati = 8;
 yg = obiettivi(1).funzione(xg);
 [pesi, stima, pezzi] = rete_sigmoidi(xg, yg, n_mostrati, [X0 X1]);
 
-figure('Name', 'Tappa 2 — la somma dei pezzetti');
+figure('Name', 'Tappa 3 — la somma dei pezzetti');
 plot(xg, yg, 'k--', 'LineWidth', 2); hold on;
 plot(xg, stima, 'LineWidth', 2.5);
 plot(xg, pezzi, 'LineWidth', 0.8);
