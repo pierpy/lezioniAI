@@ -38,6 +38,7 @@ che resta: è la stessa lezione con gli approfondimenti accesi.
 | Il grafico del costo delle k-medie (Tappa 2) | basta vedere i gruppi assestarsi | per mostrare che il costo scende sempre |
 | I 64 neuroni nascosti (Tappa 4) | un quarto riquadro da guardare | dopo che la cifra è stata riconosciuta, come bis |
 | La curva delle risposte esatte (laboratorio, Tappa 4) | bastano le maschere e un numero | per far vedere il divario studio/mai-viste |
+| Il grafico dello «stupore» nella parola coperta (Tappa 5) | basta la percentuale di parole indovinate | per chi vuole vedere l'errore scendere |
 | Le parole-punti (Tappa 5) | il passaggio più astratto di tutta la lezione | con un pubblico curioso, o in una seconda lezione |
 
 Tutti i numeri, le citazioni e i comportamenti restano gli stessi nei due livelli: «essenziale»
@@ -64,9 +65,14 @@ non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra pare
 | 18–30 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». |
 | 30–43 min | **2. Con o senza risposte giuste** | Il gioco dei sei lavori; la stessa nuvola con tre rette; i gruppi trovati dalle k-medie; la casa sballata da trascinare. |
 | 43–51 min | **3. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
-| 51–68 min | **4. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Poi il laboratorio: una rete che parte da zero e impara dal vivo, in venti secondi. |
-| 68–82 min | **5. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, la tabella che si riempie mentre legge. |
-| 82–90 min | **6. Limiti e domande** | Lo scarabocchio che la rete chiama «zero al 99 %». Le quattro cose da ricordare. Domande. |
+| 51–77 min | **4. La rete neurale** | Un neurone solo (pesi, somma, soglia). Una rete piccola con tutti i fili in vista. La colpa all'indietro, al rallentatore. Poi la cifra scritta dal pubblico e il laboratorio che impara da zero. |
+| 77–99 min | **5. Il modello linguistico** | La catena di montaggio in cinque caselle. La generazione parola per parola con memoria e fantasia. Il gioco della parola coperta: com'è fatto l'addestramento, visto funzionare. |
+| 99–110 min | **6. Limiti e domande** | Lo scarabocchio che la rete chiama «zero al 99 %». Le quattro cose da ricordare. Domande. |
+
+> **Centodieci minuti sono tanti.** La lezione completa è pensata come **due incontri**:
+> il primo fino alla Tappa 3 compresa (circa 50 minuti: che cos'è, la regressione, con o senza
+> risposte, qualsiasi curva), il secondo dalla Tappa 4 in poi (le due macchine grandi e i limiti).
+> Se avete un incontro solo, usate la scaletta essenziale qui sotto.
 
 ### Il filo dell'apprendimento
 
@@ -85,7 +91,7 @@ un costo da far scendere — la distanza delle case dal proprio centro. Nominate
 | Tappa 4, il laboratorio | a leggere le cifre, da zero, dal vivo | 19.090 |
 | *Tappa 5, le parole-punti* | *dove mettere ogni parola nel piano* | *qualche migliaio* |
 
-### Lezione essenziale da 60 minuti (il formato consigliato per la prima volta)
+### Lezione essenziale da 70 minuti (il formato consigliato per la prima volta)
 
 | Tempo | Che cosa |
 |---|---|
@@ -93,8 +99,8 @@ un costo da far scendere — la distanza delle case dal proprio centro. Nominate
 | 15–26 | Tappa 1: i prezzi delle case, il cursore della complessità, la verifica sui dati nascosti. |
 | 26–37 | Tappa 2: il gioco dei sei lavori, le tre rette, i gruppi. (Se siete stretti, saltate il pannello sulla funzione di costo.) |
 | 37–44 | Tappa 3: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
-| 44–54 | Tappa 4: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
-| 54–62 | Tappa 5 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 6. |
+| 44–58 | Tappa 4: un neurone solo, la rete con tutti i fili, la colpa all'indietro; poi la cifra scritta dal pubblico. |
+| 58–70 | Tappa 5: la catena di montaggio, la generazione, il gioco della parola coperta; poi le quattro cose da ricordare della Tappa 6. |
 
 Con questo taglio non si perde nessun concetto: si perdono gli approfondimenti.
 La Tappa 5 completa, la collina dell'errore e le parole-punti diventano la seconda lezione.
@@ -236,7 +242,39 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
 - La citazione da dire a voce: *«che questo funzioni sempre è un teorema del 1989, di George Cybenko.
   Non è un'opinione degli informatici.»*
 
-### Tappa 4 — Le cifre scritte a mano (18 min)
+### Tappa 4 — La rete neurale (26 min)
+
+La tappa risponde a tre domande in fila: **com'è fatta**, **come impara**, **che cosa sa fare**.
+
+**1. Un neurone (5 min).** Prima di ogni disegno di rete, un neurone solo, con una decisione che
+conoscono tutti: *esco a fare la spesa?* Accendete e spegnete le tre situazioni e fate notare che
+il peso può essere **negativo** — «mi fanno male le gambe» spinge dall'altra parte.
+Poi i due pulsanti: *una persona pigra*, *una persona attiva*.
+> «Le manopole non sono il carattere di una macchina: sono il carattere di questa decisione.
+> Cambiando i pesi, la stessa identica macchina diventa un'altra persona.»
+Se qualcuno dice «ma allora è come un neurone del cervello»: no, e conviene dirlo subito.
+È un'immagine presa in prestito nel 1943; un neurone vero non fa moltiplicazioni.
+
+**2. Una rete intera, con tutti i fili (6 min).** Nove quadretti, quattro neuroni, due risposte.
+Fate accendere qualche quadretto dal pubblico e premete **«Manda il segnale»**: i pallini
+percorrono i fili. Prima dell'allenamento la risposta è a caso — ditelo, altrimenti sembra che
+funzioni per magia.
+> «Questa rete ha 58 manopole e le vedete tutte. Quella delle cifre ne ha 50.890:
+> è lo stesso disegno, solo che i fili non ci starebbero sullo schermo.»
+
+**3. La colpa all'indietro (8 min). È il cuore della tappa.**
+Premete **«Un esempio, al rallentatore»** e state zitti: la ricetta si illumina da sola, una fase
+alla volta, e la didascalia racconta che cosa sta succedendo. Fatelo **due o tre volte**: la terza
+volta il pubblico anticipa le fasi. Fate notare il numero che cambia alla fine
+(«ci crede al 62 % invece che al 41 %»): *un pochino* meglio, ed è tutto lì.
+Poi **«Allena»** e guardate i fili: alcuni si ingrossano, altri spariscono.
+> «Nessuno ha detto a quel filo di ingrossarsi. Ha ricevuto la sua parte di colpa e si è spostato.
+> Ripetuto qualche centinaio di volte, questo è "la rete impara".»
+
+**4. E adesso in grande (7 min).** Il resto della tappa come prima: la cifra scritta dal pubblico,
+le maschere, il laboratorio che impara da zero.
+
+### Tappa 4 — Le cifre scritte a mano (dentro la stessa tappa)
 
 - **Fate scrivere la cifra a qualcuno del pubblico**, non fatelo voi. Con il dito su un tablet, se c'è.
 - Mostrate il riquadro «quello che vede la rete»: *«non vede un sette. Vede 784 numeri fra 0 e 1.»*
@@ -265,7 +303,35 @@ Il concetto da consegnare: *un neurone è un interruttore morbido; sommandone ab
    cifre al secondo su un portatile; per un modello linguistico servono migliaia di schede
    grafiche per settimane.
 
-### Tappa 5 — La macchina che scrive (16 min)
+### Tappa 5 — Il modello linguistico (22 min)
+
+Stessa struttura: com'è fatto, come impara, che cosa sa fare.
+
+**1. La catena di montaggio (6 min).** Fate scrivere una frase a qualcuno del pubblico, poi
+cliccate le cinque caselle **in ordine**, commentando una riga ciascuna. Le due che valgono il
+prezzo del biglietto: il **passo 2** («queste sono manopole: all'inizio sono numeri a caso, e
+imparando diventano la carta d'identità della parola — qui sei per parola, in GPT-3 dodicimila»)
+e il **passo 3**, dove portate il cursore da 6 a 96 blocchi:
+> «Non c'è nessun trucco nuovo nei blocchi alti: è sempre lo stesso blocco, ripetuto novantasei
+> volte. Quasi tutto quello che chiamiamo intelligenza artificiale oggi è questo: la stessa cosa,
+> impilata tante volte.»
+Chiudete col passo 5, premendolo due volte: esce una parola diversa. Da lì si capisce perché la
+stessa domanda dà risposte diverse.
+
+**2. Il gioco della parola coperta (8 min). È il cuore della tappa.**
+Prima di allenare, premete **«Scopri la parola»** con le manopole a caso: la parola vera prendeva
+l'1 %. Poi **«Allena il modello»** e lasciate correre una decina di secondi guardando la
+percentuale di parole indovinate salire. Fermate, premete di nuovo «Scopri»: ora la parola vera
+prende il 90 e passa per cento.
+> «Chi gli ha dato le risposte giuste? Nessuno. La risposta era già scritta nel testo: è la parola
+> che veniva dopo. Ecco perché questi modelli hanno potuto studiare su tutto il web senza che
+> nessuno preparasse niente — e perché sono cresciuti così in fretta.»
+Se avete fatto la Tappa 2, richiamatela: è l'**auto-supervisione** di cui si parlava lì.
+
+**3. E adesso il resto (8 min).** La generazione con memoria e fantasia, la tabella che si riempie:
+come prima.
+
+### Tappa 5 — La macchina che scrive (dentro la stessa tappa)
 
 L'obiettivo è smontare il mistero senza sminuire il risultato.
 

@@ -57,7 +57,9 @@ riportate a memoria, controllabili ma non ricontrollate in quell'occasione.
 
 | | Riferimento | Che cosa sostiene la lezione |
 |---|---|---|
-| ○ | D. E. Rumelhart, G. E. Hinton, R. J. Williams, «Learning representations by back-propagating errors», *Nature* **323**, 533–536 (1986). | La retropropagazione: come si calcolano i gradienti in una rete a più strati. |
+| ○ | W. S. McCulloch, W. Pitts, «A logical calculus of the ideas immanent in nervous activity», *Bulletin of Mathematical Biophysics* **5**, 115–133 (1943). | Il «neurone formale» del primo pannello della Tappa 4: pesi, somma, soglia. |
+| ○ | F. Rosenblatt, «The Perceptron: a probabilistic model for information storage and organization in the brain», *Psychological Review* **65**(6), 386–408 (1958). | Il primo neurone artificiale costruito davvero, con motorini che giravano i potenziometri: le manopole, letteralmente. |
+| ○ | D. E. Rumelhart, G. E. Hinton, R. J. Williams, «Learning representations by back-propagating errors», *Nature* **323**, 533–536 (1986). | La retropropagazione: come si calcolano i gradienti in una rete a più strati. È la «colpa all'indietro» animata nella Tappa 4: la rete 9–4–2 con 58 manopole la esegue davvero, filo per filo. |
 | ✔ | Y. LeCun, L. Bottou, Y. Bengio, P. Haffner, «Gradient-based learning applied to document recognition», *Proceedings of the IEEE* **86**(11), 2278–2324 (1998). DOI 10.1109/5.726791 | Origine dell'archivio **MNIST** e del preprocessamento (cifra riportata a 20×20, centrata sul baricentro in 28×28) che la pagina replica sul disegno fatto col mouse. |
 | ✔ | D. Cireşan, U. Meier, J. Schmidhuber, «Multi-column deep neural networks for image classification», *CVPR 2012*. | Errore dello **0,23 %** su MNIST, «vicino allo ≈0,2 % degli esseri umani». È la frase citata nella Tappa 4. |
 | ○ | K. He, X. Zhang, S. Ren, J. Sun, «Delving Deep into Rectifiers», *ICCV 2015*, arXiv:1502.01852. | L'inizializzazione dei pesi usata da `tools/train-mlp.py`. |
@@ -77,7 +79,7 @@ Il divario fra i due numeri è il sovradattamento della Tappa 1, e va mostrato.
 | ✔ | Y. Bengio, R. Ducharme, P. Vincent, C. Jauvin, «A Neural Probabilistic Language Model», *Journal of Machine Learning Research* **3**, 1137–1155 (2003). | Il modello neurale della Tappa 5: ogni parola diventa un punto e la rete impara insieme i punti e le probabilità. |
 | ○ | T. Mikolov, K. Chen, G. Corrado, J. Dean, «Efficient Estimation of Word Representations in Vector Space», arXiv:1301.3781 (2013). | *word2vec*: le parole-come-punti diventano di uso comune. |
 | ○ | A. Vaswani et al., «Attention Is All You Need», *NeurIPS 2017*, arXiv:1706.03762. | Il meccanismo di attenzione: la figura illustrativa in fondo alla Tappa 5. |
-| ○ | T. Brown et al., «Language Models are Few-Shot Learners», arXiv:2005.14165 (2020). | GPT-3: 175 miliardi di parametri. È l'unico numero di parametri *ufficiale* fra i modelli citati. |
+| ✔ | T. Brown et al., «Language Models are Few-Shot Learners», arXiv:2005.14165 (2020). | GPT-3: 175 miliardi di parametri — l'unico numero di parametri *ufficiale* fra i modelli citati. Dalla stessa fonte i numeri della «catena di montaggio» della Tappa 5: **96 blocchi** impilati, **12.288** numeri per ogni pezzetto, 96 teste di attenzione; addestrato su circa **300 miliardi** di pezzetti di testo. |
 | ○ | J. Kaplan et al., arXiv:2001.08361 (2020); J. Hoffmann et al., arXiv:2203.15556 (2022). | Le «leggi di scala»: la qualità migliora in modo prevedibile con parametri e dati. |
 | ○ | L. Ouyang et al., «Training language models to follow instructions with human feedback», arXiv:2203.02155 (2022). | Le correzioni umane dopo l'allenamento (RLHF). |
 

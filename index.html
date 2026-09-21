@@ -525,6 +525,106 @@
   </p>
 
   <div class="pannello">
+    <h2>Prima di tutto: che cos'è un neurone</h2>
+    <p class="istruzioni">
+      Un neurone artificiale non è un pezzo di cervello: è una <strong>decisione presa a punteggi</strong>.
+      Guarda quello che entra, dà a ogni cosa un peso — quanto conta, in positivo o in negativo —
+      somma tutto, e se il totale supera una soglia si accende.
+      Provate: accendete e spegnete le tre situazioni, e cambiate quanto contano per voi.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="neurone-schema" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div id="neurone-ingressi" class="interruttori-grandi"></div>
+        <div id="neurone-pesi"></div>
+        <div class="controlli">
+          <button class="bottone" id="neurone-pigro">Una persona pigra</button>
+          <button class="bottone" id="neurone-attivo">Una persona attiva</button>
+        </div>
+        <div id="neurone-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="fonte">
+      È il «neurone formale» di McCulloch &amp; Pitts, <em>Bulletin of Mathematical Biophysics</em> 5,
+      115–133 (1943), e il <em>Perceptron</em> di Rosenblatt, <em>Psychological Review</em> 65(6),
+      386–408 (1958) — che nel 1958 fu costruito davvero, con fili e motorini che giravano le manopole.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Una rete: tanti neuroni, tutti collegati</h2>
+    <p class="istruzioni">
+      Nove quadretti in ingresso, quattro neuroni in mezzo, due risposte: <strong>barra verticale</strong>
+      o <strong>barra orizzontale</strong>. Qui i fili si vedono tutti e uno per uno — sono
+      <strong>58 manopole</strong>. Disegnate qualcosa cliccando i quadretti, poi mandate il segnale.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="rete-piccola" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div id="rete-griglia" class="tela"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="piccola-segnale">▶ Manda il segnale</button>
+          <button class="bottone" id="piccola-pulisci">Cancella</button>
+        </div>
+        <div id="piccola-verdetto" class="verdetto"></div>
+        <p class="nota">
+          Lo spessore di ogni filo è <strong>quanto conta</strong> quel collegamento; il colore dice se
+          spinge verso il sì (blu) o verso il no (rosso). Adesso le manopole sono a caso:
+          la rete risponde a casaccio.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannello">
+    <h2>Come impara: si dà la colpa all'indietro</h2>
+    <p class="istruzioni">
+      Questi sono i sei esempi che le facciamo studiare: tre barre verticali e tre orizzontali,
+      con la risposta giusta scritta accanto. Guardate un passo alla volta che cosa succede.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="impara-rete" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <ol class="ricetta" id="impara-ricetta">
+          <li data-fase="1"><span class="n">1</span> Il segnale <strong>va avanti</strong> e la rete risponde</li>
+          <li data-fase="2"><span class="n">2</span> Si confronta con <strong>la risposta giusta</strong></li>
+          <li data-fase="3"><span class="n">3</span> La colpa <strong>torna indietro</strong>, filo per filo</li>
+          <li data-fase="4"><span class="n">4</span> Ogni filo si <strong>corregge un pochino</strong></li>
+        </ol>
+        <div id="impara-esempi" class="tela"></div>
+        <div class="controlli">
+          <button class="bottone" id="impara-passo">Un esempio, al rallentatore</button>
+          <button class="bottone bottone-primario" id="impara-vai">▶ Allena</button>
+          <button class="bottone" id="impara-reset">Rimetti a caso</button>
+        </div>
+        <div id="impara-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="nota">
+      Nessuno dice al singolo filo quanto deve cambiare: <strong>la colpa si calcola</strong>.
+      Ogni filo riceve una parte dell'errore proporzionale a quanto ci ha messo del suo,
+      e si sposta di un pochino nella direzione che lo riduce. Questo è tutto ciò che si intende
+      con «la rete impara», e vale identico per la rete da 50.890 manopole qui sotto e per quelle
+      da mille miliardi.
+    </p>
+    <p class="fonte">
+      Il metodo si chiama <strong>retropropagazione dell'errore</strong>: Rumelhart, Hinton &amp; Williams,
+      <em>Nature</em> 323, 533–536 (1986).
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>E adesso la stessa cosa, in grande</h2>
+    <p class="istruzioni">
+      Sotto c'è la rete vera della lezione: 784 quadretti in ingresso invece di nove, 64 neuroni in mezzo
+      invece di quattro, dieci risposte invece di due. Non c'è nient'altro di diverso.
+    </p>
     <div class="tre-colonne">
       <div>
         <h3>1. Scrivete una cifra</h3>
@@ -618,16 +718,70 @@
   </p>
 
   <div class="pannello">
-    <h2>Primo passo: le parole diventano numeri</h2>
+    <h2>Com'è fatto: la catena di montaggio</h2>
+    <p class="istruzioni">
+      Scrivete una frase e cliccate le cinque caselle: ognuna vi mostra che cosa succede davvero
+      in quel punto della catena. Dentro un modello linguistico non c'è altro che questo,
+      ripetuto per ogni parola che scrive.
+    </p>
     <div class="controlli">
       <input type="text" id="tok-testo" class="campo" value="Oggi il cielo è sereno sulla costa" aria-label="Frase da trasformare in numeri">
     </div>
-    <div id="tok-uscita" class="gettoni"></div>
-    <p class="nota">
-      Un modello vero non spezza il testo in parole ma in <em>pezzetti</em> (le cosiddette
-      <em>sottoparole</em>): «costiera» diventa «costi» + «era». Così bastano circa 50.000 pezzetti
-      per scrivere qualsiasi cosa in qualsiasi lingua.
-    </p>
+    <div id="catena-schema" class="tela"></div>
+    <div id="catena-dettaglio" class="dettaglio-catena">
+      <div data-fase="1">
+        <h3>Il testo diventa pezzetti, e ogni pezzetto un numero</h3>
+        <div id="tok-uscita" class="gettoni"></div>
+        <p class="nota">
+          Un modello vero non spezza il testo in parole ma in <em>pezzetti</em> (le cosiddette
+          <em>sottoparole</em>): «costiera» diventa «costi» + «era». Così bastano circa 50.000 pezzetti
+          per scrivere qualsiasi cosa in qualsiasi lingua. Il numero sotto ogni pezzetto è solo
+          la sua posizione nell'elenco: non vuol dire niente di per sé.
+        </p>
+      </div>
+      <div data-fase="2" hidden>
+        <h3>Ogni pezzetto diventa una manciata di numeri</h3>
+        <div id="catena-numeri" class="tela"></div>
+        <p class="nota">
+          Questi numeri sono <strong>manopole</strong>: all'inizio sono a caso, e imparando diventano
+          la «carta d'identità» di quella parola. Qui ne bastano sei per parola; in GPT-3 sono
+          <strong>12.288</strong> per ogni pezzetto.
+        </p>
+      </div>
+      <div data-fase="3" hidden>
+        <h3>Lo stesso blocco, ripetuto decine di volte</h3>
+        <div id="catena-blocchi" class="tela"></div>
+        <div class="controllo">
+          <label for="catena-nblocchi">Quanti blocchi uno sopra l'altro</label>
+          <input type="range" id="catena-nblocchi" min="1" max="96" value="6" step="1">
+          <output id="catena-nblocchi-out">6 blocchi</output>
+        </div>
+        <p class="nota">
+          Ogni blocco fa due cose sole, sempre le stesse: <strong>guarda le altre parole</strong> della
+          frase e decide quali contano (è l'attenzione), poi <strong>rimescola i numeri</strong> con una
+          piccola rete neurale come quella che avete visto nella Tappa 4.
+          GPT-3 ha <strong>96</strong> di questi blocchi, impilati uno sull'altro.
+        </p>
+      </div>
+      <div data-fase="4" hidden>
+        <h3>Alla fine: un punteggio per ogni parola conosciuta</h3>
+        <div id="catena-punteggi" class="tela"></div>
+        <p class="nota">
+          Qui il vocabolario è piccolo perché il testo di studio è corto. In un modello vero
+          ci sono circa 50.000 punteggi, uno per ogni pezzetto possibile, ricalcolati da capo
+          <em>per ogni singola parola</em> che il modello scrive.
+        </p>
+      </div>
+      <div data-fase="5" hidden>
+        <h3>Si tira a sorte fra le più probabili</h3>
+        <div id="catena-scelta" class="tela"></div>
+        <p class="nota">
+          Non prende sempre la prima: ne pesca una fra le più probabili. È per questo che, rifacendo
+          la stessa domanda, la risposta cambia — e il cursore della «fantasia» qui sotto è proprio
+          questo. Poi la parola scelta torna in fondo alla frase e <strong>la catena riparte da capo</strong>.
+        </p>
+      </div>
+    </div>
   </div>
 
   <div class="pannello">
@@ -683,6 +837,41 @@
       È l'idea di Claude Shannon, <em>A Mathematical Theory of Communication</em>,
       <em>Bell System Technical Journal</em> 27, 379–423 (1948): già lì ci sono frasi inglesi generate
       contando coppie e terne di lettere e parole. Settantacinque anni dopo, l'idea è la stessa.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Come impara: il gioco della parola coperta</h2>
+    <p class="istruzioni">
+      Ecco come studia davvero un modello linguistico, e non è un modo di dire:
+      si prende una frase del testo, <strong>si copre la parola successiva</strong>, il modello prova
+      a indovinarla, e poi si scopre. Se ha sbagliato, si correggono le manopole — la stessa colpa
+      all'indietro della Tappa 4. Nessuno ha preparato le risposte: <strong>erano già scritte nel testo</strong>.
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="coperta-frase" class="foglio"></div>
+        <div id="coperta-previsioni" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div class="controlli">
+          <button class="bottone" id="coperta-scopri">Scopri la parola</button>
+          <button class="bottone" id="coperta-altra">Un'altra frase</button>
+        </div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="coperta-allena">▶ Allena il modello</button>
+          <button class="bottone" id="coperta-reset">Rimetti a caso</button>
+        </div>
+        <div id="coperta-statistiche" class="statistiche statistiche-piccole"></div>
+        <div id="coperta-errore" class="tela" data-avanzato></div>
+        <div id="coperta-verdetto" class="verdetto"></div>
+      </div>
+    </div>
+    <p class="fonte">
+      È l'addestramento «auto-supervisionato» di tutti i modelli linguistici, dal primo modello
+      neurale (Bengio et al., <em>JMLR</em> 3, 1137–1155, 2003) a GPT-3, che ha giocato a questo gioco
+      su circa <strong>trecento miliardi</strong> di pezzetti di testo
+      (Brown et al., arXiv:2005.14165, 2020).
     </p>
   </div>
 
@@ -841,8 +1030,10 @@
 <script src="js/tappa1-regressione.js"></script>
 <script src="js/tappa2-supervisione.js"></script>
 <script src="js/tappa3-approssimatore.js"></script>
+<script src="js/tappa4a-anatomia.js"></script>
 <script src="js/tappa4-rete.js"></script>
 <script src="js/tappa4b-laboratorio.js"></script>
+<script src="js/tappa5a-anatomia.js"></script>
 <script src="js/tappa5-llm.js"></script>
 <script src="js/tappa6-limiti.js"></script>
 <script src="js/app.js"></script>
