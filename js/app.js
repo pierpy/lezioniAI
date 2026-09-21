@@ -30,7 +30,7 @@
 
   document.addEventListener('keydown', ev => {
     const campo = ev.target.matches('input, select, textarea');
-    if (campo) return;
+    if (campo || document.body.classList.contains('presentazione')) return;
     if (ev.key === 'ArrowRight' || ev.key === 'PageDown') { vai(tappe[Math.min(tappe.length - 1, corrente + 1)]); }
     if (ev.key === 'ArrowLeft' || ev.key === 'PageUp') { vai(tappe[Math.max(0, corrente - 1)]); }
   });
@@ -42,19 +42,23 @@
      fa domande o per una seconda lezione. */
   function impostaModo(modo, ricorda) {
     document.body.classList.toggle('essenziale', modo !== 'completa');
-    document.querySelectorAll('.bottone-modo').forEach(b =>
+    document.querySelectorAll('.bottone-modo[data-modo]').forEach(b =>
       b.setAttribute('aria-pressed', b.dataset.modo === modo ? 'true' : 'false'));
     if (ricorda) {
       try { localStorage.setItem('lezione-modo', modo); } catch (e) { /* file:// senza permessi */ }
     }
   }
 
-  document.querySelectorAll('.bottone-modo').forEach(b =>
+  document.querySelectorAll('.bottone-modo[data-modo]').forEach(b =>
     b.addEventListener('click', () => impostaModo(b.dataset.modo, true)));
 
   let modoIniziale = 'essenziale';
-  try { modoIniziale = localStorage.getItem('lezione-modo') || 'essenziale'; } catch (e) { /* ignora */ }
+  try {
+    modoIniziale = localStorage.getItem('lezione-modo') === 'completa' ? 'completa' : 'essenziale';
+  } catch (e) { /* ignora */ }
   impostaModo(modoIniziale, false);
+
+  LEZIONE.vaiATappa = id => vai(id);
 
   vai((location.hash || '').replace('#', '') || tappe[0], false);
 })();

@@ -57,6 +57,33 @@ non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra pare
 5. **Le citazioni non si leggono ad alta voce.** Stanno lì perché la lezione sia verificabile,
    non per essere recitate: basta dire «è un teorema del 1989, c'è scritto lì sotto chi l'ha dimostrato».
 
+## Tenere la lezione come una presentazione
+
+Premete **▶ Presenta** in alto a destra (o il tasto `P`) e la pagina diventa una presentazione
+a schermo intero: una diapositiva per pannello, il titolo della tappa prima di ogni gruppo,
+e in basso — su fondo chiaro, leggibile da lontano — **la nota che dice a voi che cosa fare**.
+
+| Tasto | Cosa fa |
+|---|---|
+| `→` `spazio` `PagGiù` | avanti |
+| `←` `PagSu` | indietro |
+| `N` | note sì / no |
+| `Esc` | esce |
+
+Tre cose da sapere prima di entrare in aula:
+
+1. **Le diapositive restano vive.** Non è un export in PowerPoint: quello che vedete è la pagina
+   vera, quindi dentro la diapositiva si clicca, si trascina, si disegna, si allena. È tutto il
+   punto della lezione.
+2. **Il numero di diapositive dipende dal livello.** In *essenziale* sono 36, in *completa* 39:
+   scegliete il livello **prima** di entrare in presentazione (si può cambiare anche dopo,
+   e la diapositiva corrente resta al suo posto).
+3. **Si parte dalla tappa in cui siete.** Comodo per riprendere dopo una pausa o per provare
+   solo un pezzo: aprite la tappa, poi premete `P`.
+
+Se vi serve una dispensa da lasciare al pubblico, stampate la pagina normale (non in
+presentazione): la stampa mette una tappa per foglio e toglie i comandi.
+
 ## Scaletta
 
 | Tempo | Tappa | Cosa succede sullo schermo |

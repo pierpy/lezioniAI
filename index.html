@@ -18,6 +18,7 @@
       <span class="scelta-modo-etichetta">Lezione:</span>
       <button class="bottone-modo" data-modo="essenziale" aria-pressed="true">Essenziale</button>
       <button class="bottone-modo" data-modo="completa" aria-pressed="false">Completa</button>
+      <button class="bottone-modo bottone-presenta" id="avvia-presentazione" title="Schermo intero, una diapositiva alla volta">▶ Presenta</button>
     </div>
   </div>
   <nav class="barra-nav" aria-label="Tappe della lezione">
@@ -42,14 +43,14 @@
     due secoli, portata a una scala che due secoli fa nessuno poteva immaginare.
   </p>
 
-  <div class="lavagna">
+  <div class="lavagna" data-nota="Leggete le due righe ad alta voce, poi fermatevi. È la definizione di tutta l'ora: prima si scrivevano le regole, adesso si mostrano gli esempi.">
     <p>Per cento anni abbiamo detto ai computer <strong>le regole</strong>.</p>
     <p>Da qualche anno gli mostriamo <strong>gli esempi</strong>, e le regole se le trovano da soli
        girando delle manopole finché non sbagliano quasi più.</p>
     <p class="lavagna-piccolo">Tutto qui. Il resto — reti, neuroni, miliardi — è solo <em>quante</em> manopole.</p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Chiedete una regola per riconoscere un sette PRIMA di mostrare le cifre. Poi «Altri quattro», due volte, in silenzio. Chiudete con gli uno e i nove.">
     <h2>Perché non basta scrivere le regole</h2>
     <p class="istruzioni">
       Provate a dettarmi una regola per riconoscere un <strong>sette</strong>, una regola che un
@@ -72,7 +73,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate girare le manopole a qualcuno del pubblico, non a voi. Obiettivo: arrivare al «fuoco fuoco». Poi rivelate la regola vera e premete «Lascia fare a lei».">
     <h2>Adesso la macchina siete voi</h2>
     <p class="istruzioni">
       Questa scatola trasforma i <strong>metri quadri</strong> di una casa nel suo <strong>prezzo</strong>.
@@ -96,7 +97,7 @@
     </div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Ogni tacca vale dieci volte la precedente. Da dire: «oggi costruiamo tutte e tre queste macchine; è la stessa macchina con più manopole».">
     <h2>La stessa idea, tre volte</h2>
     <div class="griglia-tre">
       <div class="scheda">
@@ -127,7 +128,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="«Un passo alla volta» due o tre volte, commentando le quattro fasi. Poi la corsa. Se avete due minuti: passo troppo grande e la curva schizza fuori.">
     <h2>Cominciamo da qui: dei punti, una curva e quattro manopole</h2>
     <p class="istruzioni">
       La curva qui sotto ha <strong>quattro manopole</strong> e all'inizio sono girate a caso.
@@ -175,7 +176,7 @@
     Qui i dati sono le case di un paese: quanto costa un appartamento, dati i metri quadri?
   </p>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate dettare un punto al pubblico. Poi portate la complessità a 10: errore quasi zero. Poi spuntate la verifica — è il momento più importante dell'ora.">
     <div class="doppia-colonna">
       <div>
         <div id="reg-grafico" class="tela"></div>
@@ -204,7 +205,7 @@
     </div>
   </div>
 
-  <div class="pannello" data-avanzato>
+  <div class="pannello" data-nota="Solo in modalità completa. «Scendere una collina nella nebbia»: si guarda soltanto la pendenza sotto i piedi e si fa un passo in giù." data-avanzato>
     <h2>Come fa a trovarla? Scende lungo la collina dell'errore</h2>
     <p>
       Ogni coppia di manopole (inclinazione e altezza della retta) produce un errore.
@@ -228,7 +229,7 @@
     </p>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-nota="Riassunto in venti secondi. La regola d'oro, detta piano: il modello giusto non è quello che sbaglia meno su quello che ha già visto.">
     <h2>Due lezioni da portarsi a casa</h2>
     <div class="griglia-due">
       <div class="scheda">
@@ -261,13 +262,13 @@
     tutta l'intelligenza artificiale.
   </p>
 
-  <div class="lavagna">
+  <div class="lavagna" data-nota="Due sole situazioni: con le risposte e senza. Tutto il resto della tappa serve a farle vedere.">
     <p><strong>Con le risposte</strong>: impariamo a rispondere come chi ce le ha date.</p>
     <p><strong>Senza risposte</strong>: possiamo solo cercare l'ordine che c'è già nei dati.</p>
     <p class="lavagna-piccolo">In gergo: apprendimento <em>supervisionato</em> e <em>non supervisionato</em>.</p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate rispondere a voce prima di cliccare. Il sesto — il pagamento insolito — è ambiguo apposta, e la spiegazione lo dice.">
     <h2>Provate voi: con o senza?</h2>
     <p class="istruzioni">
       Per ognuno di questi lavori: qualcuno deve preparare le risposte giuste, oppure no?
@@ -277,7 +278,7 @@
     <div id="sup-gioco-esito" class="verdetto"></div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Partite da «indovinare il figlio» e raccontate Galton: la parola regressione nasce qui. Poi «indovinare il padre»: stessi punti, retta diversa. Infine la nuvola.">
     <h2>La stessa nuvola di punti, tre rette diverse</h2>
     <p class="istruzioni">
       Le altezze di 200 padri e dei loro figli. Scegliete che cosa volete fare con questi dati:
@@ -319,7 +320,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="«Una mossa» tre o quattro volte, poi «Trova i gruppi». Poi cambiate il numero di gruppi e rifate: non esiste una risposta giusta da confrontare.">
     <h2>Senza nessuna risposta: trovare i gruppi</h2>
     <p class="istruzioni">
       Ecco le case di un paese: superficie e prezzo, e <strong>nient'altro</strong>. Nessuno ci ha
@@ -364,7 +365,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Trascinate la casa cerchiata verso l'alto, lentamente. Da dire: «ho cambiato solo la domanda, non i dati».">
     <h2>Che cos'è davvero una «funzione di costo»</h2>
     <p class="istruzioni">
       Il costo è <strong>la domanda che facciamo alla macchina</strong>: le dice che cosa vuol dire
@@ -396,7 +397,7 @@
     </div>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-nota="Chiude la tappa e apre il resto: le cifre hanno bisogno di etichette scritte da qualcuno, i gruppi no, il testo è la risposta di se stesso.">
     <h2>E le tre cose che vediamo oggi?</h2>
     <div class="griglia-tre">
       <div class="scheda">
@@ -436,7 +437,7 @@
     Ogni pezzetto è un «neurone»: una manopola che dice <em>quando</em> accendersi e una che dice <em>quanto</em> contare.
   </p>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Da 1 a 40 neuroni, poi «mostra i pezzetti»: è la diapositiva più bella. Finite con «disegnatela voi» e fate disegnare a qualcuno del pubblico.">
     <div class="doppia-colonna">
       <div>
         <div id="ua-grafico" class="tela"></div>
@@ -495,7 +496,7 @@
     </p>
   </div>
 
-  <div class="pannello pannello-chiaro" data-avanzato>
+  <div class="pannello pannello-chiaro" data-nota="Solo in modalità completa. Da dire: il teorema dice che la rete PUÒ rappresentare la curva, non che riuscirà a trovarla." data-avanzato>
     <h2>Che cos'è un neurone, in concreto</h2>
     <div class="formula">
       <span class="formula-testo">uscita&nbsp;=&nbsp;a₁·<em>s</em>(w₁·x + b₁) + a₂·<em>s</em>(w₂·x + b₂) + … + a<sub>n</sub>·<em>s</em>(w<sub>n</sub>·x + b<sub>n</sub>)</span>
@@ -524,7 +525,7 @@
     che sia uno 0, un 1, un 2…
   </p>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Un neurone solo, su una decisione che conoscono tutti. Fate notare il peso negativo. Poi i due pulsanti: persona pigra, persona attiva.">
     <h2>Prima di tutto: che cos'è un neurone</h2>
     <p class="istruzioni">
       Un neurone artificiale non è un pezzo di cervello: è una <strong>decisione presa a punteggi</strong>.
@@ -553,7 +554,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate accendere i quadretti al pubblico, poi «Manda il segnale». Prima dell'allenamento risponde a caso: ditelo, o sembra magia.">
     <h2>Una rete: tanti neuroni, tutti collegati</h2>
     <p class="istruzioni">
       Nove quadretti in ingresso, quattro neuroni in mezzo, due risposte: <strong>barra verticale</strong>
@@ -580,7 +581,7 @@
     </div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="«Un esempio, al rallentatore» due o tre volte, in silenzio: la ricetta si illumina da sola. Poi «Allena» e guardate i fili ingrossarsi.">
     <h2>Come impara: si dà la colpa all'indietro</h2>
     <p class="istruzioni">
       Questi sono i sei esempi che le facciamo studiare: tre barre verticali e tre orizzontali,
@@ -619,7 +620,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate scrivere una cifra a qualcuno del pubblico — col dito, se c'è un tablet. Poi guardate le barre a destra.">
     <h2>E adesso la stessa cosa, in grande</h2>
     <p class="istruzioni">
       Sotto c'è la rete vera della lezione: 784 quadretti in ingresso invece di nove, 64 neuroni in mezzo
@@ -651,7 +652,7 @@
     </div>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-nota="99,9 % contro 96,5 %: è l'imparare a memoria della Tappa 1 che ritorna, sulla stessa rete che hanno appena usato.">
     <h2>Questa rete non è un trucco: è stata davvero addestrata</h2>
     <div id="rete-statistiche" class="statistiche"></div>
     <p>
@@ -670,7 +671,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Prima di premere, fate guardare le maschere: è rumore puro. Poi «Allena» e state zitti dieci secondi.">
     <h2>E adesso guardiamola imparare, da zero</h2>
     <p class="istruzioni">
       Questa è una <strong>seconda rete</strong>, più piccola, con le manopole messe a caso: non sa niente.
@@ -717,7 +718,7 @@
     Non c'è una frase pensata in anticipo. C'è una previsione, poi un'altra, poi un'altra.
   </p>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Fate scrivere una frase a qualcuno, poi cliccate le cinque caselle in ordine. Sul passo 3 portate il cursore a 96: «lo stesso blocco, novantasei volte».">
     <h2>Com'è fatto: la catena di montaggio</h2>
     <p class="istruzioni">
       Scrivete una frase e cliccate le cinque caselle: ognuna vi mostra che cosa succede davvero
@@ -784,7 +785,7 @@
     </div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Memoria 1: sciocchezze, e si ride. Memoria 2: frasi quasi sensate. Memoria 3: recita a memoria. Poi il cursore della fantasia.">
     <h2>Secondo passo: la previsione della parola successiva</h2>
     <p class="istruzioni">
       Questo modello impara <strong>adesso, qui</strong>, dal testo che scegliete: conta quali parole
@@ -821,7 +822,7 @@
     </div>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="«Guardalo mentre impara»: dieci secondi bastano, poi «tabella completa». Studiare, per questo modello, vuol dire leggere e contare.">
     <h2>Che cosa ha imparato: la tabella delle probabilità</h2>
     <p class="istruzioni">
       Righe: la parola di adesso. Colonne: la parola dopo. Più è scuro, più spesso quella coppia
@@ -840,7 +841,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Premete «Scopri» PRIMA di allenare: la parola vera prendeva l'1 %. Poi allenate dieci secondi e riscoprite: 97 %. Chi ha dato le risposte? Nessuno.">
     <h2>Come impara: il gioco della parola coperta</h2>
     <p class="istruzioni">
       Ecco come studia davvero un modello linguistico, e non è un modo di dire:
@@ -875,7 +876,7 @@
     </p>
   </div>
 
-  <div class="pannello" data-avanzato>
+  <div class="pannello" data-nota="Solo in modalità completa. Le parole diventano punti che si spostano da soli mentre la rete impara." data-avanzato>
     <h2>Terzo passo: da tabella a rete neurale</h2>
     <p>
       La tabella ha un difetto: se una coppia di parole non compare nel testo di studio, per lei
@@ -910,7 +911,7 @@
     </p>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-nota="Le tre differenze con il modellino: attenzione, scala, correzioni umane. La figura in fondo è uno schema illustrativo, non un calcolo: ditelo.">
     <h2>E allora perché ChatGPT sembra capire?</h2>
     <p>
       Perché al modellino qui sopra sono state aggiunte tre cose, tutte e tre quantitative,
@@ -941,7 +942,7 @@
 <section class="tappa" id="limiti">
   <h1><span class="etichetta-tappa">Tappa 6</span> Che cosa sa fare, e che cosa no</h1>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Disegnate una casetta o un fiore. Risponde «0 al 99 %». Da qui si arriva alle allucinazioni dei modelli linguistici.">
     <h2>La macchina risponde sempre. Anche quando non dovrebbe.</h2>
     <p class="istruzioni">
       Disegnate nel riquadro una cosa qualsiasi che <em>non</em> sia una cifra: una casetta, un fiore, uno scarabocchio.
@@ -964,7 +965,7 @@
     </p>
   </div>
 
-  <div class="pannello">
+  <div class="pannello" data-nota="Le quattro cose da ricordare. Leggetele piano, una alla volta: è l'ultima cosa che si portano a casa.">
     <h2>Quattro cose vere che conviene ricordare</h2>
     <div class="griglia-due">
       <div class="scheda">
@@ -991,7 +992,7 @@
     </div>
   </div>
 
-  <div class="lavagna">
+  <div class="lavagna" data-nota="Chiusura: tre regressioni, una piccola, una media, una gigantesca. Stessa idea, tre scale.">
     <p>Abbiamo fatto tre volte la stessa cosa:</p>
     <p class="lavagna-piccolo">
       punti e una curva → puntini di grigio e dieci probabilità → parole e la parola dopo.
@@ -999,7 +1000,7 @@
     <p>Tre regressioni. Una piccola, una media, una gigantesca.</p>
   </div>
 
-  <div class="pannello pannello-chiaro">
+  <div class="pannello pannello-chiaro" data-nota="Diapositiva di servizio: i titoli per chi vuole continuare a casa. Non leggeteli tutti.">
     <h2>Per chi vuole approfondire</h2>
     <ul class="elenco-grande">
       <li>C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer 2006 — il testo classico (cap. 1 e 3 bastano per la Tappa 1).</li>
@@ -1019,6 +1020,27 @@
   <button class="bottone" id="nav-avanti">Avanti →</button>
 </footer>
 
+<div id="presentazione-barra" hidden>
+  <div id="presentazione-progresso"><div id="presentazione-progresso-riempi"></div></div>
+  <span id="presentazione-tappa"></span>
+  <span id="presentazione-contatore"></span>
+  <span id="presentazione-comandi">
+    <button class="bottone-presentazione" id="presentazione-indietro" aria-label="Diapositiva precedente">←</button>
+    <button class="bottone-presentazione" id="presentazione-avanti" aria-label="Diapositiva successiva">→</button>
+    <button class="bottone-presentazione" id="presentazione-note" aria-label="Mostra o nascondi le note">note</button>
+    <button class="bottone-presentazione" id="presentazione-esci" aria-label="Esci dalla presentazione">esci</button>
+  </span>
+</div>
+
+<div id="presentazione-titolo" hidden>
+  <span class="numero"></span>
+  <h2></h2>
+  <p></p>
+  <span class="suggerimento-avanza">premete → per cominciare</span>
+</div>
+
+<div id="presentazione-note-banda" hidden></div>
+
 <script src="vendor/d3.v7.min.js"></script>
 <script src="data/mnist-mlp.js"></script>
 <script src="data/mnist-esempi.js"></script>
@@ -1037,5 +1059,6 @@
 <script src="js/tappa5-llm.js"></script>
 <script src="js/tappa6-limiti.js"></script>
 <script src="js/app.js"></script>
+<script src="js/presentazione.js"></script>
 </body>
 </html>

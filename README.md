@@ -33,6 +33,25 @@ In alto a destra c'è l'interruttore **Essenziale / Completa**.
 Nessuno dei due livelli cambia i conti, i numeri o le citazioni: «essenziale» mostra
 **meno cose per volta**, non cose più semplici. La scelta resta memorizzata nel browser.
 
+## Modalità presentazione
+
+Il pulsante **▶ Presenta** in alto a destra (o il tasto `P`) trasforma la pagina in una
+presentazione a schermo intero: **una diapositiva per pannello**, con la diapositiva di titolo
+davanti a ogni tappa e la **nota per chi parla** in basso. Non è un export in PowerPoint e non
+vuole esserlo: le diapositive *sono* le dimostrazioni, quindi restano tutte vive e cliccabili.
+
+| Tasto | Cosa fa |
+|---|---|
+| `→` `spazio` `PagGiù` | diapositiva successiva |
+| `←` `PagSu` | diapositiva precedente |
+| `N` | mostra o nasconde le note per chi parla |
+| `Esc` | esce dalla presentazione |
+| `P` | entra in presentazione |
+
+Ogni diapositiva si rimpicciolisce da sola quanto basta per stare in una schermata, e il
+livello **Essenziale / Completa** decide quante diapositive ci sono (36 in essenziale, 39 in completa). Per una dispensa cartacea basta stampare la pagina normale: la stampa
+mette una tappa per foglio.
+
 ## Come si usa
 
 ```bash
