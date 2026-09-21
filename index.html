@@ -43,10 +43,57 @@
   </p>
 
   <div class="lavagna">
-    <p>Un programma di intelligenza artificiale è una <strong>funzione con molte manopole</strong>.</p>
-    <p>Gli mostriamo tanti esempi di «domanda → risposta giusta» e lui gira le manopole
-       finché non sbaglia quasi più.</p>
-    <p class="lavagna-piccolo">In una parola sola: è una <strong>regressione</strong>. Enorme, ma una regressione.</p>
+    <p>Per cento anni abbiamo detto ai computer <strong>le regole</strong>.</p>
+    <p>Da qualche anno gli mostriamo <strong>gli esempi</strong>, e le regole se le trovano da soli
+       girando delle manopole finché non sbagliano quasi più.</p>
+    <p class="lavagna-piccolo">Tutto qui. Il resto — reti, neuroni, miliardi — è solo <em>quante</em> manopole.</p>
+  </div>
+
+  <div class="pannello">
+    <h2>Perché non basta scrivere le regole</h2>
+    <p class="istruzioni">
+      Provate a dettarmi una regola per riconoscere un <strong>sette</strong>, una regola che un
+      computer possa seguire alla lettera. «Un trattino sopra e uno obliquo che scende»?
+      Bene: guardate questi quattro sette, scritti da quattro persone vere.
+      Poi premete «Altri quattro» e vediamo se la vostra regola regge.
+    </p>
+    <div id="regole-cifre" class="tela"></div>
+    <div class="controlli">
+      <button class="bottone bottone-primario" id="regole-altri">Altri quattro</button>
+      <button class="bottone" id="regole-confronto">E questi sono degli uno e dei nove</button>
+      <span class="stato" id="regole-stato"></span>
+    </div>
+    <p class="nota">
+      Nessuno è mai riuscito a scrivere quella regola: ci hanno provato per trent'anni.
+      La strada che ha funzionato è l'altra — <strong>non dire com'è fatto un sette,
+      ma far vedere ottomila sette</strong> e lasciare che sia la macchina a trovare
+      quello che hanno in comune. È questo il cambiamento, e non è un dettaglio tecnico:
+      è il motivo per cui oggi parliamo di intelligenza artificiale.
+    </p>
+  </div>
+
+  <div class="pannello">
+    <h2>Adesso la macchina siete voi</h2>
+    <p class="istruzioni">
+      Questa scatola trasforma i <strong>metri quadri</strong> di una casa nel suo <strong>prezzo</strong>.
+      Dentro non c'è nessuna regola scritta: ci sono <strong>due manopole</strong>, e adesso sono messe a caso.
+      Giratele voi — trascinatele, o usate i tasti «−» e «+» — finché la macchina non azzecca
+      i cinque prezzi veri qui sotto. È esattamente quello che fa un computer quando «impara».
+    </p>
+    <div class="doppia-colonna">
+      <div>
+        <div id="macchina-scatola" class="tela"></div>
+      </div>
+      <div class="colonna-controlli">
+        <div id="macchina-termometro" class="tela"></div>
+        <div id="macchina-esempi" class="tela"></div>
+        <div class="controlli">
+          <button class="bottone bottone-primario" id="macchina-auto">Lascia fare a lei</button>
+          <button class="bottone" id="macchina-reset">Rimetti a caso</button>
+        </div>
+        <div id="macchina-verdetto" class="verdetto"></div>
+      </div>
+    </div>
   </div>
 
   <div class="pannello">
@@ -62,7 +109,7 @@
         <div class="scheda-icona" aria-hidden="true">✍️</div>
         <h3>Una cifra scritta a mano</h3>
         <p>Da 784 puntini di grigio, la risposta «è un 7».
-           <em>50.000 manopole.</em></p>
+           <em>50.890 manopole.</em></p>
       </div>
       <div class="scheda">
         <div class="scheda-icona" aria-hidden="true">💬</div>
@@ -71,8 +118,11 @@
            <em>Da qualche migliaio a mille miliardi di manopole.</em></p>
       </div>
     </div>
+    <div id="scala-manopole" class="tela"></div>
     <p class="nota">
-      Cambiano i numeri, non l'idea. Nelle prossime tappe costruiamo le tre cose,
+      Cambiano i numeri, non l'idea. E i numeri cambiano parecchio: da due manopole a mille
+      miliardi. Su questa riga ogni tacca vale <strong>dieci volte</strong> quella prima,
+      altrimenti non ci starebbero sullo schermo. Nelle prossime tappe costruiamo le tre cose,
       una alla volta, qui davanti a voi.
     </p>
   </div>
@@ -787,6 +837,7 @@
 <script src="data/corpora.js"></script>
 <script src="js/comune.js"></script>
 <script src="js/tappa0-intro.js"></script>
+<script src="js/tappa0b-macchina.js"></script>
 <script src="js/tappa1-regressione.js"></script>
 <script src="js/tappa2-supervisione.js"></script>
 <script src="js/tappa3-approssimatore.js"></script>

@@ -178,6 +178,37 @@ window.LEZIONE = (function () {
     };
   }
 
+  /* ── le cifre MNIST di studio, decodificate una volta sola ───────────── */
+
+  let _cifre = null, _inAttesa = [];
+
+  /** Decodifica il PNG di data/mnist-allenamento.js (una cifra per riquadro
+   *  28×28, in colonna) e richiama `poi` con {X, y, n}. Il risultato è tenuto
+   *  in memoria: le tappe che ne hanno bisogno lo chiedono senza rifare il lavoro. */
+  function cifreStudio(poi) {
+    if (_cifre) { poi(_cifre); return; }
+    _inAttesa.push(poi);
+    if (_inAttesa.length > 1) return;              // decodifica già in corso
+    const pacchetto = window.MNIST_ALLENAMENTO.studio;
+    const img = new Image();
+    img.onload = function () {
+      const tela = document.createElement('canvas');
+      tela.width = 28;
+      tela.height = 28 * pacchetto.n;
+      const ctx = tela.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      const dati = ctx.getImageData(0, 0, 28, 28 * pacchetto.n).data;
+      const X = new Float32Array(pacchetto.n * 784);
+      for (let i = 0; i < X.length; i++) X[i] = dati[i * 4] / 255;
+      const y = new Uint8Array(pacchetto.n);
+      for (let i = 0; i < pacchetto.n; i++) y[i] = +pacchetto.etichette[i];
+      _cifre = { X, y, n: pacchetto.n };
+      _inAttesa.forEach(f => f(_cifre));
+      _inAttesa = [];
+    };
+    img.src = pacchetto.png;
+  }
+
   /* ── registro delle tappe ────────────────────────────────────────────── */
 
   const _tappe = {};
@@ -206,6 +237,6 @@ window.LEZIONE = (function () {
   return {
     colori, num, perc, risolviSistema, minimiQuadrati, adattaPolinomio, rmse,
     sigmoide, relu, softmax, casuale, estrai, tela, suggerimento,
-    registra, accendi, allUscita, spegni
+    registra, accendi, allUscita, spegni, cifreStudio
   };
 })();

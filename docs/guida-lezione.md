@@ -60,12 +60,12 @@ non dice cose più semplici, ne dice **meno per volta**. Anche il gergo tra pare
 
 | Tempo | Tappa | Cosa succede sullo schermo |
 |---|---|---|
-| 0–10 min | **0. Apertura** | La frase-chiave. Poi «Un passo alla volta»: si vedono gli errori, le frecce sulle manopole e le manopole che girano. Infine «Fai imparare la curva» a velocità piena. |
-| 10–24 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». |
-| 24–38 min | **2. Con o senza risposte giuste** | Il gioco dei sei lavori; la stessa nuvola con tre rette; i gruppi trovati dalle k-medie; la casa sballata da trascinare. |
-| 38–48 min | **3. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
-| 48–66 min | **4. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Poi il laboratorio: una rete che parte da zero e impara dal vivo, in venti secondi. |
-| 66–82 min | **5. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, la tabella che si riempie mentre legge. |
+| 0–18 min | **0. Apertura** | I quattro sette che nessuna regola riesce a descrivere; la scatola a due manopole che gira il pubblico; la stessa cosa fatta da sola sulla curva; la riga delle manopole da 2 a mille miliardi. |
+| 18–30 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». |
+| 30–43 min | **2. Con o senza risposte giuste** | Il gioco dei sei lavori; la stessa nuvola con tre rette; i gruppi trovati dalle k-medie; la casa sballata da trascinare. |
+| 43–51 min | **3. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
+| 51–68 min | **4. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Poi il laboratorio: una rete che parte da zero e impara dal vivo, in venti secondi. |
+| 68–82 min | **5. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, la tabella che si riempie mentre legge. |
 | 82–90 min | **6. Limiti e domande** | Lo scarabocchio che la rete chiama «zero al 99 %». Le quattro cose da ricordare. Domande. |
 
 ### Il filo dell'apprendimento
@@ -77,7 +77,8 @@ un costo da far scendere — la distanza delle case dal proprio centro. Nominate
 
 | Dove | Che cosa impara | Quante manopole |
 |---|---|---|
-| Apertura | una curva su 24 punti | 4 |
+| Apertura, la scatola | il prezzo di una casa — **le manopole le girate voi** | 2 |
+| Apertura, la curva | una curva su 24 punti | 4 |
 | *(le righe in corsivo sono visibili solo in «completa»)* | | |
 | *Tappa 1, la collina* | *una retta sui prezzi delle case* | *2* |
 | *Tappa 3, «a tentoni»* | *pesi, pendenze e centri dei neuroni* | *fino a 121* |
@@ -88,12 +89,12 @@ un costo da far scendere — la distanza delle case dal proprio centro. Nominate
 
 | Tempo | Che cosa |
 |---|---|
-| 0–10 | Apertura: le quattro manopole, «un passo alla volta» due o tre volte, poi la corsa. |
-| 10–22 | Tappa 1: i prezzi delle case, il cursore della complessità, la verifica sui dati nascosti. |
-| 22–34 | Tappa 2: il gioco dei sei lavori, le tre rette, i gruppi. (Se siete stretti, saltate il pannello sulla funzione di costo.) |
-| 34–41 | Tappa 3: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
-| 41–52 | Tappa 4: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
-| 52–60 | Tappa 5 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 6. |
+| 0–15 | Apertura: i quattro sette, la scatola a due manopole girata dal pubblico, poi la curva che impara da sola. |
+| 15–26 | Tappa 1: i prezzi delle case, il cursore della complessità, la verifica sui dati nascosti. |
+| 26–37 | Tappa 2: il gioco dei sei lavori, le tre rette, i gruppi. (Se siete stretti, saltate il pannello sulla funzione di costo.) |
+| 37–44 | Tappa 3: da 1 a 40 neuroni, «mostra i pezzetti», la curva disegnata a mano. |
+| 44–54 | Tappa 4: la cifra scritta dal pubblico, poi il laboratorio che impara da zero. |
+| 54–62 | Tappa 5 (solo generazione e tabella) e le quattro cose da ricordare della Tappa 6. |
 
 Con questo taglio non si perde nessun concetto: si perdono gli approfondimenti.
 La Tappa 5 completa, la collina dell'errore e le parole-punti diventano la seconda lezione.
@@ -105,45 +106,52 @@ Non tagliate mai la verifica su dati mai visti della Tappa 1: è il concetto pi�
 
 ## Che cosa fare, tappa per tappa
 
-### Tappa 0 — Apertura (10 min)
+### Tappa 0 — Apertura (18 min)
 
-Aprite con una domanda al pubblico: *«Secondo voi, quando il telefono riconosce una faccia,
-che cosa sta facendo?»* Raccogliete due o tre risposte, non correggetele.
+Quattro momenti, in quest'ordine. Rispondono alle tre domande che uno si fa davvero:
+*perché serve?*, *che cos'è?*, *quanto è grande?*
 
-Poi la lavagna nera con la frase-chiave, e scendete al pannello delle manopole.
-**Non premete subito «Fai imparare la curva»: quella è la fine, non l'inizio.**
-L'ordine giusto è questo.
+**1. «Perché non basta scrivere le regole» (4 min).**
+Aprite con una sfida, non con una definizione: *«ditemi voi una regola per riconoscere un sette.
+Una regola precisa, che un computer possa seguire alla lettera.»* Lasciate che qualcuno la dica
+ad alta voce — arriverà qualcosa come «un trattino sopra e una linea obliqua che scende».
+Poi indicate i quattro sette sullo schermo, scritti da quattro persone vere: uno ha il taglio,
+uno è tondo, uno è storto. Premete **«Altri quattro»**: ne arrivano altri quattro, diversi.
+Ripetetelo due volte, in silenzio. Poi premete **«E questi sono degli uno e dei nove»**:
+la regola deve escludere anche quelli.
+> «Per trent'anni si è provato a scrivere quella regola, e non ci è riuscito nessuno.
+> Poi si è cambiata strada: non dire com'è fatto un sette, ma far vedere ottomila sette.
+> Questo è il passaggio che chiamiamo intelligenza artificiale.»
 
-1. **Presentate le quattro manopole.** Sono a destra, con la lancetta e il numero sotto.
-   *«Questa curva è governata da quattro numeri. Altezza, inclinazione, curvatura, ondulazione.
-   Adesso sono messi a caso, ed è per questo che la curva passa lontano dai punti.»*
-   Se qualcuno chiede perché proprio quattro: perché questa curva è semplice; la rete della Tappa 4
-   ne ha cinquantamila, ma la storia è identica.
-2. **Premete «Un passo alla volta»** e lasciate parlare lo schermo: la ricetta in quattro punti
-   si illumina una riga per volta.
-   - *fase 1* — si accendono i segmenti arancioni: **quanto sbaglia**, punto per punto.
-     *«Questo è l'unico giudizio che la macchina riceve: un numero che dice quanto è lontana.»*
-   - *fase 2* — compaiono le frecce sopra le manopole: **da che parte conviene girarle**.
-     *«Non lo indovina: lo calcola. Per ogni manopola si chiede se, girandola a destra,
-     l'errore salirebbe o scenderebbe. La freccia più marcata è la manopola che conviene toccare di più.»*
-   - *fase 3* — le lancette si spostano e la curva si muove: **le gira di un pochino**.
-     Fate notare che l'errore in basso a destra è sceso appena appena.
-   - *fase 4* — *«e adesso ricomincia da capo. Trecento volte.»*
-3. **Ripetete «Un passo alla volta» due o tre volte.** Ci vogliono venti secondi e servono:
-   alla terza ripetizione il pubblico anticipa da solo quello che sta per succedere.
-4. **Ora sì: «Fai imparare la curva».** La curva scende sui punti e la curva dell'errore precipita.
-   > «Guardate: non sta capendo niente. Sta solo girando quattro manopole per avvicinarsi ai punti.
-   > Quando avrà finito saprà dirmi un valore anche dove il punto non c'è.
-   > Questo, e nient'altro, è quello che fa un'intelligenza artificiale.»
-5. **Il colpo di scena, se avete due minuti.** Portate il cursore «Di quanto le giro ogni volta»
-   su *un passo troppo grande* e premete «Nuovi punti», poi «Fai imparare la curva»:
-   la curva schizza fuori dal grafico e l'errore esplode.
-   *«Anche il come si gira conta. Troppo piano non arriva mai, troppo forte manda tutto a monte:
-   chi fa questo mestiere passa metà del tempo a regolare questa cosa qui.»*
-   Rimettete il cursore al centro prima di proseguire.
+**2. «Adesso la macchina siete voi» (7 min). È il cuore dell'apertura.**
+Mostrate la scatola: un biglietto entra da sinistra (i metri quadri), esce una risposta a destra
+(il prezzo), e dentro non c'è nessuna regola scritta — ci sono **due manopole**.
+Poi fate salire qualcuno, o girate voi seguendo i suggerimenti della sala:
+- il termometro dice **acqua, acquetta, fuochino, fuoco** — è il gioco dei bambini, ed è
+  esattamente quello che guarda un computer mentre impara;
+- sotto, le cinque case con la loro barra d'errore: le barre si accorciano mentre vi avvicinate;
+- l'obiettivo è arrivare al «fuoco fuoco», sotto 3 mila € di errore.
+Fateli faticare: un minuto buono di tentativi, con la sala che dice «più su!», «troppo!».
+Quando ci arrivano (o quando si stancano), **rivelate la regola vera**: 20 mila € più 1,6 mila €
+al metro quadro. *«Non l'avete mai saputa. Avete solo guardato se l'errore scendeva.»*
+Infine premete **«Lascia fare a lei»** e leggete il confronto: la macchina fa la stessa identica
+cosa, ma qualche migliaio di volte al secondo.
+> «Non è più intelligente di voi. È più veloce a girare le manopole. Tutta l'intelligenza
+> artificiale sta in questa differenza.»
 
-Chi vorrà il nome tecnico lo avrà nella Tappa 1 («discesa del gradiente») e vedrà lo stesso
-procedimento dall'alto, come una collina. Qui non serve: qui si guardano le manopole.
+**3. «E adesso lasciatela fare da sola» (5 min).**
+Stessa storia, un problema un po' più difficile (una curva invece di una retta) e quattro manopole
+invece di due. Premete **«Un passo alla volta»** due o tre volte e commentate la ricetta che si
+illumina: misuro l'errore, guardo da che parte conviene girare, giro un pochino, ricomincio.
+Poi **«Fai imparare la curva»** a velocità piena.
+Se avete due minuti, il colpo di scena: cursore su *«un passo troppo grande»*, «Nuovi punti»,
+e guardate la curva schizzare fuori dal grafico.
+
+**4. «La stessa idea, tre volte» (2 min).**
+Le tre schede e la riga delle manopole. Dite ad alta voce che **ogni tacca vale dieci volte
+la precedente**, altrimenti i tre pallini non starebbero sullo schermo.
+> «Oggi costruiamo tutte e tre queste macchine. Sono la stessa macchina: cambia solo
+> quante manopole ha e che cosa scriviamo sul biglietto che le infiliamo dentro.»
 
 ### Tappa 1 — La retta che indovina (14 min)
 

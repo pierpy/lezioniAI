@@ -331,7 +331,7 @@ LEZIONE.registra('rete', function () {
   d3.select('#lab-verdetto').attr('class', 'verdetto')
     .html('Sto caricando le 1.600 cifre dell\'esercitazione…');
 
-  caricaInsieme(window.MNIST_ALLENAMENTO.studio, s => {
+  L.cifreStudio(s => {
     studio = s;
     caricaInsieme(window.MNIST_ALLENAMENTO.verifica, v => {
       verifica = v;
