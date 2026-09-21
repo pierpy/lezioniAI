@@ -12,7 +12,7 @@ Tutto gira nel browser, **senza rete e senza installare niente**: si apre
 
 | | Tappa | Che cosa si tocca con mano |
 |---|---|---|
-| 0 | Apertura | Una curva che «impara» dei punti sotto gli occhi del pubblico. |
+| 0 | Apertura | Una curva con **quattro manopole visibili**: si vedono gli errori misurati, la freccia che dice da che parte girare ogni manopola, le lancette che si spostano e l'errore che scende. Modalità «un passo alla volta» che racconta le quattro fasi, e cursore del passo di apprendimento (troppo grande = la curva schizza via). |
 | 1 | La retta che indovina | Regressione polinomiale interattiva: si aggiungono punti col mouse, si alza la complessità, si nascondono dati per verificare. Sovradattamento e discesa del gradiente sulla «collina dell'errore» (curve di livello). |
 | 2 | Da una retta a qualsiasi curva | Somma di sigmoidi: da 1 a 40 neuroni, con i singoli pezzetti in vista. Si può disegnare la curva obiettivo a mano libera. Teorema di approssimazione universale. |
 | 3 | Le cifre scritte a mano | Rete 784–64–10 **addestrata davvero** su 8.000 cifre MNIST (96,5 % su cifre mai viste). Si disegna una cifra, si vedono i 64 neuroni accendersi e le maschere che hanno imparato. |

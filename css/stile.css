@@ -256,6 +256,44 @@ kbd {
 
 code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; background: var(--superficie-2); padding: .1em .35em; border-radius: 4px; }
 
+/* ─────────────── la "ricetta" in quattro passi (apertura) ─────────────── */
+
+.ricetta {
+  list-style: none;
+  margin: .9rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .35rem;
+}
+.ricetta li {
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  padding: .4rem .7rem;
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+  background: var(--superficie-2);
+  color: var(--inchiostro-2);
+  font-size: .95rem;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.ricetta li .n {
+  flex: 0 0 1.5rem;
+  width: 1.5rem; height: 1.5rem; line-height: 1.5rem;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--bordo);
+  color: var(--inchiostro-2);
+  font-weight: 700;
+  font-size: .82rem;
+}
+.ricetta li.attiva {
+  background: #eaf2fd;
+  border-left-color: var(--serie-1);
+  color: var(--inchiostro);
+}
+.ricetta li.attiva .n { background: var(--serie-1); color: #fff; }
+
 /* ──────────────────────────────── comandi ─────────────────────────────── */
 
 .controlli { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin-top: .8rem; }
@@ -281,6 +319,17 @@ code { font-family: ui-monospace, Consolas, monospace; font-size: .9em; backgrou
 .avanza { display: flex; justify-content: flex-end; margin: 1.8rem 0 1rem; }
 
 .colonna-controlli { display: flex; flex-direction: column; gap: 1rem; }
+
+.controllo-in-riga {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+.controllo-in-riga label { margin-bottom: 0; white-space: nowrap; }
+.controllo-in-riga input[type="range"] { width: 130px; }
+.controllo-in-riga output { margin-top: 0; min-width: 16rem; }
 
 .controllo label {
   display: block;

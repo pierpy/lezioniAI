@@ -24,8 +24,8 @@ mai prima.
 
 | Tempo | Tappa | Cosa succede sullo schermo |
 |---|---|---|
-| 0–8 min | **0. Apertura** | La frase-chiave. Poi il pulsante «Fai imparare la curva»: la curva scende sui punti sotto gli occhi di tutti. |
-| 8–25 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». La collina dell'errore. |
+| 0–12 min | **0. Apertura** | La frase-chiave. Poi «Un passo alla volta»: si vedono gli errori, le frecce sulle manopole e le manopole che girano. Infine «Fai imparare la curva» a velocità piena. |
+| 12–28 min | **1. La retta che indovina** | Prezzi delle case. Il pubblico detta dove mettere i punti. Cursore della complessità, spunta «nascondi 1/3 dei dati». La collina dell'errore. |
 | 25–35 min | **2. Da una retta a qualsiasi curva** | Cursore dei neuroni da 1 a 40, con «mostra i singoli pezzetti». Si finisce disegnando una curva col mouse e facendola copiare alla rete. |
 | 35–55 min | **3. Le cifre scritte a mano** | Qualcuno del pubblico scrive una cifra. Si guardano i neuroni che si accendono e le maschere che hanno imparato. |
 | 55–75 min | **4. La macchina che scrive** | Tokenizzazione, generazione parola per parola, cursore della memoria e della fantasia, tabella delle probabilità, allenamento dal vivo. |
@@ -37,16 +37,45 @@ Non tagliate mai la verifica su dati mai visti della Tappa 1: è il concetto pi�
 
 ## Che cosa fare, tappa per tappa
 
-### Tappa 0 — Apertura (8 min)
+### Tappa 0 — Apertura (12 min)
 
 Aprite con una domanda al pubblico: *«Secondo voi, quando il telefono riconosce una faccia,
 che cosa sta facendo?»* Raccogliete due o tre risposte, non correggetele.
 
-Poi la lavagna nera con la frase-chiave, e subito il pulsante. Mentre la curva scende:
+Poi la lavagna nera con la frase-chiave, e scendete al pannello delle manopole.
+**Non premete subito «Fai imparare la curva»: quella è la fine, non l'inizio.**
+L'ordine giusto è questo.
 
-> «Guardate: non sta capendo niente. Si sta solo avvicinando ai punti.
-> Quando avrà finito, sarà in grado di dirmi un valore anche dove il punto non c'è.
-> Questo, e nient'altro, è quello che fa un'intelligenza artificiale.»
+1. **Presentate le quattro manopole.** Sono a destra, con la lancetta e il numero sotto.
+   *«Questa curva è governata da quattro numeri. Altezza, inclinazione, curvatura, ondulazione.
+   Adesso sono messi a caso, ed è per questo che la curva passa lontano dai punti.»*
+   Se qualcuno chiede perché proprio quattro: perché questa curva è semplice; la rete della Tappa 3
+   ne ha cinquantamila, ma la storia è identica.
+2. **Premete «Un passo alla volta»** e lasciate parlare lo schermo: la ricetta in quattro punti
+   si illumina una riga per volta.
+   - *fase 1* — si accendono i segmenti arancioni: **quanto sbaglia**, punto per punto.
+     *«Questo è l'unico giudizio che la macchina riceve: un numero che dice quanto è lontana.»*
+   - *fase 2* — compaiono le frecce sopra le manopole: **da che parte conviene girarle**.
+     *«Non lo indovina: lo calcola. Per ogni manopola si chiede se, girandola a destra,
+     l'errore salirebbe o scenderebbe. La freccia più marcata è la manopola che conviene toccare di più.»*
+   - *fase 3* — le lancette si spostano e la curva si muove: **le gira di un pochino**.
+     Fate notare che l'errore in basso a destra è sceso appena appena.
+   - *fase 4* — *«e adesso ricomincia da capo. Trecento volte.»*
+3. **Ripetete «Un passo alla volta» due o tre volte.** Ci vogliono venti secondi e servono:
+   alla terza ripetizione il pubblico anticipa da solo quello che sta per succedere.
+4. **Ora sì: «Fai imparare la curva».** La curva scende sui punti e la curva dell'errore precipita.
+   > «Guardate: non sta capendo niente. Sta solo girando quattro manopole per avvicinarsi ai punti.
+   > Quando avrà finito saprà dirmi un valore anche dove il punto non c'è.
+   > Questo, e nient'altro, è quello che fa un'intelligenza artificiale.»
+5. **Il colpo di scena, se avete due minuti.** Portate il cursore «Di quanto le giro ogni volta»
+   su *un passo troppo grande* e premete «Nuovi punti», poi «Fai imparare la curva»:
+   la curva schizza fuori dal grafico e l'errore esplode.
+   *«Anche il come si gira conta. Troppo piano non arriva mai, troppo forte manda tutto a monte:
+   chi fa questo mestiere passa metà del tempo a regolare questa cosa qui.»*
+   Rimettete il cursore al centro prima di proseguire.
+
+Chi vorrà il nome tecnico lo avrà nella Tappa 1 («discesa del gradiente») e vedrà lo stesso
+procedimento dall'alto, come una collina. Qui non serve: qui si guardano le manopole.
 
 ### Tappa 1 — La retta che indovina (17 min)
 
@@ -63,7 +92,9 @@ L'esempio delle case funziona perché tutti hanno un'opinione sul prezzo di un a
    *«Non ha imparato il mercato immobiliare. Ha imparato a memoria quindici case.»*
 5. **Tornate a grado 2 o 3.** I due errori si riavvicinano. Regola d'oro pronunciata ad alta voce:
    *«il modello giusto non è quello che sbaglia meno su quello che ha già visto».*
-6. **La collina dell'errore.** Premete «Scendi lungo la collina». Metafora:
+6. **La collina dell'errore.** Premete «Scendi lungo la collina».
+   Collegatela esplicitamente all'apertura: *«le frecce sulle manopole che avete visto all'inizio
+   sono la pendenza di questa collina»*. Metafora:
    *«è come scendere una collina nella nebbia: si guarda solo la pendenza sotto i piedi e si fa un passo in giù.
    Con due manopole è una collina. Con cento miliardi è la stessa cosa, ma non possiamo disegnarla.»*
 

@@ -72,12 +72,38 @@
   </div>
 
   <div class="pannello">
-    <h2>Cominciamo da qui: dei punti e una curva</h2>
-    <p class="istruzioni">La curva qui sotto cerca i punti da sola. Premete il pulsante e guardatela mentre «impara».</p>
-    <div id="intro-animazione" class="tela"></div>
+    <h2>Cominciamo da qui: dei punti, una curva e quattro manopole</h2>
+    <p class="istruzioni">
+      La curva qui sotto ha <strong>quattro manopole</strong> e all'inizio sono girate a caso.
+      Guardate che cosa fa per avvicinarsi ai punti: è tutto quello che sa fare
+      un'intelligenza artificiale, ripetuto miliardi di volte.
+    </p>
+
+    <div class="doppia-colonna">
+      <div>
+        <div id="intro-animazione" class="tela"></div>
+        <ol class="ricetta" id="intro-ricetta">
+          <li data-fase="1"><span class="n">1</span> Guardo <strong>di quanto sbaglio</strong> su ogni punto</li>
+          <li data-fase="2"><span class="n">2</span> Per ogni manopola: <strong>da che parte conviene girarla?</strong></li>
+          <li data-fase="3"><span class="n">3</span> Le giro tutte <strong>di un pochino</strong> in quella direzione</li>
+          <li data-fase="4"><span class="n">4</span> <strong>Ricomincio</strong>, e ancora, e ancora</li>
+        </ol>
+      </div>
+      <div class="colonna-controlli">
+        <div id="intro-manopole" class="tela"></div>
+        <div id="intro-errore" class="tela"></div>
+      </div>
+    </div>
+
     <div class="controlli">
       <button class="bottone bottone-primario" id="intro-vai">▶ Fai imparare la curva</button>
+      <button class="bottone" id="intro-passo">Un passo alla volta</button>
       <button class="bottone" id="intro-nuovi">Nuovi punti</button>
+      <div class="controllo controllo-in-riga">
+        <label for="intro-lr">Di quanto le giro ogni volta</label>
+        <input type="range" id="intro-lr" min="1" max="3" step="1" value="2">
+        <output id="intro-lr-out">il passo giusto</output>
+      </div>
     </div>
     <p class="didascalia" id="intro-didascalia">La macchina non sa nulla di case, di cifre o di parole: sa solo avvicinarsi ai punti.</p>
   </div>
